@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#ffcdd2</color>
+    <color name="colorPrimary">#E53935</color>
+    <color name="colorPrimaryDark">#b71a1c</color>
+    <color name="fundoTelas">#FAFAFA</color>
+    <color name="fbColor">#425BB4</color>
+    <color name="colorSecundaryAccent">#b1f3f2</color>
+    <color name="colorSecundary">#00c2cb</color>
+    <color name="colorSecundaryDark">#00736d</color>
+    <color name="corBackgroundLogin">#99000000</color>
+    <color name="colorBackgroundPage">#FAFAFA</color>
+    <color name="black87">#DE000000</color>
+    <color name="black60">#99000000</color>
+
 </resources>
