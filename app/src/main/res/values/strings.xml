@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Food App</string>
+    <string name="app_name">Food Party</string>
     <string name="usuarioLogin">Nome de usuário</string>
     <string name="senhaLogin">Senha</string>
     <string name="btnLogin">Login</string>
