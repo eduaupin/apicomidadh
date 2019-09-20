@@ -32,10 +32,15 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tilayout_register_email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/white"
+        android:theme="@style/AppTheme.inputLogin"
+        style="@style/AppTheme.inputLogin"
+        app:boxBackgroundColor="@color/backgroundField"
+        app:boxCornerRadiusTopStart="5dp"
+        app:boxCornerRadiusTopEnd="5dp"
+        app:boxCornerRadiusBottomStart="5dp"
+        app:boxCornerRadiusBottomEnd="5dp"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
@@ -50,19 +55,20 @@
             android:imeOptions="actionNext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
             android:textColor="@color/white"
+            android:inputType="textEmailAddress"
             android:hint="@string/emailLogin"
-            android:singleLine="true"
+            android:lines="1"
+            android:maxLines="1"
             android:textSize="14sp"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tilayout_register_user"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/white"
+        android:theme="@style/AppTheme.inputLogin"
+        style="@style/AppTheme.inputLogin"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
@@ -80,16 +86,23 @@
             android:hint="@string/usuarioLogin"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
-            android:singleLine="true"
+            android:lines="1"
+            android:maxLines="1"
+            android:inputType="text"
             android:textSize="14sp" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tilayout_register_password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/white"
+        android:theme="@style/AppTheme.inputLogin"
+        style="@style/AppTheme.inputLogin"
+        app:boxBackgroundColor="@color/backgroundField"
+        app:boxCornerRadiusTopStart="5dp"
+        app:boxCornerRadiusTopEnd="5dp"
+        app:boxCornerRadiusBottomStart="5dp"
+        app:boxCornerRadiusBottomEnd="5dp"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="48dp"
@@ -109,7 +122,8 @@
             android:layout_gravity="center_vertical"
             android:inputType="textPassword"
             android:textColor="@color/white"
-            android:singleLine="true"
+            android:lines="1"
+            android:maxLines="1"
             android:textSize="14sp" />
     </android.support.design.widget.TextInputLayout>
 
