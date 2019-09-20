@@ -15,4 +15,6 @@
     <string name="nome_do_prato">Nome do prato</string>
     <string name="data_evento">Dia 14/10</string>
     <string name="nomeEvento"><b>Nome do Evento</b></string>
+    <string name="alt_logo">Logo Food Party</string>
+    <string name="alt_bg_register">Bolo de chocholate com mirtillo</string>
 </resources>
