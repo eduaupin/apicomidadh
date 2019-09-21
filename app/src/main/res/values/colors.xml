@@ -13,6 +13,8 @@
     <color name="black87">#DE000000</color>
     <color name="black60">#99000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="mtrl_textinput_default_box_stroke_color">#B2FAFAFA</color>
+    <color name="white60">#99FFFFFF</color>
     <color name="boxBackgroundColor">#99000000</color>
+    <color name="backgroundField">#61000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
