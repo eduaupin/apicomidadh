@@ -40,7 +40,8 @@ public class RegisterActivity extends AppCompatActivity {
         //Add blur effect to background image
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
-        bgRegister.setImageBitmap(new BlurUtil().blur(RegisterActivity.this, bitmap, 10.5f));
+        bgRegister.setImageBitmap(new BlurUtil().blur(RegisterActivity.this, bitmap, 5.0f));
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
