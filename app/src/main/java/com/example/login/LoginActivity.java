@@ -92,6 +92,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void validarCampos(){
+        inputEmail.setErrorEnabled(false);
+        inputSenha.setErrorEnabled(false);
+
         email = inputEmail.getEditText().getText().toString().trim();
         senha = inputSenha.getEditText().getText().toString().trim();
 
