@@ -83,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void sendBundleToLogin() {
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 
         Bundle bundle = new Bundle();
 
