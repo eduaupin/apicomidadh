@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.login.R;
 import com.example.util.BlurUtil;
 import com.example.views.GenericaActivity;
+import com.example.views.home.HomeActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
             inputSenha.setErrorEnabled(false);
 
             //Incluir fluxo seguinte... próximas sprints
-            startActivity(new Intent(LoginActivity.this, GenericaActivity.class));
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
 
     }
@@ -131,6 +132,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void esqueciSenha(){
         //Incluir fluxo seguinte... próximas sprints
-        startActivity(new Intent(LoginActivity.this, GenericaActivity.class));
+        startActivity(new Intent(LoginActivity.this, EsqueciSenhaActivity.class));
     }
 }
