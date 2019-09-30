@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.views.login;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.login.R;
 import com.example.util.BlurUtil;
+import com.example.views.GenericaActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         txtRegistrese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
 
@@ -115,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             //Incluir fluxo seguinte... próximas sprints
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, GenericaActivity.class));
         }
 
     }
@@ -131,6 +133,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void esqueciSenha(){
         //Incluir fluxo seguinte... próximas sprints
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, GenericaActivity.class));
     }
 }

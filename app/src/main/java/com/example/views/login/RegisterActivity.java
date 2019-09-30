@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.views.login;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,8 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.login.R;
 import com.example.util.BlurUtil;
+import com.example.views.GenericaActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout inputNome;
     private TextInputLayout inputSenha;
     private Button btnRegister;
+    private TextView textRegisterLogin;
 
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -64,6 +68,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+        textRegisterLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+               // startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     public void initViews() {
@@ -71,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
         inputNome = findViewById(R.id.tilayout_register_user);
         inputSenha = findViewById(R.id.tilayout_register_password);
         btnRegister = findViewById(R.id.button_register);
+        textRegisterLogin = findViewById(R.id.text_register_login);
     }
 
     public boolean validateEmail(String email) {
@@ -83,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void sendBundleToLogin() {
-        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, GenericaActivity.class);
 
         Bundle bundle = new Bundle();
 

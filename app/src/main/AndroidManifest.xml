@@ -9,19 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".MainActivity"/>
-
-        <activity android:name=".LoginActivity">
-
+        <activity android:name="com.example.views.pratos.NaoExistemFavoritosActivity"></activity>
+        <activity android:name="com.example.views.eventos.NaoExistemEventosActivity" />
+        <activity android:name="com.example.views.sobre.TermosDeUsoActivity" />
+        <activity android:name="com.example.views.sobre.SobreActivity" />
+        <activity android:name="com.example.views.pratos.PratosFavoritosActivity" />
+        <activity android:name="com.example.views.pratos.DetalhesDoPratoActivity" />
+        <activity android:name="com.example.views.pratos.ListaDePratosActivity" />
+        <activity android:name="com.example.views.eventos.DetalhesDoEventoActivity" />
+        <activity android:name="com.example.views.eventos.AdicionarPessoaAoEventoActivity" />
+        <activity android:name="com.example.views.eventos.CriarEventoActivity" />
+        <activity android:name="com.example.views.home.NotificacoesActivity" />
+        <activity android:name="com.example.views.login.FeedbackEsqueciSenhaActivity" />
+        <activity android:name="com.example.views.login.EsqueciSenhaActivity" />
+        <activity android:name="com.example.views.eventos.ListaEventosActivity" />
+        <activity
+            android:name="com.example.views.home.MenuActivity"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.views.home.HomeActivity" />
+        <activity android:name="com.example.views.login.RegisterActivity" />
+        <activity android:name="com.example.views.GenericaActivity" />
+        <activity android:name="com.example.views.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
