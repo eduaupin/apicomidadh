@@ -44,7 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
         //Add blur effect to background image
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
-        bgRegister.setImageBitmap(new BlurUtil().blur(RegisterActivity.this, bitmap, 10.5f));
+        bgRegister.setImageBitmap(new BlurUtil().blur(RegisterActivity.this, bitmap, 5.0f));
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +74,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
-               // startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
     }
@@ -96,7 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void sendBundleToLogin() {
-        Intent intent = new Intent(RegisterActivity.this, GenericaActivity.class);
+
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 
         Bundle bundle = new Bundle();
 

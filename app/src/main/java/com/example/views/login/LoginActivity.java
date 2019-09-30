@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         //Add efeito na imagem de background
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
-        bgRegister.setImageBitmap(new BlurUtil().blur(LoginActivity.this, bitmap, 10.5f));
+        bgRegister.setImageBitmap(new BlurUtil().blur(LoginActivity.this, bitmap, 5.0f));
 
         initViews();
 
@@ -111,10 +111,8 @@ public class LoginActivity extends AppCompatActivity {
             inputSenha.setErrorEnabled(false);
         }else{
 
-
             inputEmail.setErrorEnabled(false);
             inputSenha.setErrorEnabled(false);
-
 
             //Incluir fluxo seguinte... próximas sprints
             startActivity(new Intent(LoginActivity.this, GenericaActivity.class));

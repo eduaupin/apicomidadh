@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.views.pratos.NaoExistemFavoritosActivity"></activity>
+
+        <activity android:name="com.example.views.pratos.NaoExistemFavoritosActivity"/>
         <activity android:name="com.example.views.eventos.NaoExistemEventosActivity" />
         <activity android:name="com.example.views.sobre.TermosDeUsoActivity" />
         <activity android:name="com.example.views.sobre.SobreActivity" />
@@ -30,7 +31,8 @@
         <activity android:name="com.example.views.home.HomeActivity" />
         <activity android:name="com.example.views.login.RegisterActivity" />
         <activity android:name="com.example.views.GenericaActivity" />
-        <activity android:name="com.example.views.login.LoginActivity">
+        <activity android:name="com.example.views.login.LoginActivity" />
+        <activity android:name="com.example.views.login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
