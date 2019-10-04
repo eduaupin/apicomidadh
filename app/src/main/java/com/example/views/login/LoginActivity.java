@@ -132,6 +132,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void esqueciSenha(){
         //Incluir fluxo seguinte... próximas sprints
-        startActivity(new Intent(LoginActivity.this, EsqueciSenhaActivity.class));
+        startActivity(new Intent(LoginActivity.this, FeedbackEsqueciSenhaActivity.class));
     }
 }
