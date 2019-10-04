@@ -34,4 +34,8 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="termos_de_uso"><b><u>Termos de Uso</u></b></string>
+    <string name="atualizar_vers_o">Atualizar Versão</string>
+    <string name="vers_o_1_0_0">Versão 1.0.0</string>
+    <string name="sobre">Sobre</string>
 </resources>

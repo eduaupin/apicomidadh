@@ -12,4 +12,7 @@ public class NaoExistemEventosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nao_existem_eventos);
     }
+
+
+
 }
