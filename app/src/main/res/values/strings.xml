@@ -38,7 +38,12 @@
     <string name="atualizar_vers_o">Atualizar Versão</string>
     <string name="vers_o_1_0_0">Versão 1.0.0</string>
     <string name="sobre">Sobre</string>
-    <string name="esqueci_minha_senha">Esqueci minha senha</string>
+    <string name="esqueci_minha_senha">Esqueci minha Senha</string>
+    <string name="uma_nova_senha_foi_enviada_para_o_seu_e_mail">Uma nova senha foi enviada para seu e-mail.</string>
+    <string name="ver_mais">VER MAIS</string>
+    <string name="pratos_populares">Pratos Populares</string>
+    <string name="ver_todos">VER TODOS</string>
+    <string name="eventos">Eventos</string>
     <string name="texto_recuperar_senha">Está difícil lembrar a senha?\n Tudo bem.
         Podemos te enviar uma nova. Por segurança, confirme seu e-mail cadastrado!</string>
     <string name="e_mail">E-mail</string>
