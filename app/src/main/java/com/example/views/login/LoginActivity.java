@@ -14,7 +14,10 @@ import android.widget.TextView;
 import com.example.login.R;
 import com.example.util.BlurUtil;
 import com.example.views.GenericaActivity;
+import com.example.views.eventos.DetalhesDoEventoActivity;
+import com.example.views.eventos.NaoExistemEventosActivity;
 import com.example.views.home.HomeActivity;
+import com.example.views.home.NotificacoesActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -117,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
 
             //Incluir fluxo seguinte... próximas sprints
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
         }
 
     }

@@ -6,4 +6,143 @@
     android:layout_height="match_parent"
     tools:context="com.example.views.eventos.DetalhesDoEventoActivity">
 
+    <ImageView
+        android:id="@+id/imgMainDetalhe"
+        android:layout_width="360dp"
+        android:layout_height="264dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/eventos_noite_churros" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="327dp"
+        android:layout_height="114dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="212dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/imgMainDetalhe"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imgCalendario"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@drawable/calendario" />
+
+        <TextView
+            android:id="@+id/txtEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="12dp"
+            android:text="Noite do Churros"
+
+
+            android:textColor="#FA0C0C0C"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="36dp"
+            android:text="Dia 14/10 - 21:00" />
+
+        <TextView
+            android:id="@+id/txtEndereco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="60dp"
+            android:text="Av. Paulista, 1000 - Apto 17" />
+
+        <TextView
+            android:id="@+id/txtNomes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="86dp"
+            android:text="Nome 1"
+            android:textColor="#FAF80505"
+            android:textSize="16sp" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomePrato" />
+
+    <TextView
+        android:id="@+id/txtNomePrato"
+        android:layout_width="51dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:text="Pratos"
+        android:textColor="#FC070707"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/BtnfloatvoltarEventos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:clickable="true"
+        app:backgroundTint="#00FAF8F8"
+        app:backgroundTintMode="src_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgMainDetalhe"
+        app:rippleColor="#FAF8F8"
+        app:srcCompat="@drawable/ic_arrow" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnfloatShareEventos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="304dp"
+        android:clickable="true"
+        app:backgroundTint="#00FAF8F8"
+        app:backgroundTintMode="src_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgMainDetalhe"
+        app:rippleColor="#FAF8F8"
+        app:srcCompat="@drawable/ic_share" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnfloateditEventos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="248dp"
+        android:clickable="true"
+        app:backgroundTint="#00FAF8F8"
+        app:backgroundTintMode="src_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgMainDetalhe"
+        app:rippleColor="#FAF8F8"
+        app:srcCompat="@drawable/ic_edit_black_24dp" />
 </android.support.constraint.ConstraintLayout>
