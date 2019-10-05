@@ -2,27 +2,17 @@ package com.example.views.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
-import android.view.View;
-
-
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.login.R;
 
@@ -52,12 +42,9 @@ public class MenuActivity extends AppCompatActivity {
         //E recebe como parametro: activity, uma instancia do drawer para vincular a actionBar da activity,
         //uma instância da Toolbar para vincular o DrawerLayout
         //e as Strings para abertura e fechamento (acessibilidade)
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
-
-        //ActionBarDrawerToggle(
-        //       this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        //  );
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        );
 
         //invocamos o método addDrawerListener() do DrawerLayout para conectar o ActionBarDrawerToggle no próprio DrawerLayout.
         drawer.addDrawerListener(toggle);
@@ -82,12 +69,12 @@ public class MenuActivity extends AppCompatActivity {
                 if (id == R.id.nav_home){
 
                     //Faço o replace do fragmento de Home quando clicar no botão de Home
-                    // replaceFragment(new HomeFragment());
+                   // replaceFragment(new HomeFragment());
 
                 }else if (id == R.id.nav_gallery){
 
                     //Faço o replace do fragmento de Galeria quando clicar no botão de Galeria
-                    //   replaceFragment(new GaleriaFragment());
+                   // replaceFragment(new GaleriaFragment());
 
                 }
 
@@ -134,5 +121,6 @@ public class MenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Método que recebe um Fragmento e recarrega na tela
 
 }
