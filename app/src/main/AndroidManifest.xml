@@ -18,8 +18,17 @@
         <activity android:name="com.example.views.pratos.DetalhesDoPratoActivity" />
         <activity android:name="com.example.views.pratos.ListaDePratosActivity" />
         <activity android:name="com.example.views.eventos.DetalhesDoEventoActivity" />
-        <activity android:name="com.example.views.eventos.AdicionarPessoaAoEventoActivity" />
-        <activity android:name="com.example.views.eventos.CriarEventoActivity" />
+        <activity android:name="com.example.views.eventos.AdicionarPessoaAoEventoActivity" >
+
+        </activity>
+
+        <activity android:name="com.example.views.eventos.CriarEventoActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="com.example.views.home.NotificacoesActivity" />
         <activity android:name="com.example.views.login.FeedbackEsqueciSenhaActivity" />
         <activity android:name="com.example.views.login.EsqueciSenhaActivity" />
@@ -27,17 +36,16 @@
         <activity
             android:name="com.example.views.home.MenuActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+
+
+        </activity>
+
         <activity android:name="com.example.views.home.HomeActivity" />
         <activity android:name="com.example.views.login.RegisterActivity" />
         <activity android:name="com.example.views.GenericaActivity" />
         <activity android:name="com.example.views.login.LoginActivity" />
         <activity android:name="com.example.views.login.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
