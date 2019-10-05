@@ -4,7 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
     tools:context="com.example.views.home.HomeActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:elevation="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_eventos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/eventos"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black87"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+
+    <TextView
+        android:id="@+id/txt_ver_todos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/ver_todos"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_eventos"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager_home"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_eventos" />
+
+    <TextView
+        android:id="@+id/txt_pratos_populares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pratos_populares"
+        android:textColor="@color/black87"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_home" />
+
+    <TextView
+        android:id="@+id/txt_ver_mais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ver_mais"
+        android:layout_marginEnd="16dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_pratos_populares"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_home"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_pratos_populares"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+
 
 </android.support.constraint.ConstraintLayout>
