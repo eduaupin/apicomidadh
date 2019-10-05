@@ -38,4 +38,15 @@
     <string name="atualizar_vers_o">Atualizar Versão</string>
     <string name="vers_o_1_0_0">Versão 1.0.0</string>
     <string name="sobre">Sobre</string>
+    <string name="esqueci_minha_senha">Esqueci minha senha</string>
+    <string name="texto_recuperar_senha">Está difícil lembrar a senha?\n Tudo bem.
+        Podemos te enviar uma nova. Por segurança, confirme seu e-mail cadastrado!</string>
+    <string name="e_mail">E-mail</string>
+    <string name="exemplo_receita">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        \n Curabitur porttitor dui magna, faucibus viverra nisi rhoncus pulvinar. Nunc eu nunc leo.
+        \nMaecenas eu ipsum ut augue facilisis lobortis. Suspendisse varius fermentum nisi,
+        \nin sagittis turpis consequat pharetra. Quisque a facilisis felis, rutrum auctor tortor.
+        \nIn consequat venenatis odio non ultrices. Maecenas in sapien eget nisi sagittis
+        \nvulputate ut non arcu. Pellentesque malesuada nec risus eu auctor. Fusce in mollis
+        \nex, quis cursus sem.</string>
 </resources>
