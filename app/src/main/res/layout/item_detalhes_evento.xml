@@ -21,7 +21,7 @@
             android:id="@+id/imgCardEvento"
             android:layout_width="match_parent"
             android:layout_height="123dp"
-            app:srcCompat="@drawable/churros"
+            app:srcCompat="@drawable/churros_card"
 
             android:scaleType="fitXY"/>
 

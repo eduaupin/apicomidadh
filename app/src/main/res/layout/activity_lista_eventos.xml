@@ -28,7 +28,7 @@
         app:backgroundTint="#F44336"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        app:srcCompat="@drawable/ic_add_white" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="398dp"
