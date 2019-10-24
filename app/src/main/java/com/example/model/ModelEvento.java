@@ -11,10 +11,10 @@ public class ModelEvento implements Parcelable {
     private String nomeEvento;
     private String dataEvento;
     private String enderecoEvento;
-    private List<ModelPrato> pratos;
+    private List<ModelCardPratosHome> pratos;
 
 
-    public ModelEvento(int imgEvento, String nomeEvento, String dataEvento, String enderecoEvento, List<ModelPrato> pratos) {
+    public ModelEvento(int imgEvento, String nomeEvento, String dataEvento, String enderecoEvento, List<ModelCardPratosHome> pratos) {
         this.imgEvento = imgEvento;
         this.nomeEvento = nomeEvento;
         this.dataEvento = dataEvento;
@@ -28,7 +28,7 @@ public class ModelEvento implements Parcelable {
         nomeEvento = in.readString();
         dataEvento = in.readString();
         enderecoEvento = in.readString();
-        pratos = in.createTypedArrayList(ModelPrato.CREATOR);
+        pratos = in.createTypedArrayList(ModelCardPratosHome.CREATOR);
     }
 
     public static final Parcelable.Creator<ModelEvento> CREATOR = new Parcelable.Creator<ModelEvento>() {
@@ -75,11 +75,11 @@ public class ModelEvento implements Parcelable {
         this.enderecoEvento = enderecoEvento;
     }
 
-    public List<ModelPrato> getPratos() {
+    public List<ModelCardPratosHome> getPratos() {
         return pratos;
     }
 
-    public void setPratos(List<ModelPrato> pratos) {
+    public void setPratos(List<ModelCardPratosHome> pratos) {
         this.pratos = pratos;
     }
 

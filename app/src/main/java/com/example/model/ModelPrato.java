@@ -6,19 +6,22 @@ import android.os.Parcelable;
 public class ModelPrato implements Parcelable {
 
     private int imgPrato;
-    private String nomePRato;
-    private String descricaoPrato;
+    private String nomePrato;
+    private String listaIngredientes;
+    private String modoDePreparo;
 
-    public ModelPrato(int imgPrato, String nomePRato, String descricaoPrato) {
+    public ModelPrato(int imgPrato, String nomePrato, String modoDePreparo,String listaIngredientes) {
         this.imgPrato = imgPrato;
-        this.nomePRato = nomePRato;
-        this.descricaoPrato = descricaoPrato;
+        this.nomePrato = nomePrato;
+        this.modoDePreparo = modoDePreparo;
+        this.listaIngredientes = listaIngredientes;
     }
 
     protected ModelPrato(Parcel in) {
         imgPrato = in.readInt();
-        nomePRato = in.readString();
-        descricaoPrato = in.readString();
+        nomePrato = in.readString();
+        modoDePreparo = in.readString();
+        listaIngredientes = in.readString();
     }
 
     public static final Parcelable.Creator<ModelPrato> CREATOR = new Parcelable.Creator<ModelPrato>() {
@@ -41,20 +44,28 @@ public class ModelPrato implements Parcelable {
         this.imgPrato = imgPrato;
     }
 
-    public String getNomePRato() {
-        return nomePRato;
+    public String getNomePrato() {
+        return nomePrato;
     }
 
-    public void setNomePRato(String nomePRato) {
-        this.nomePRato = nomePRato;
+    public void setNomePrato(String nomePrato) {
+        this.nomePrato = nomePrato;
     }
 
-    public String getDescricaoPrato() {
-        return descricaoPrato;
+    public String getModoDePreparo() {
+        return modoDePreparo;
     }
 
-    public void setDescricaoPrato(String descricaoPrato) {
-        this.descricaoPrato = descricaoPrato;
+    public void setModoDePreparo(String modoDePreparo) {
+        this.modoDePreparo = modoDePreparo;
+    }
+
+    public String getListaIngredientes() {
+        return listaIngredientes;
+    }
+
+    public void setListaIngredientes(String listaIngredientes) {
+        this.listaIngredientes = listaIngredientes;
     }
 
     @Override
@@ -65,7 +76,8 @@ public class ModelPrato implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(imgPrato);
-        dest.writeString(nomePRato);
-        dest.writeString(descricaoPrato);
+        dest.writeString(nomePrato);
+        dest.writeString(modoDePreparo);
+        dest.writeString(listaIngredientes);
     }
 }
