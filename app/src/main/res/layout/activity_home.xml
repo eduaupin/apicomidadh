@@ -4,83 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context="com.example.views.home.HomeActivity">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:elevation="0dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    <Button
+        android:id="@+id/buttonCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524" />
 
     <TextView
-        android:id="@+id/txt_eventos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/eventos"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:textColor="@color/black87"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
-
-    <TextView
-        android:id="@+id/txt_ver_todos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/ver_todos"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_eventos"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager_home"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:id="@+id/textView2"
+        android:layout_width="224dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="185dp"
+        android:layout_marginBottom="32dp"
+        android:text="Chama tela de detalhes do evento"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCall"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_eventos" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88" />
 
     <TextView
-        android:id="@+id/txt_pratos_populares"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pratos_populares"
-        android:textColor="@color/black87"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:layout_height="0dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="243dp"
+        android:text="Chama tela de notificação "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_home" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonCall" />
 
-    <TextView
-        android:id="@+id/txt_ver_mais"
+    <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ver_mais"
-        android:layout_marginEnd="16dp"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_pratos_populares"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_home"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="157dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="167dp"
+        android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_pratos_populares"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 </android.support.constraint.ConstraintLayout>
