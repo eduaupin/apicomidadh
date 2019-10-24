@@ -1,18 +1,20 @@
 package com.example.model;
 
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 public class ModelCard {
 
 
-
-    private ImageView imagem;
+    private int imagem;
     private String nome;
     private String data;
     private Fragment fragment;
 
-    public ModelCard(String nome, String data, ImageView imagem, Fragment fragment) {
+
+    public ModelCard(String nome, String data, int imagem, Fragment fragment) {
         this.imagem = imagem;
         this.nome = nome;
         this.data = data;
@@ -25,11 +27,11 @@ public class ModelCard {
         this.fragment = fragment;
     }
 
-    public ImageView getImagem() {
+    public int getImagem() {
         return imagem;
     }
 
-    public void setImagem(ImageView imagem) {
+    public void setImagem(int imagem) {
         this.imagem = imagem;
     }
 
@@ -56,4 +58,5 @@ public class ModelCard {
     public void setFragment(Fragment fragment) {
         this.fragment = fragment;
     }
+
 }

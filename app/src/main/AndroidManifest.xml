@@ -16,7 +16,15 @@
         <activity android:name="com.example.views.sobre.SobreActivity" >
 
         </activity>
-        <activity android:name="com.example.views.pratos.PratosFavoritosActivity" />
+        <activity android:name="com.example.views.pratos.PratosFavoritosActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+    </activity>
+
         <activity android:name="com.example.views.pratos.DetalhesDoPratoActivity" />
         <activity android:name="com.example.views.pratos.ListaDePratosActivity" />
 
@@ -42,14 +50,8 @@
         <activity android:name="com.example.views.login.RegisterActivity" />
         <activity android:name="com.example.views.GenericaActivity" />
         <activity android:name="com.example.views.login.LoginActivity" />
-        <activity android:name="com.example.views.login.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name="com.example.views.login.SplashActivity"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
     </application>
 
 </manifest>
