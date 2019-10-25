@@ -74,17 +74,15 @@ public class HomeActivity extends AppCompatActivity implements ClickEvento, Clic
 
         ViewPager viewPager = findViewById(R.id.viewPager_home);
 
-        listaModelo.add(new ModelCard("Noite do Churros", "10/10/2019", CardEventoFragment.novaInstancia(R.drawable.churros_card,"Noite do Churros","10/10/2019")));
-        listaModelo.add(new ModelCard("Churrasco dos migos", "12/10/2019", CardEventoFragment.novaInstancia(R.drawable.churras,"Churrasco dos migos", "12/10/20199")));
-        listaModelo.add(new ModelCard("Festa do Sorvete", "03/11/2019", CardEventoFragment.novaInstancia(R.drawable.sorvete,"Festa do Sorvete", "03/11/2019")));
+        listaModelo.add(new ModelCard("Noite do Churros", "10/10/2019", CardEventoFragment.novaInstancia(R.drawable.churros_card, "Noite do Churros", "10/10/2019")));
+        listaModelo.add(new ModelCard("Churrasco dos migos", "12/10/2019", CardEventoFragment.novaInstancia(R.drawable.churras, "Churrasco dos migos", "12/10/20199")));
+        listaModelo.add(new ModelCard("Festa do Sorvete", "03/11/2019", CardEventoFragment.novaInstancia(R.drawable.sorvete, "Festa do Sorvete", "03/11/2019")));
 
         CardEventoAdapter adapter = new CardEventoAdapter(getSupportFragmentManager(), listaModelo);
 
         viewPager.setAdapter(adapter);
 
         viewPager.setOffscreenPageLimit(listaModelo.size());
-
-
 
 
         txtVerTodos.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +101,7 @@ public class HomeActivity extends AppCompatActivity implements ClickEvento, Clic
 
     }
 
-    private void initViews(){
+    private void initViews() {
 
         txtVerMais = findViewById(R.id.txt_ver_mais);
         txtVerTodos = findViewById(R.id.txt_ver_todos);
@@ -111,30 +109,30 @@ public class HomeActivity extends AppCompatActivity implements ClickEvento, Clic
     }
 
 
-    private List<ModelCardPratosHome> listaDePratos(){
+    private List<ModelCardPratosHome> listaDePratos() {
         List<ModelCardPratosHome> pratos = new ArrayList<>();
 
-        pratos.add(new ModelCardPratosHome("Churras"));
-        pratos.add(new ModelCardPratosHome("Biscoito"));
-        pratos.add(new ModelCardPratosHome("Sorvete"));
+        pratos.add(new ModelCardPratosHome(R.drawable.churras, "Churras"));
+        pratos.add(new ModelCardPratosHome(R.drawable.churras, "Biscoito"));
+        pratos.add(new ModelCardPratosHome(R.drawable.churras, "Sorvete"));
 
         return pratos;
     }
 
-    private void verTodos(){
+    private void verTodos() {
         startActivity(new Intent(HomeActivity.this, ListaEventosActivity.class));
     }
 
-    private void detalhesDoEvento(){
+    private void detalhesDoEvento() {
         startActivity(new Intent(HomeActivity.this, DetalhesDoEventoActivity.class));
     }
 
-    private void verMais(){
+    private void verMais() {
         startActivity(new Intent(HomeActivity.this, ListaDePratosActivity.class));
 
     }
 
-    private void detalhesDoPrato(){
+    private void detalhesDoPrato() {
         startActivity(new Intent(HomeActivity.this, DetalhesDoPratoActivity.class));
     }
 

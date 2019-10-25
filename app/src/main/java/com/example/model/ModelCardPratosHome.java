@@ -9,12 +9,16 @@ public class ModelCardPratosHome implements Parcelable {
     private String txtPrato;
     private String descricao;
 
+    public ModelCardPratosHome(int imgPrato, String txtPrato) {
+        this.imgPrato = imgPrato;
+        this.txtPrato = txtPrato;
+}
     public ModelCardPratosHome( String txtPrato) {
         this.txtPrato = txtPrato;
     }
 
-
     protected ModelCardPratosHome(Parcel in) {
+        imgPrato = in.readInt();
         txtPrato = in.readString();
     }
 
@@ -30,6 +34,8 @@ public class ModelCardPratosHome implements Parcelable {
         }
     };
 
+
+
     public void setImgPrato(int imgPrato) {
         this.imgPrato = imgPrato;
     }
@@ -41,14 +47,17 @@ public class ModelCardPratosHome implements Parcelable {
     public void setTxtPrato(String txtPrato) {
         this.txtPrato = txtPrato;
     }
-
+    public int getImgPrato() {
+        return imgPrato;
+    }
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(txtPrato);
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(imgPrato);
+        dest.writeString(txtPrato);
     }
 }
