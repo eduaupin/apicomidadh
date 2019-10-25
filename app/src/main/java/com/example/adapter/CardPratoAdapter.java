@@ -8,19 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.interfaces.ClickPratos;
 import com.example.login.R;
 import com.example.model.ModelCardPratosHome;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CardPratoAdapter  extends RecyclerView.Adapter<CardPratoAdapter.ViewHolderPrato> {
 
         private List<ModelCardPratosHome> pratos;
+        private ClickPratos listener;
 
 
-        public CardPratoAdapter(List<ModelCardPratosHome> pratos) {
+        public CardPratoAdapter(List<ModelCardPratosHome> pratos, ClickPratos listener) {
             this.pratos = pratos;
+            this.listener = listener;
         }
 
         @NonNull
@@ -32,10 +34,17 @@ public class CardPratoAdapter  extends RecyclerView.Adapter<CardPratoAdapter.Vie
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolderPrato viewHolderPrato, int i) {
-
-            ModelCardPratosHome prato = pratos.get(i);
-
+            final ModelCardPratosHome prato = pratos.get(i);
             viewHolderPrato.bind(prato);
+
+            //Seta a função de click no itemView(que é um parametro passado no construtor da classe
+            viewHolderPrato.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //chamada do método da interface através do atributo
+                    listener.onClick(prato);
+                }
+            });
 
         }
 

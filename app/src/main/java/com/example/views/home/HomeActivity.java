@@ -1,65 +1,60 @@
 package com.example.views.home;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
+import android.view.MenuItem;
 
-import com.example.adapter.CardEventoAdapter;
-import com.example.adapter.CardPratoAdapter;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+
+import com.example.interfaces.ClickEvento;
+import com.example.interfaces.ClickPratos;
 import com.example.login.R;
-import com.example.model.ModelCard;
-import com.example.model.ModelCardPratosHome;
-import com.example.views.eventos.DetalhesDoEventoActivity;
-import com.example.views.eventos.ListaEventosActivity;
-import com.example.views.pratos.DetalhesDoPratoActivity;
-import com.example.views.pratos.ListaDePratosActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class HomeActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerViewPratos;
-    private CardPratoAdapter adapter;
-    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
 
-
-    private TextView txtVerTodos;
-    private TextView txtVerMais;
-
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        initViews();
-
-        toolbar = findViewById(R.id.my_toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_menu_black_24dp));
-        toolbar.setTitle(" ");
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ReplaceFragment(new HomeFragment());
 
-        recyclerViewPratos = findViewById(R.id.recycler_home);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
-        adapter = new CardPratoAdapter(listaDePratos());
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        );
 
-        //Setando o adapter para o componente recyclerView
-        recyclerViewPratos.setAdapter(adapter);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-        //Definição do layout da lista utilizando a classe LayoutManager
-        recyclerViewPratos.setLayoutManager(new LinearLayoutManager(this));
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home,R.id.nav_eventos,R.id.nav_pratos_favoritos,R.id.nav_sobre,R.id.nav_logout
+                ).setDrawerLayout(drawerLayout).build();
 
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
+<<<<<<< Updated upstream
         recyclerViewPratos.setLayoutManager(layoutManager);
 
         //PagerView
@@ -72,63 +67,49 @@ public class HomeActivity extends AppCompatActivity {
         listaModelo.add(new ModelCard("Festa do Sorvete", "03/11/2019", CardEventoFragment.novaInstancia(R.drawable.sorvete,"Festa do Sorvete", "03/11/2019")));
 
         CardEventoAdapter adapter = new CardEventoAdapter(getSupportFragmentManager(), listaModelo);
-
-        viewPager.setAdapter(adapter);
-
-        viewPager.setOffscreenPageLimit(listaModelo.size());
-
-
-
-
-        txtVerTodos.setOnClickListener(new View.OnClickListener() {
+=======
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                verTodos();
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+>>>>>>> Stashed changes
+
+                //Criação de uma variavel que vai receber o id do item selecionado
+                int id = menuItem.getItemId();
+
+                //Verifica se o id recebido é igual ao do layout e realiza uma ação
+                if (id == R.id.nav_home){
+
+                    //Faço o replace do fragmento de Home quando clicar no botão de Home
+                    // replaceFragment(new HomeFragment());
+
+                }else if (id == R.id.nav_eventos){
+
+                    //Faço o replace do fragmento de Galeria quando clicar no botão de Galeria
+                    // replaceFragment(new GaleriaFragment());
+
+                }
+
+                //chama a ação de close do drawerLayout e mover a gaveta para direita
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
             }
         });
 
-        txtVerMais.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                verMais();
-            }
-        });
+    }
 
+    private void ReplaceFragment(Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.container_home, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void initViews(){
 
-        txtVerMais = findViewById(R.id.txt_ver_mais);
-        txtVerTodos = findViewById(R.id.txt_ver_todos);
+
 
     }
 
-
-    private List<ModelCardPratosHome> listaDePratos(){
-        List<ModelCardPratosHome> pratos = new ArrayList<>();
-
-        pratos.add(new ModelCardPratosHome("Churras"));
-        pratos.add(new ModelCardPratosHome("Biscoito"));
-        pratos.add(new ModelCardPratosHome("Sorvete"));
-
-        return pratos;
-    }
-
-    private void verTodos(){
-        startActivity(new Intent(HomeActivity.this, ListaEventosActivity.class));
-    }
-
-    private void detalhesDoEvento(){
-        startActivity(new Intent(HomeActivity.this, DetalhesDoEventoActivity.class));
-    }
-
-    private void verMais(){
-        startActivity(new Intent(HomeActivity.this, ListaDePratosActivity.class));
-
-    }
-
-    private void detalhesDoPrato(){
-        startActivity(new Intent(HomeActivity.this, DetalhesDoPratoActivity.class));
-    }
 
 }

@@ -52,8 +52,8 @@ public class MenuActivity extends AppCompatActivity {
 
         //Passa cada ID de menu como um conjunto de IDs, pois cada menu deve ser considerado como destino de nível superior.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_home, R.id.nav_eventos, R.id.nav_pratos_favoritos,
+                R.id.nav_sobre, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
 
@@ -69,12 +69,12 @@ public class MenuActivity extends AppCompatActivity {
                 if (id == R.id.nav_home){
 
                     //Faço o replace do fragmento de Home quando clicar no botão de Home
-                   // replaceFragment(new HomeFragment());
+                    // replaceFragment(new HomeFragment());
 
-                }else if (id == R.id.nav_gallery){
+                }else if (id == R.id.nav_eventos){
 
                     //Faço o replace do fragmento de Galeria quando clicar no botão de Galeria
-                   // replaceFragment(new GaleriaFragment());
+                    // replaceFragment(new GaleriaFragment());
 
                 }
 

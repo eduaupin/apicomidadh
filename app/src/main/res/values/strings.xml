@@ -44,4 +44,22 @@
     <string name="pratos_populares">Pratos Populares</string>
     <string name="ver_todos">VER TODOS</string>
     <string name="eventos">Eventos</string>
+<<<<<<< Updated upstream
+=======
+    <string name="texto_recuperar_senha">Está difícil lembrar a senha?\n Tudo bem.
+        Podemos te enviar uma nova. Por segurança, confirme seu e-mail cadastrado!</string>
+    <string name="e_mail">E-mail</string>
+    <string name="exemplo_receita">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        \n Curabitur porttitor dui magna, faucibus viverra nisi rhoncus pulvinar. Nunc eu nunc leo.
+        \nMaecenas eu ipsum ut augue facilisis lobortis. Suspendisse varius fermentum nisi,
+        \nin sagittis turpis consequat pharetra. Quisque a facilisis felis, rutrum auctor tortor.
+        \nIn consequat venenatis odio non ultrices. Maecenas in sapien eget nisi sagittis
+        \nvulputate ut non arcu. Pellentesque malesuada nec risus eu auctor. Fusce in mollis
+        \nex, quis cursus sem.</string>
+    <string name="menu_eventos">Eventos</string>
+    <string name="pratos_favoritos">Pratos Favoritos</string>
+    <string name="menu_pratos_favoritos">Pratos Favoritos</string>
+    <string name="menu_sobre">Sobre</string>
+    <string name="menu_logout">Logout</string>
+>>>>>>> Stashed changes
 </resources>
