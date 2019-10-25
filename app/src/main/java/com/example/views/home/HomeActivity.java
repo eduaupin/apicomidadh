@@ -12,9 +12,12 @@ import android.widget.TextView;
 
 import com.example.adapter.CardEventoAdapter;
 import com.example.adapter.CardPratoAdapter;
+import com.example.interfaces.ClickEvento;
+import com.example.interfaces.ClickPratos;
 import com.example.login.R;
 import com.example.model.ModelCard;
 import com.example.model.ModelCardPratosHome;
+import com.example.model.ModelEvento;
 import com.example.views.eventos.DetalhesDoEventoActivity;
 import com.example.views.eventos.ListaEventosActivity;
 import com.example.views.pratos.DetalhesDoPratoActivity;
@@ -23,7 +26,11 @@ import com.example.views.pratos.ListaDePratosActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements ClickEvento, ClickPratos {
+
+
+    public static final String EVENTO_KEY = "evento";
+    public static final String PRATO_KEY = "pratos";
 
     private RecyclerView recyclerViewPratos;
     private CardPratoAdapter adapter;
@@ -49,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
 
         recyclerViewPratos = findViewById(R.id.recycler_home);
 
-        adapter = new CardPratoAdapter(listaDePratos());
+        adapter = new CardPratoAdapter(listaDePratos(),this);
 
         //Setando o adapter para o componente recyclerView
         recyclerViewPratos.setAdapter(adapter);
@@ -131,4 +138,24 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(HomeActivity.this, DetalhesDoPratoActivity.class));
     }
 
+    @Override
+    public void onClick(ModelEvento evento) {
+        //Envio do objeto para a tela de detalhe
+        Intent intent = new Intent(HomeActivity.this, DetalhesDoEventoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(EVENTO_KEY, evento);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(ModelCardPratosHome prato) {
+        //Envio do objeto para a tela de detalhe
+        Intent intent = new Intent(HomeActivity.this, DetalhesDoPratoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(PRATO_KEY, prato);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+    }
 }
