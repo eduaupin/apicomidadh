@@ -1,14 +1,8 @@
 package com.example.views.home;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
+import android.os.Bundle;
+
 
 import com.example.adapter.CardEventoAdapter;
 import com.example.adapter.CardPratoAdapter;
@@ -26,25 +20,19 @@ import com.example.views.pratos.ListaDePratosActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class HomeActivity extends AppCompatActivity implements ClickEvento, ClickPratos {
 
 
     public static final String EVENTO_KEY = "evento";
     public static final String PRATO_KEY = "pratos";
 
-    private RecyclerView recyclerViewPratos;
-    private CardPratoAdapter adapter;
-    private Toolbar toolbar;
-
-
-    private TextView txtVerTodos;
-    private TextView txtVerMais;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+    }
+
 
         initViews();
 
@@ -158,4 +146,5 @@ public class HomeActivity extends AppCompatActivity implements ClickEvento, Clic
         startActivity(intent);
 
     }
+
 }

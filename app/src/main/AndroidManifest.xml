@@ -43,6 +43,7 @@
         <activity android:name="com.example.views.GenericaActivity" />
         <activity android:name="com.example.views.login.LoginActivity" />
         <activity android:name="com.example.views.login.SplashActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
