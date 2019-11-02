@@ -1,9 +1,9 @@
 package com.example.views.eventos;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.login.R;
@@ -15,6 +15,12 @@ public class CriarEventoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_evento);
+
+        //TODO: Colocar botão de salvar
+
+        //TODO: Será que não conseguimos usar um datepicker para data e hora?
+
+        //TODO: Fazer ligação de pratos e participantes para telas correspondentes
 
         toolbar = findViewById(R.id.my_toolbar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow));

@@ -1,8 +1,8 @@
 package com.example.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.model.ModelCard;
 
@@ -18,7 +18,6 @@ public class CardEventoAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-
     public Fragment getItem(int position) {
         return modeloList.get(position).getFragment();
     }

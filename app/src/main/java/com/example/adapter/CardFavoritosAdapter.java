@@ -1,9 +1,9 @@
 package com.example.adapter;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.Interface.FavoritosClick;
 import com.example.login.R;
-import com.example.model.ModelCard;
 import com.example.model.ModelCardPratosHome;
 import com.example.views.pratos.PratosFavoritosActivity;
 
@@ -33,7 +32,7 @@ public class CardFavoritosAdapter extends RecyclerView.Adapter<CardFavoritosAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.recycler_favoritos, viewGroup, false);
+                .inflate(R.layout.item_prato_favorito, viewGroup, false);
         return new ViewHolder(view);
     }
 

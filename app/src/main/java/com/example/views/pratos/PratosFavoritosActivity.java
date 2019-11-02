@@ -1,22 +1,20 @@
 package com.example.views.pratos;
 
 import android.content.Intent;
-import android.graphics.ColorSpace;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.Interface.FavoritosClick;
 import com.example.adapter.CardFavoritosAdapter;
 import com.example.login.R;
-import com.example.model.ModelCard;
 import com.example.model.ModelCardPratosHome;
-import com.example.views.home.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,29 +24,26 @@ public class PratosFavoritosActivity extends AppCompatActivity implements Favori
     private static final String PRATO_KEY = "prato";
     private RecyclerView recyclerView;
     private List<ModelCardPratosHome> lista = new ArrayList<>();
-    private ImageButton btnVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pratos_favoritos);
 
-        btnVoltar = findViewById(R.id.btnVoltarFavoritos);
+        Toolbar favToolbar = findViewById(R.id.toolbarFavoritos);
+        setSupportActionBar(favToolbar);
+
+        if (favToolbar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setElevation(0);
+        }
+
         recyclerView = findViewById(R.id.recyclerFavoritos);
 
         CardFavoritosAdapter adapter = new CardFavoritosAdapter(testarRecycler(), this);
         GridLayoutManager gdManager = new GridLayoutManager(this, 2);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(gdManager);
-
-        btnVoltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PratosFavoritosActivity.this,
-                        HomeActivity.class));
-            }
-        });
-
 
     }
 
@@ -78,5 +73,11 @@ public class PratosFavoritosActivity extends AppCompatActivity implements Favori
         bundle.putParcelable(PRATO_KEY, prato);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

@@ -1,13 +1,13 @@
 package com.example.views.eventos;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.login.R;
-import com.example.views.home.MenuActivity;
+import com.example.views.home.HomeActivity;
 
 public class NaoExistemEventosActivity extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class NaoExistemEventosActivity extends AppCompatActivity {
         BtnAddEventos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(NaoExistemEventosActivity.this, MenuActivity.class));
+                startActivity(new Intent(NaoExistemEventosActivity.this, HomeActivity.class));
             }
         });
 

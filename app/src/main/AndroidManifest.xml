@@ -12,7 +12,6 @@
 
         <activity android:name="com.example.views.pratos.NaoExistemFavoritosActivity"/>
         <activity android:name="com.example.views.eventos.NaoExistemEventosActivity" />
-        <activity android:name="com.example.views.sobre.TermosDeUsoActivity" />
         <activity android:name="com.example.views.sobre.SobreActivity" >
 
         </activity>
@@ -41,16 +40,15 @@
         <activity android:name="com.example.views.login.EsqueciSenhaActivity" />
         <activity android:name="com.example.views.eventos.ListaEventosActivity"/>
         <activity
-            android:name="com.example.views.home.MenuActivity"
+            android:name="com.example.views.home.HomeActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
-        <activity android:name="com.example.views.home.HomeActivity" />
         <activity android:name="com.example.views.login.RegisterActivity" />
-        <activity android:name="com.example.views.GenericaActivity" />
         <activity android:name="com.example.views.login.LoginActivity" />
-        <activity android:name="com.example.views.pratos.PratosFavoritosActivity"/>
+        <activity android:name="com.example.views.pratos.PratosFavoritosActivity"
+            android:label="@string/favoritos"/>
 
     </application>
 

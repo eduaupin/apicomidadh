@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/eventos_noite_churros" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="327dp"
         android:layout_height="114dp"
@@ -78,9 +78,9 @@
             android:textColor="#FAF80505"
             android:textSize="16sp" />
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="175dp"
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.088" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/BtnfloatvoltarEventos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
         app:srcCompat="@drawable/ic_arrow" />
 
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnfloatShareEventos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
         app:rippleColor="#FAF8F8"
         app:srcCompat="@drawable/ic_share" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnfloateditEventos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -145,4 +145,4 @@
         app:layout_constraintTop_toTopOf="@+id/imgMainDetalhe"
         app:rippleColor="#FAF8F8"
         app:srcCompat="@drawable/ic_edit_black_24dp" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

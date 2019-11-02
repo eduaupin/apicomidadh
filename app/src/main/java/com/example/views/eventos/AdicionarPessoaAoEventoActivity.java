@@ -1,13 +1,11 @@
 package com.example.views.eventos;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import com.example.login.R;
 
 public class AdicionarPessoaAoEventoActivity extends AppCompatActivity {
