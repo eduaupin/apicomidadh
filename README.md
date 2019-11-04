@@ -1,2 +1,2 @@
 # apicomidadh
-Projeto para criação de um projeto para Digital House.
+Projeto para criação de um aplicativo para Digital House.
