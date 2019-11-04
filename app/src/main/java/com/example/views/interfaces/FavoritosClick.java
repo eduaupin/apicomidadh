@@ -1,4 +1,4 @@
-package com.example.Interface;
+package com.example.views.interfaces;
 
 import com.example.model.ModelCardPratosHome;
 

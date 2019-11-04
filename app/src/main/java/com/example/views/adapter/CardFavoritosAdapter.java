@@ -1,16 +1,16 @@
-package com.example.adapter;
+package com.example.views.adapter;
 
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.Interface.FavoritosClick;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.views.interfaces.FavoritosClick;
 import com.example.login.R;
 import com.example.model.ModelCardPratosHome;
 import com.example.views.pratos.PratosFavoritosActivity;

@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.Interface.FavoritosClick;
-import com.example.adapter.CardFavoritosAdapter;
+import com.example.views.interfaces.FavoritosClick;
+import com.example.views.adapter.CardFavoritosAdapter;
 import com.example.login.R;
 import com.example.model.ModelCardPratosHome;
 

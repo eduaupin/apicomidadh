@@ -13,9 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.interfaces.ClickEvento;
+import com.example.views.interfaces.ClickEvento;
 import com.example.login.R;
 import com.example.views.eventos.DetalhesDoEventoActivity;
 
