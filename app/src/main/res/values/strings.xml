@@ -62,4 +62,5 @@
     <string name="menu_sobre">Sobre</string>
     <string name="menu_logout">Logout</string>
     <string name="favoritos">Favoritos</string>
+    <string name="btnsalvar">SALVAR</string>
 </resources>

@@ -8,4 +8,5 @@
         android:icon="@drawable/ic_notifications_none"
         android:title="@string/notificacoes"
         app:showAsAction="ifRoom|withText" />
+
 </menu>

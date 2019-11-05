@@ -1,20 +1,20 @@
 package com.example.views.eventos;
 
 import android.content.Intent;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.R;
-import com.example.views.home.HomeActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 public class DetalhesDoEventoActivity extends AppCompatActivity {
 
-    private FloatingActionButton btnVoltarEventos;
-    private FloatingActionButton btnEditEventos;
-    private FloatingActionButton btnShareEventos;
+    private ImageButton btnVoltarEventos;
+    private ImageButton btnEditEventos;
+    private ImageButton btnShareEventos;
 
 
 
@@ -31,7 +31,7 @@ public class DetalhesDoEventoActivity extends AppCompatActivity {
         btnVoltarEventos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DetalhesDoEventoActivity.this, HomeActivity.class));
+                finish();
             }
         });
 
