@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.views.home.NotificacoesActivity">
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/BtnFloatVoltarNotifica"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        app:backgroundTint="#FDFBFB"
-        app:backgroundTintMode="src_in"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_notificacoes"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:elevation="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#FFFFFF"
-        app:srcCompat="@drawable/ic_arrow_back" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/txtEventos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:text="Notificações"
-        android:textColor="#FA0C0C0C"
-        android:textSize="24dp"
-        app:layout_constraintStart_toEndOf="@+id/BtnFloatVoltarNotifica"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNotificacao"
-        android:layout_width="0dp"
-        android:layout_height="447dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="2dp"
+        tools:listitem="@layout/item_notificacoes"
+        tools:itemCount="7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BtnFloatVoltarNotifica" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_notificacoes" />
 
     <TextView
         android:id="@+id/txtVerMais"
@@ -55,4 +41,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewNotificacao" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

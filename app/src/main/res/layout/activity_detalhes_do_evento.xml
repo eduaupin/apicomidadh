@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imgMainDetalhe"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="264dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/eventos_noite_churros" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="327dp"
         android:layout_height="114dp"
@@ -78,9 +78,9 @@
             android:textColor="#FAF80505"
             android:textSize="16sp" />
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="175dp"
@@ -106,43 +106,42 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.088" />
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:id="@+id/BtnfloatvoltarEventos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:clickable="true"
         app:backgroundTint="#00FAF8F8"
         app:backgroundTintMode="src_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgMainDetalhe"
         app:rippleColor="#FAF8F8"
-        app:srcCompat="@drawable/ic_arrow" />
+        app:srcCompat="@drawable/ic_arrow_back_white" />
 
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:id="@+id/btnfloatShareEventos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
         app:backgroundTint="#00FAF8F8"
         app:backgroundTintMode="src_in"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgMainDetalhe"
         app:rippleColor="#FAF8F8"
         app:srcCompat="@drawable/ic_share" />
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:id="@+id/btnfloateditEventos"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="248dp"
         android:clickable="true"
+        android:layout_marginEnd="8dp"
         app:backgroundTint="#00FAF8F8"
         app:backgroundTintMode="src_in"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnfloatShareEventos"
         app:layout_constraintTop_toTopOf="@+id/imgMainDetalhe"
         app:rippleColor="#FAF8F8"
         app:srcCompat="@drawable/ic_edit_black_24dp" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

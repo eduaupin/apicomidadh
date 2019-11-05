@@ -2,44 +2,39 @@ package com.example.views.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
 
-import com.example.adapter.CardEventoAdapter;
-import com.example.adapter.CardPratoAdapter;
-import com.example.interfaces.ClickEvento;
-import com.example.interfaces.ClickPratos;
-import com.example.login.R;
-import com.example.model.ModelCard;
-import com.example.model.ModelCardPratosHome;
-import com.example.model.ModelEvento;
-import com.example.views.eventos.DetalhesDoEventoActivity;
+import androidx.annotation.NonNull;
+
+import com.example.views.eventos.CriarEventoActivity;
 import com.example.views.eventos.ListaEventosActivity;
-import com.example.views.pratos.DetalhesDoPratoActivity;
-import com.example.views.pratos.ListaDePratosActivity;
+import com.example.views.login.LoginActivity;
+import com.example.views.pratos.PratosFavoritosActivity;
+import com.example.views.sobre.SobreActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-public class HomeActivity extends AppCompatActivity implements ClickEvento, ClickPratos {
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.navigation.ui.AppBarConfiguration;
 
-    public static final String EVENTO_KEY = "evento";
-    public static final String PRATO_KEY = "pratos";
+import com.example.login.R;
 
-    private RecyclerView recyclerViewPratos;
-    private CardPratoAdapter adapter;
+public class HomeActivity extends AppCompatActivity {
+    private FloatingActionButton buttonAddEvento;
+    private AppBarConfiguration mAppBarConfiguration;
     private Toolbar toolbar;
-
-
-    private TextView txtVerTodos;
-    private TextView txtVerMais;
-
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,112 +43,95 @@ public class HomeActivity extends AppCompatActivity implements ClickEvento, Clic
 
         initViews();
 
-        toolbar = findViewById(R.id.my_toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_menu_black_24dp));
-        toolbar.setTitle(" ");
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+        replaceFragment(new HomeFragment());
+
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        recyclerViewPratos = findViewById(R.id.recycler_home);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        );
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-        adapter = new CardPratoAdapter(listaDePratos(),this);
-
-        //Setando o adapter para o componente recyclerView
-        recyclerViewPratos.setAdapter(adapter);
-
-        //Definição do layout da lista utilizando a classe LayoutManager
-        recyclerViewPratos.setLayoutManager(new LinearLayoutManager(this));
-
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-
-        recyclerViewPratos.setLayoutManager(layoutManager);
-
-        //PagerView
-        List<ModelCard> listaModelo = new ArrayList<>();
-
-        ViewPager viewPager = findViewById(R.id.viewPager_home);
-
-        listaModelo.add(new ModelCard("Noite do Churros", "10/10/2019", CardEventoFragment.novaInstancia(R.drawable.churros_card, "Noite do Churros", "10/10/2019")));
-        listaModelo.add(new ModelCard("Churrasco dos migos", "12/10/2019", CardEventoFragment.novaInstancia(R.drawable.churras, "Churrasco dos migos", "12/10/20199")));
-        listaModelo.add(new ModelCard("Festa do Sorvete", "03/11/2019", CardEventoFragment.novaInstancia(R.drawable.sorvete, "Festa do Sorvete", "03/11/2019")));
-
-        CardEventoAdapter adapter = new CardEventoAdapter(getSupportFragmentManager(), listaModelo);
-
-        viewPager.setAdapter(adapter);
-
-        viewPager.setOffscreenPageLimit(listaModelo.size());
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_eventos, R.id.nav_pratos_favoritos,
+                R.id.nav_sobre, R.id.nav_logout)
+                .setDrawerLayout(drawer)
+                .build();
 
 
-        txtVerTodos.setOnClickListener(new View.OnClickListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                verTodos();
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                int id = menuItem.getItemId();
+
+                if (id == R.id.nav_home) {
+                    replaceFragment(new HomeFragment());
+                } else if (id == R.id.nav_eventos) {
+                    startActivity(new Intent(HomeActivity.this, ListaEventosActivity.class));
+                } else if (id == R.id.nav_pratos_favoritos) {
+                    startActivity(new Intent(HomeActivity.this, PratosFavoritosActivity.class));
+                } else if (id == R.id.nav_sobre) {
+                    startActivity(new Intent(HomeActivity.this, SobreActivity.class));
+                } else if (id == R.id.nav_logout) {
+
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
             }
         });
 
-        txtVerMais.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                verMais();
-            }
+        buttonAddEvento.setOnClickListener(view -> {
+            startActivity(new Intent(HomeActivity.this, CriarEventoActivity.class));
         });
-
     }
 
     private void initViews() {
-
-        txtVerMais = findViewById(R.id.txt_ver_mais);
-        txtVerTodos = findViewById(R.id.txt_ver_todos);
-
-    }
-
-
-    private List<ModelCardPratosHome> listaDePratos() {
-        List<ModelCardPratosHome> pratos = new ArrayList<>();
-
-        pratos.add(new ModelCardPratosHome(R.drawable.churras, "Churras"));
-        pratos.add(new ModelCardPratosHome(R.drawable.churras, "Biscoito"));
-        pratos.add(new ModelCardPratosHome(R.drawable.churras, "Sorvete"));
-
-        return pratos;
-    }
-
-    private void verTodos() {
-        startActivity(new Intent(HomeActivity.this, ListaEventosActivity.class));
-    }
-
-    private void detalhesDoEvento() {
-        startActivity(new Intent(HomeActivity.this, DetalhesDoEventoActivity.class));
-    }
-
-    private void verMais() {
-        startActivity(new Intent(HomeActivity.this, ListaDePratosActivity.class));
-
-    }
-
-    private void detalhesDoPrato() {
-        startActivity(new Intent(HomeActivity.this, DetalhesDoPratoActivity.class));
+        buttonAddEvento = findViewById(R.id.home_add_evento);
+        toolbar = findViewById(R.id.toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
     }
 
     @Override
-    public void onClick(ModelEvento evento) {
-        //Envio do objeto para a tela de detalhe
-        Intent intent = new Intent(HomeActivity.this, DetalhesDoEventoActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(EVENTO_KEY, evento);
-        intent.putExtras(bundle);
-        startActivity(intent);
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
-    public void onClick(ModelCardPratosHome prato) {
-        //Envio do objeto para a tela de detalhe
-        Intent intent = new Intent(HomeActivity.this, DetalhesDoPratoActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(PRATO_KEY, prato);
-        intent.putExtras(bundle);
-        startActivity(intent);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.menu_notificacao) {
+
+            startActivity(new Intent(HomeActivity.this, NotificacoesActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.home_container, fragment);
+        transaction.commit();
     }
 }

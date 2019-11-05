@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.login">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,47 +13,45 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.views.pratos.NaoExistemFavoritosActivity"/>
+        <activity android:name="com.example.views.pratos.NaoExistemFavoritosActivity" />
         <activity android:name="com.example.views.eventos.NaoExistemEventosActivity" />
-        <activity android:name="com.example.views.sobre.TermosDeUsoActivity" />
-        <activity android:name="com.example.views.sobre.SobreActivity" >
+        <activity android:name="com.example.views.sobre.SobreActivity">
 
         </activity>
-        <activity android:name="com.example.views.login.SplashActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name="com.example.views.login.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-    </activity>
+        </activity>
 
         <activity android:name="com.example.views.pratos.DetalhesDoPratoActivity" />
         <activity android:name="com.example.views.pratos.ListaDePratosActivity" />
 
         <activity android:name="com.example.views.eventos.DetalhesDoEventoActivity" />
-        <activity android:name="com.example.views.eventos.AdicionarPessoaAoEventoActivity" >
+        <activity android:name="com.example.views.eventos.AdicionarPessoaAoEventoActivity">
 
         </activity>
 
-        <activity android:name="com.example.views.eventos.CriarEventoActivity" >
+        <activity android:name="com.example.views.eventos.CriarEventoActivity">
 
         </activity>
         <activity android:name="com.example.views.home.NotificacoesActivity" />
         <activity android:name="com.example.views.login.FeedbackEsqueciSenhaActivity" />
         <activity android:name="com.example.views.login.EsqueciSenhaActivity" />
-        <activity android:name="com.example.views.eventos.ListaEventosActivity"/>
+        <activity android:name="com.example.views.eventos.ListaEventosActivity" />
         <activity
-            android:name="com.example.views.home.MenuActivity"
+            android:name="com.example.views.home.HomeActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        <activity android:name="com.example.views.home.HomeActivity" />
         <activity android:name="com.example.views.login.RegisterActivity" />
-        <activity android:name="com.example.views.GenericaActivity" />
         <activity android:name="com.example.views.login.LoginActivity" />
-        <activity android:name="com.example.views.pratos.PratosFavoritosActivity"/>
+        <activity
+            android:name="com.example.views.pratos.PratosFavoritosActivity"
+            android:label="@string/favoritos" />
 
     </application>
 

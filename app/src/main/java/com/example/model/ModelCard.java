@@ -1,9 +1,6 @@
 package com.example.model;
 
-import android.graphics.drawable.Drawable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
+import androidx.fragment.app.Fragment;
 
 public class ModelCard {
 

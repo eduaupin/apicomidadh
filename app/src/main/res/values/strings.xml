@@ -18,9 +18,8 @@
     <string name="alt_logo">Logo Food Party</string>
     <string name="alt_bg_register">Bolo de chocholate com mirtillo</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_menu">Food Party</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -34,10 +33,13 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
-    <string name="termos_de_uso"><b><u>Termos de Uso</u></b></string>
+    <string name="reportar_bug"><b><u>Reportar bug</u></b></string>
     <string name="atualizar_vers_o">Atualizar Versão</string>
     <string name="vers_o_1_0_0">Versão 1.0.0</string>
     <string name="sobre">Sobre</string>
+    <string name="nosso_email">dhgrupo.comida@gmail.com</string>
+    <string name="relato_problema">Relato de problema</string>
+    <string name="enviar_email_via">Enviar e-mail via</string>
     <string name="esqueci_minha_senha">Esqueci minha Senha</string>
     <string name="uma_nova_senha_foi_enviada_para_o_seu_e_mail">Uma nova senha foi enviada para seu e-mail.</string>
     <string name="ver_mais">VER MAIS</string>
@@ -54,4 +56,11 @@
         \nIn consequat venenatis odio non ultrices. Maecenas in sapien eget nisi sagittis
         \nvulputate ut non arcu. Pellentesque malesuada nec risus eu auctor. Fusce in mollis
         \nex, quis cursus sem.</string>
+    <string name="notificacoes">Notificações</string>
+    <string name="menu_eventos">Eventos</string>
+    <string name="menu_pratos_favoritos">Pratos Favoritos</string>
+    <string name="menu_sobre">Sobre</string>
+    <string name="menu_logout">Logout</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="btnsalvar">SALVAR</string>
 </resources>

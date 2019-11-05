@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,12 +13,8 @@ import android.widget.TextView;
 
 import com.example.login.R;
 import com.example.util.BlurUtil;
-import com.example.views.GenericaActivity;
-import com.example.views.eventos.DetalhesDoEventoActivity;
-import com.example.views.eventos.NaoExistemEventosActivity;
 
 import com.example.views.home.HomeActivity;
-import com.example.views.home.NotificacoesActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

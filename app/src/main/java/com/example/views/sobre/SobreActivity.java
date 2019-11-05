@@ -1,35 +1,43 @@
 package com.example.views.sobre;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.login.R;
 
 public class SobreActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
-
-
+    private TextView reportarBug;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sobre);
 
-        toolbar = findViewById(R.id.my_toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
-        toolbar.setTitle("Sobre");
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
-        setSupportActionBar(toolbar);
+        reportarBug = findViewById(R.id.sobre_reportar_bug);
+
+        Toolbar favToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(favToolbar);
+
+        if (favToolbar != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setElevation(0);
+            favToolbar.setTitle("Sobre");
+        }
+
+        reportarBug.setOnClickListener(view -> {
+            String email = getString(R.string.nosso_email);
+            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + email));
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.relato_problema));
+            intent.putExtra(Intent.EXTRA_TEXT, "");
+            startActivity(Intent.createChooser(intent, getString(R.string.enviar_email_via)));
+        });
 
     }
 
@@ -39,6 +47,12 @@ public class SobreActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
 }
