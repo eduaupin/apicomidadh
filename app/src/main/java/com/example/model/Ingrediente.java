@@ -58,4 +58,10 @@ public class Ingrediente implements Parcelable {
         parcel.writeString(nome);
         parcel.writeString(medida);
     }
+
+    @Override
+    public String toString() {
+        return nome + " - " +
+                medida + "\n";
+    }
 }

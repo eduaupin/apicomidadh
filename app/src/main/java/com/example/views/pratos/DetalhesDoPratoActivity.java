@@ -1,5 +1,6 @@
 package com.example.views.pratos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private IngredientesAdapter adapter;
     private List<Ingrediente> listaIngredientes = new ArrayList<>();
     private TextView preparoPrato;
+    private Prato prato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,6 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         categoriaPrato = findViewById(R.id.text_detalhe_prato_categoria);
         recyclerIngredientes = findViewById(R.id.recycler_ingredientes);
         preparoPrato = findViewById(R.id.text_detalhe_prato_preparo);
-
     }
 
     @Override
@@ -81,7 +82,13 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_prato_compartilhar) {
-            Snackbar.make(preparoPrato, "Função Não Disponível!", Snackbar.LENGTH_LONG).show();
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s \n\nIngredientes:\n\n%s\n\nPreparo:\n\n%s", prato.getStrMeal(), prato.getListaIngredientes().toString(), prato.getStrInstructions()));
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
             return true;
         } else if (id == R.id.menu_prato_favoritar) {
             Snackbar.make(preparoPrato, "Função Não Disponível!", Snackbar.LENGTH_LONG).show();
@@ -93,7 +100,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
 
     private void getDetalhesPrato() {
         if (getIntent() != null && getIntent().getExtras() != null) {
-            Prato prato = getIntent().getParcelableExtra(PRATO_KEY);
+            prato = getIntent().getParcelableExtra(PRATO_KEY);
             Picasso.get().load(prato.getStrMealThumb()).into(imagemPrato);
             nomePrato.setText(prato.getStrMeal());
             categoriaPrato.setText(prato.getStrCategory());
