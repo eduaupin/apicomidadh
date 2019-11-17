@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.model.Prato;
 
-@androidx.room.Database(entities = {Prato.class}, version = 2, exportSchema = false)
+@androidx.room.Database(entities = {Prato.class}, version = 3, exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
     private static volatile Database INSTANCE;

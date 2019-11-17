@@ -12,6 +12,7 @@ import androidx.room.TypeConverters;
 import com.example.data.local.Converter;
 import com.google.gson.annotations.Expose;
 
+import java.util.List;
 
 @Entity(tableName = "pratos")
 @TypeConverters(Converter.class)
@@ -124,10 +125,13 @@ public class Prato implements Parcelable {
     @Expose
     private String strYoutube;
 
+    private List<Ingrediente> listaIngredientes;
+
     public Prato() {
     }
 
     protected Prato(Parcel in) {
+        id = in.readLong();
         idMeal = in.readString();
         strArea = in.readString();
         strCategory = in.readString();
@@ -178,6 +182,7 @@ public class Prato implements Parcelable {
         strSource = in.readString();
         strTags = in.readString();
         strYoutube = in.readString();
+        listaIngredientes = in.createTypedArrayList(Ingrediente.CREATOR);
     }
 
     public static final Creator<Prato> CREATOR = new Creator<Prato>() {
@@ -608,6 +613,14 @@ public class Prato implements Parcelable {
         this.strYoutube = strYoutube;
     }
 
+    public List<Ingrediente> getListaIngredientes() {
+        return listaIngredientes;
+    }
+
+    public void setListaIngredientes(List<Ingrediente> listaIngredientes) {
+        this.listaIngredientes = listaIngredientes;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -615,6 +628,7 @@ public class Prato implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
         parcel.writeString(idMeal);
         parcel.writeString(strArea);
         parcel.writeString(strCategory);
@@ -665,5 +679,6 @@ public class Prato implements Parcelable {
         parcel.writeString(strSource);
         parcel.writeString(strTags);
         parcel.writeString(strYoutube);
+        parcel.writeTypedList(listaIngredientes);
     }
 }

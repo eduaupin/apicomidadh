@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.views.adapter.CardEventoAdapter;
 import com.example.views.interfaces.ClickEvento;
@@ -89,6 +90,10 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
             }
         });
 
+        viewModel.getErro().observe(this, s -> {
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+        });
+
         //Definição do layout da lista de pratos utilizando a classe LayoutManager
         recyclerViewPratos.setLayoutManager(new LinearLayoutManager(getContext()));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -106,7 +111,6 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
 
         viewPager.setAdapter(eventoAdapter);
         viewPager.setOffscreenPageLimit(listaModelo.size());
-
 
         txtVerTodos.setOnClickListener(view1 -> verTodos());
         txtMaisPratos.setOnClickListener(view12 -> verMais());

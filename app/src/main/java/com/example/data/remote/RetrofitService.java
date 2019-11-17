@@ -1,7 +1,10 @@
 package com.example.data.remote;
 
+import com.example.model.PratosPopulares;
 import com.facebook.stetho.BuildConfig;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,10 +34,16 @@ public class RetrofitService {
                 httpClient.addNetworkInterceptor(new StethoInterceptor());
             }
 
+            Gson gson =
+                    new GsonBuilder()
+                            .registerTypeAdapter(PratosPopulares.class, new PratosPopularesTypeAdapter())
+                            .serializeNulls()
+                            .create();
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(httpClient.build())
                     .build();
         }

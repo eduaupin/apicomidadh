@@ -63,4 +63,9 @@
     <string name="menu_logout">Logout</string>
     <string name="favoritos">Favoritos</string>
     <string name="btnsalvar">SALVAR</string>
+    <string name="compartilhar">Compartilhar</string>
+    <string name="adicionar">ADICIONAR</string>
+    <string name="modo_de_preparo">Modo de preparo</string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="imagem_do_prato_da_receita">Imagem do prato da receita</string>
 </resources>

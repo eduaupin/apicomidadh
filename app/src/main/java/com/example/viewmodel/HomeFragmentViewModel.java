@@ -10,10 +10,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.data.local.Database;
 import com.example.data.local.PratoDAO;
+import com.example.model.Ingrediente;
 import com.example.model.Prato;
 import com.example.model.PratosPopulares;
 import com.example.repository.PratosRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +27,7 @@ import static com.example.util.ConnectionUtil.isNetworkConnected;
 
 public class HomeFragmentViewModel extends AndroidViewModel {
     private MutableLiveData<List<Prato>> pratosPopulares = new MutableLiveData<>();
+    private MutableLiveData<String> erro = new MutableLiveData<>();
     private CompositeDisposable disposable = new CompositeDisposable();
     private PratosRepository repository = new PratosRepository();
     private MutableLiveData<Boolean> loading = new MutableLiveData<>();
@@ -41,6 +44,10 @@ public class HomeFragmentViewModel extends AndroidViewModel {
         return loading;
     }
 
+    public LiveData<String> getErro() {
+        return erro;
+    }
+
     public void getPratos() {
         if (isNetworkConnected(getApplication())) {
             getPratosPopularesRemote(letraAleatoria());
@@ -55,7 +62,6 @@ public class HomeFragmentViewModel extends AndroidViewModel {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .doOnSubscribe(subscription -> {
-                            //TODO: Por que sem internet ele mantém o loading, mesmo mostrando o resultado atrás?
                             loading.setValue(true);
                         })
                         .doAfterTerminate(() -> {
@@ -63,8 +69,9 @@ public class HomeFragmentViewModel extends AndroidViewModel {
                         })
                         .subscribe(pratos -> {
                             pratosPopulares.setValue(pratos);
+                            loading.setValue(false);
                         }, throwable -> {
-                            Log.i("PRATOS", "getFromLocal " + throwable.getMessage());
+                            erro.setValue(throwable.getMessage());
                         })
         );
     }
@@ -84,7 +91,8 @@ public class HomeFragmentViewModel extends AndroidViewModel {
                         .subscribe(pratosPopulares1 -> {
                             pratosPopulares.setValue(pratosPopulares1.getPratos());
                         }, throwable -> {
-                            Log.i("PRATOS", "getFromRemote " + throwable.getMessage());
+                            erro.setValue(throwable.getMessage());
+                            Log.i("PRATOS", "getPratosPopularesRemote: " + throwable.getMessage());
                         })
         );
     }
@@ -100,7 +108,7 @@ public class HomeFragmentViewModel extends AndroidViewModel {
     }
 
     private char letraAleatoria() {
-        String alfabeto = "abcdefghijklmnopqrstuvwxyz";
+        String alfabeto = "abcdefghijklmnoprstvwy";
         Random rnd = new Random();
         char letra = alfabeto.charAt(rnd.nextInt(alfabeto.length()));
         return letra;

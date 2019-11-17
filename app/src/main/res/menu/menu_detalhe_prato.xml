@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_prato_compartilhar"
+        android:checkable="true"
+        android:icon="@drawable/ic_share_white_24dp"
+        android:title="@string/compartilhar"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/menu_prato_favoritar"
+        android:checkable="true"
+        android:icon="@drawable/ic_favorite_outline"
+        android:title="@string/menu_pratos_favoritos"
+        app:showAsAction="ifRoom|withText" />
+
+</menu>

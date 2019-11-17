@@ -34,6 +34,10 @@
         <item name="android:background">@color/colorBackgroundPage</item>
     </style>
 
+    <style name="AppTheme.ToolBarLayoutOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
 
 
 </resources>
