@@ -30,7 +30,7 @@ public class PratosPopularesAdapter extends RecyclerView.Adapter<PratosPopulares
     @NonNull
     @Override
     public ViewHolderPrato onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_pratos_populares, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_pratos, viewGroup, false);
         return new ViewHolderPrato(view);
     }
 
@@ -52,7 +52,7 @@ public class PratosPopularesAdapter extends RecyclerView.Adapter<PratosPopulares
 
     @Override
     public int getItemCount() {
-        return pratos.size();
+        return pratos == null ? 0 : pratos.size();
     }
 
     public void atualizaLista(List<Prato> listaAtualizada) {

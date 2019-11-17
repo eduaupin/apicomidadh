@@ -68,4 +68,7 @@
     <string name="modo_de_preparo">Modo de preparo</string>
     <string name="ingredientes">Ingredientes</string>
     <string name="imagem_do_prato_da_receita">Imagem do prato da receita</string>
+    <string name="imagem_do_evento">Imagem do evento</string>
+    <string name="pratos">Pratos</string>
+    <string name="editar_evento">Editar evento</string>
 </resources>

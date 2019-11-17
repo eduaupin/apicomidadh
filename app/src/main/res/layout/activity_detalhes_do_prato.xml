@@ -34,6 +34,7 @@
                     android:layout_height="250dp"
                     android:contentDescription="@string/imagem_do_prato_da_receita"
                     android:scaleType="fitXY"
+                    android:tint="@color/black40"
                     app:srcCompat="@drawable/bolodecenoura" />
 
                 <androidx.appcompat.widget.Toolbar

@@ -32,7 +32,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.views.pratos.ListaDePratosActivity" />
 
-        <activity android:name="com.example.views.eventos.DetalhesDoEventoActivity" />
+        <activity android:name="com.example.views.eventos.DetalhesDoEventoActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="com.example.views.eventos.AdicionarPessoaAoEventoActivity">
 
         </activity>

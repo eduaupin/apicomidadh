@@ -3,6 +3,12 @@ package com.example.views.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -12,24 +18,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.views.adapter.CardEventoAdapter;
-import com.example.views.interfaces.ClickEvento;
-import com.example.views.interfaces.ClickPratos;
 import com.example.login.R;
-import com.example.model.ModelCard;
-import com.example.model.ModelEvento;
+import com.example.model.Evento;
+import com.example.model.Participante;
 import com.example.model.Prato;
 import com.example.viewmodel.HomeFragmentViewModel;
+import com.example.views.adapter.CardEventoAdapter;
 import com.example.views.adapter.PratosPopularesAdapter;
 import com.example.views.eventos.DetalhesDoEventoActivity;
 import com.example.views.eventos.ListaEventosActivity;
+import com.example.views.interfaces.ClickEvento;
+import com.example.views.interfaces.ClickPratos;
 import com.example.views.pratos.DetalhesDoPratoActivity;
 import com.example.views.pratos.ListaDePratosActivity;
 
@@ -100,17 +99,22 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
         recyclerViewPratos.setLayoutManager(layoutManager);
 
         //PagerView
-        List<ModelCard> listaModelo = new ArrayList<>();
+        List<Evento> exemploEventos = new ArrayList<>();
+        List<Participante> exemploParticipantes = new ArrayList<>();
 
-        listaModelo.add(new ModelCard("Noite do Churros", "10/10/2019", CardEventoFragment.novaInstancia(R.drawable.churros_card, "Noite do Churros", "10/10/2019")));
-        listaModelo.add(new ModelCard("Churrasco dos migos", "12/10/2019", CardEventoFragment.novaInstancia(R.drawable.churras, "Churrasco dos migos", "12/10/20199")));
-        listaModelo.add(new ModelCard("Festa do Sorvete", "03/11/2019", CardEventoFragment.novaInstancia(R.drawable.sorvete, "Festa do Sorvete", "03/11/2019")));
+        exemploParticipantes.add(new Participante("Eduardo Pinheiro"));
+        exemploParticipantes.add(new Participante("Nina Lofrese"));
+        exemploParticipantes.add(new Participante("Thais Camargo"));
+
+        exemploEventos.add(new Evento(R.drawable.eventos_noite_churros, "Noite do Churros", "10/10/2020", "Avenida Brasil, 200", listaPratosPopulares, exemploParticipantes, CardEventoFragment.novaInstancia(R.drawable.eventos_noite_churros, "Noite do Churros", "10/10/2020")));
+        exemploEventos.add(new Evento(R.drawable.churras, "Churrasco dos Amigos", "20/10/2020", "Avenida Brasil, 200", listaPratosPopulares, exemploParticipantes, CardEventoFragment.novaInstancia(R.drawable.churras, "Churrasco dos Amigos", "20/10/2020")));
+        exemploEventos.add(new Evento(R.drawable.sorvete, "Festa do Sorvete", "20/12/2020", "Avenida Brasil, 200", listaPratosPopulares, exemploParticipantes, CardEventoFragment.novaInstancia(R.drawable.sorvete, "Festa do Sorvete", "20/12/2020")));
 
         FragmentManager fragManager = contextoViewPager.getSupportFragmentManager();
-        eventoAdapter = new CardEventoAdapter(fragManager, listaModelo);
+        eventoAdapter = new CardEventoAdapter(fragManager, exemploEventos);
 
         viewPager.setAdapter(eventoAdapter);
-        viewPager.setOffscreenPageLimit(listaModelo.size());
+        viewPager.setOffscreenPageLimit(exemploEventos.size());
 
         txtVerTodos.setOnClickListener(view1 -> verTodos());
         txtMaisPratos.setOnClickListener(view12 -> verMais());
@@ -145,7 +149,7 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
     }
 
     @Override
-    public void onClick(ModelEvento evento) {
+    public void onClick(Evento evento) {
         //Envio do objeto para a tela de detalhe
         Intent intent = new Intent(getContext(), DetalhesDoEventoActivity.class);
         Bundle bundle = new Bundle();

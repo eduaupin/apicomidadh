@@ -16,6 +16,9 @@ public class AdicionarPessoaAoEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_pessoa_ao_evento);
 
+        //TODO: Melhorar layout
+        //TODO: Adicionar lógica/ viewmodel
+
         toolbar = findViewById(R.id.my_toolbar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow));
         toolbar.setTitle("Participantes");
