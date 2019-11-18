@@ -71,4 +71,6 @@
     <string name="imagem_do_evento">Imagem do evento</string>
     <string name="pratos">Pratos</string>
     <string name="editar_evento">Editar evento</string>
+    <string name="nao_existem_pratos">Não existem pratos adicionados ainda</string>
+    <string name="nao_existem_participantes">Não existem participantes adicionados ainda</string>
 </resources>

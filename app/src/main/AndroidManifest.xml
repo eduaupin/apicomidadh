@@ -38,7 +38,8 @@
 
         </activity>
 
-        <activity android:name="com.example.views.eventos.CriarEventoActivity">
+        <activity android:name="com.example.views.eventos.CriarEventoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity android:name="com.example.views.home.NotificacoesActivity" />

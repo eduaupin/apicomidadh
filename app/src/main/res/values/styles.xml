@@ -20,6 +20,12 @@
         <item name="boxCornerRadiusBottomEnd">5dp</item>
     </style>
 
+    <style name="AppTheme.inputEvento" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="colorAccent">@color/black40</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="boxStrokeColor">@color/black40</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

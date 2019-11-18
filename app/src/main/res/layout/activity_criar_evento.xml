@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:focusedByDefault="true"
     tools:context="com.example.views.eventos.CriarEventoActivity">
-
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,8 +13,8 @@
         tools:context="com.example.views.eventos.CriarEventoActivity">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarFavoritos"
-            android:layout_width="0dp"
+            android:id="@+id/appbar_novo_evento"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:fitsSystemWindows="true"
@@ -27,22 +24,24 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarNovoEvento"
+                android:id="@+id/toolbar_novo_evento"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:title="Novo evento" />
+                android:layout_height="?attr/actionBarSize" />
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
+            android:id="@+id/input_novo_evento_titulo"
+            style="@style/AppTheme.inputEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
+            android:theme="@style/AppTheme.inputEvento"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarFavoritos">
+            app:layout_constraintTop_toBottomOf="@id/appbar_novo_evento">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -50,17 +49,22 @@
                 android:hint="Título"
                 android:lines="1"
                 android:maxLines="1"
-                android:nextFocusDown="@id/textInputLayout2" />
+                android:nextFocusDown="@id/input_novo_evento_data" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            android:layout_width="150dp"
+            android:id="@+id/input_novo_evento_data"
+            style="@style/AppTheme.inputEvento"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:theme="@style/AppTheme.inputEvento"
+            app:layout_constraintEnd_toStartOf="@id/input_novo_evento_hora"
+            app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@id/input_novo_evento_titulo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -68,142 +72,176 @@
                 android:hint="Data"
                 android:lines="1"
                 android:maxLines="1"
-                android:nextFocusDown="@id/til_hora"
-                android:inputType="date" />
+                android:nextFocusRight="@id/input_novo_evento_hora" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_hora"
-            android:layout_width="100dp"
+            android:id="@+id/input_novo_evento_hora"
+            style="@style/AppTheme.inputEvento"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            android:theme="@style/AppTheme.inputEvento"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textInputLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintHorizontal_weight="1.5"
+            app:layout_constraintStart_toEndOf="@id/input_novo_evento_data"
+            app:layout_constraintTop_toBottomOf="@id/input_novo_evento_titulo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Hora"
-                android:nextFocusDown="@id/til_local"
-                android:inputType="datetime" />
+                android:lines="1"
+                android:maxLines="1"
+                android:nextFocusDown="@id/input_novo_evento_local" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_local"
+            android:id="@+id/input_novo_evento_local"
+            style="@style/AppTheme.inputEvento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            android:theme="@style/AppTheme.inputEvento"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+            app:layout_constraintTop_toBottomOf="@+id/input_novo_evento_hora">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Local"
                 android:lines="1"
-                android:maxLines="1"
-                android:hint="Local" />
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <View
+            android:id="@+id/space_novo_evento1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/black40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_novo_evento_local" />
+
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/label_novo_evento_participantes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="Participantes"
+            android:textColor="@color/black87"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_local" />
+            app:layout_constraintTop_toBottomOf="@id/space_novo_evento1" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_novo_evento_sem_participantes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="Não exitem participantes adicionados ainda"
+            android:text="@string/nao_existem_participantes"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@id/label_novo_evento_participantes" />
 
         <Button
-            android:id="@+id/btnAddParticipante"
+            android:id="@+id/button_novo_participante"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="#FFFFFF"
-            android:text="Adicionar"
+            android:backgroundTint="@color/colorBackgroundPage"
+            android:text="@string/adicionar"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.945"
+            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@id/text_novo_evento_sem_participantes" />
+
+        <View
+            android:id="@+id/space_novo_evento2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/black40"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_novo_participante" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/label_novo_evento_pratos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:text="Pratos"
+            android:textColor="@color/black87"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddParticipante" />
+            app:layout_constraintTop_toBottomOf="@id/space_novo_evento2" />
 
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/text_novo_evento_sem_pratos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="Não exitem pratos adicionados ainda"
+            android:text="@string/nao_existem_pratos"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+            app:layout_constraintTop_toBottomOf="@id/label_novo_evento_pratos" />
 
         <Button
-            android:id="@+id/btnAddPratos"
+            android:id="@+id/button_novo_pratos"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="#FFFFFF"
-            android:text="Adicionar"
+            android:backgroundTint="@color/colorBackgroundPage"
+            android:text="@string/adicionar"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.945"
+            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView33" />
-
+            app:layout_constraintTop_toBottomOf="@id/text_novo_evento_sem_pratos" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_salvar"
-            android:layout_width="match_parent"
+            android:id="@+id/button_novo_evento_salvar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="32dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:gravity="center"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
             android:text="@string/btnsalvar"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textAppearance="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold"
+            android:textSize="14dp"
             app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAddPratos" />
+            app:layout_constraintTop_toBottomOf="@id/button_novo_pratos" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
