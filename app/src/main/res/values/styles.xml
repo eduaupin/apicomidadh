@@ -6,7 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="android:datePickerDialogTheme">@style/AppTheme.DatepickerDialog</item>
+        <item name="android:timePickerDialogTheme">@style/AppTheme.DatepickerDialog</item>
     </style>
 
     <style name="AppTheme.inputLogin" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
@@ -42,6 +43,10 @@
 
     <style name="AppTheme.ToolBarLayoutOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <style name="AppTheme.DatepickerDialog" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/colorPrimary</item>
     </style>
 
 

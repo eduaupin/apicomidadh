@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.views.eventos.CriarEventoActivity.ADICIONAR_PRATO_REQUEST;
 import static com.example.views.home.HomeFragment.PRATO_KEY;
 
 public class DetalhesDoPratoActivity extends AppCompatActivity {
@@ -35,6 +38,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private List<Ingrediente> listaIngredientes = new ArrayList<>();
     private TextView preparoPrato;
     private Prato prato;
+    private Button buttonAdicionarPrato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
 
         getDetalhesPrato();
+        ativarBotaoAdicionar();
 
         adapter = new IngredientesAdapter(listaIngredientes);
         recyclerIngredientes.setLayoutManager(new LinearLayoutManager(this));
@@ -62,6 +67,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         categoriaPrato = findViewById(R.id.text_detalhe_prato_categoria);
         recyclerIngredientes = findViewById(R.id.recycler_ingredientes);
         preparoPrato = findViewById(R.id.text_detalhe_prato_preparo);
+        buttonAdicionarPrato = findViewById(R.id.botao_detalhe_prato_adicionar);
     }
 
     @Override
@@ -106,6 +112,21 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             categoriaPrato.setText(prato.getStrCategory());
             preparoPrato.setText(prato.getStrInstructions());
             listaIngredientes = prato.getListaIngredientes();
+        }
+    }
+
+    private void ativarBotaoAdicionar() {
+        if (ADICIONAR_PRATO_REQUEST == 1) {
+            buttonAdicionarPrato.setVisibility(View.VISIBLE);
+
+            buttonAdicionarPrato.setOnClickListener(view -> {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(PRATO_KEY, prato);
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+                finish();
+            });
         }
     }
 

@@ -73,4 +73,10 @@
     <string name="editar_evento">Editar evento</string>
     <string name="nao_existem_pratos">Não existem pratos adicionados ainda</string>
     <string name="nao_existem_participantes">Não existem participantes adicionados ainda</string>
+    <string name="participantes">Participantes</string>
+    <string name="local">Local</string>
+    <string name="hora">Hora</string>
+    <string name="data">Data</string>
+    <string name="titulo">Título</string>
+    <string name="validacao_evento_nome">Adicione um nome para o evento</string>
 </resources>
