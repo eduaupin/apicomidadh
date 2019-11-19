@@ -12,6 +12,7 @@ import com.example.views.adapter.CardEventoAdapter;
 import com.example.views.adapter.CardFavoritosAdapter;
 import com.example.views.adapter.RecyclerViewEventoAdapter;
 import com.example.views.home.CardEventoFragment;
+import com.example.views.interfaces.ClickEvento;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,7 +28,10 @@ import com.example.login.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaEventosActivity extends AppCompatActivity {
+import static com.example.views.home.HomeFragment.EVENTO_KEY;
+import static java.security.AccessController.getContext;
+
+public class ListaEventosActivity extends AppCompatActivity implements ClickEvento {
 
     private Toolbar toolbar;
     private FloatingActionButton btnAdd;
@@ -45,42 +49,56 @@ public class ListaEventosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_eventos);
 
         initViews();
+        setupRecycler();
+        setupToolbar();
+        clickBtnAdd();
+
+    }
 
 
-
+    private void initViews(){
+        toolbar = findViewById(R.id.my_toolbar);
+        btnAdd = findViewById(R.id.floatingActionButton3);
         recyclerView = findViewById(R.id.recycler_eventos);
+        recyclerView = findViewById(R.id.recycler_eventos);
+        adapter = new RecyclerViewEventoAdapter(testarRecycler(),this);
+    }
 
-        adapter = new RecyclerViewEventoAdapter(testarRecycler());
+    private void setupToolbar() {
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow));
+        toolbar.setTitle("Eventos");
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
+        setSupportActionBar(toolbar);
+    }
 
-        //Setando o adapter para o componente recyclerView
+    private void setupRecycler(){
         recyclerView.setAdapter(adapter);
-
-        //Definição do layout da lista utilizando a classe LayoutManager
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+    }
 
-
-
-
-
-        //TODO: Implementar recyclerview
-
+    private void clickBtnAdd(){
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 criarEvento();
             }
         });
+    }
+
+    private void criarEvento(){
+        startActivity(new Intent(ListaEventosActivity.this,CriarEventoActivity.class));
+    }
 
 
 
-        toolbar = findViewById(R.id.my_toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow));
-        toolbar.setTitle("Eventos");
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
-        setSupportActionBar(toolbar);
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public List<Evento> testarRecycler() {
@@ -100,23 +118,12 @@ public class ListaEventosActivity extends AppCompatActivity {
     }
 
 
-    private void initViews(){
-        btnAdd = findViewById(R.id.floatingActionButton3);
-        recyclerView = findViewById(R.id.recycler_eventos);
-    }
-
-    private void criarEvento(){
-        startActivity(new Intent(ListaEventosActivity.this,CriarEventoActivity.class));
-    }
-
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
+    public void onClick(Evento evento) {
+        Intent intent = new Intent(this, DetalhesDoEventoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(EVENTO_KEY, evento);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
-
-
-
 }

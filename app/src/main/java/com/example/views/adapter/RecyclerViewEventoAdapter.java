@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.login.R;
 import com.example.model.Evento;
 import com.example.model.ModelCardPratosHome;
+import com.example.views.eventos.ListaEventosActivity;
+import com.example.views.interfaces.ClickEvento;
 import com.example.views.interfaces.FavoritosClick;
 import com.example.views.pratos.PratosFavoritosActivity;
 
@@ -21,11 +23,11 @@ import java.util.List;
 public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerViewEventoAdapter.ViewHolder> {
 
     private List<Evento> listaEventos;
-   // private FavoritosClick listener;
+    private ClickEvento listener;
 
-    public RecyclerViewEventoAdapter(List<Evento> listaEventos) {
+    public RecyclerViewEventoAdapter(List<Evento> listaEventos, ListaEventosActivity listener) {
         this.listaEventos = listaEventos;
-        //this.listener = listener;
+        this.listener = listener;
     }
 
     @NonNull
@@ -40,12 +42,12 @@ public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(@NonNull RecyclerViewEventoAdapter.ViewHolder viewHolder, int i) {
         final Evento eventos = listaEventos.get(i);
         viewHolder.bind(eventos);
-        //viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-         //   @Override
-           // public void onClick(View v) {
-          //      listener.favOnClick(eventos);
-          //  }
-       // });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(eventos);
+            }
+        });
     }
 
     @Override
