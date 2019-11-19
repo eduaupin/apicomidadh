@@ -31,11 +31,12 @@
         app:srcCompat="@drawable/ic_add_white" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="398dp"
-        android:layout_height="670dp"
-        android:layout_marginStart="8dp"
+        android:id="@+id/recycler_eventos"
+        tools:listitem="@layout/item_detalhes_evento"
+        tools:itemCount="5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="56dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -37,8 +37,9 @@ public class ParticipantesNovoEventoAdapter extends RecyclerView.Adapter<Partici
 
     @Override
     public int getItemCount() {
-        mensagemListaVazia.setVisibility(participantesList.size() > 0 ? View.GONE : View.VISIBLE);
-        return participantesList == null ? 0 : participantesList.size();
+//        mensagemListaVazia.setVisibility(participantesList.size() > 0 ? View.GONE : View.VISIBLE);
+        return 0;
+        //participantesList == null ? 0 : participantesList.size();
     }
 
     public void atualizaLista(List<Participante> listaAtualizada) {
