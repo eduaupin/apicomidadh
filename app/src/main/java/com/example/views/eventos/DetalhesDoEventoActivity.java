@@ -96,15 +96,15 @@ public class DetalhesDoEventoActivity extends AppCompatActivity implements Click
         int id = item.getItemId();
 
         if (id == R.id.menu_evento_compartilhar) {
-            Snackbar.make(recyclerViewPratos, "Função Não Disponível!", Snackbar.LENGTH_LONG).show();
+
             //TODO: Colocar Dynamic link do Firebase [COMPARTILHAR]
-//            Intent sendIntent = new Intent();
-//            sendIntent.setAction(Intent.ACTION_SEND);
-//            sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s", prato.getStrMeal(), prato.getListaIngredientes().toString(), prato.getStrInstructions()));
-//            sendIntent.setType("text/plain");
-//
-//            Intent shareIntent = Intent.createChooser(sendIntent, null);
-//            startActivity(shareIntent);
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("Teste de compartilhamento de eventos"));
+            sendIntent.setType("text/plain");
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
             return true;
         } else if (id == R.id.menu_evento_editar) {
             Snackbar.make(recyclerViewPratos, "Função Não Disponível!", Snackbar.LENGTH_LONG).show();
