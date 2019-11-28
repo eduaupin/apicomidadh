@@ -4,22 +4,41 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.data.local.Converter;
 
 import java.util.List;
 
+@Entity(tableName = "eventos")
+@TypeConverters(Converter.class)
 public class Evento implements Parcelable {
+    public long getIdEvento() {
+        return idEvento;
+    }
 
+    public void setIdEvento(long idEvento) {
+        this.idEvento = idEvento;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private long idEvento;
     private int imgEvento;
     private String nomeEvento;
     private String dataEvento;
     private String enderecoEvento;
     private List<Prato> pratos;
     private List<Participante> participantes;
+    @Ignore
     private Fragment fragment;
 
     public Evento() {
     }
 
+    @Ignore
     public Evento(int imgEvento, String nomeEvento, String dataEvento, String enderecoEvento, List<Prato> pratos, List<Participante> participantes) {
         this.imgEvento = imgEvento;
         this.nomeEvento = nomeEvento;
@@ -29,6 +48,7 @@ public class Evento implements Parcelable {
         this.participantes = participantes;
     }
 
+    @Ignore
     public Evento(int imgEvento, String nomeEvento, String dataEvento, String enderecoEvento, List<Prato> pratos, List<Participante> participantes, Fragment fragment) {
         this.imgEvento = imgEvento;
         this.nomeEvento = nomeEvento;
@@ -45,20 +65,6 @@ public class Evento implements Parcelable {
         dataEvento = in.readString();
         enderecoEvento = in.readString();
         pratos = in.createTypedArrayList(Prato.CREATOR);
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(imgEvento);
-        dest.writeString(nomeEvento);
-        dest.writeString(dataEvento);
-        dest.writeString(enderecoEvento);
-        dest.writeTypedList(pratos);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<Evento> CREATOR = new Creator<Evento>() {
@@ -127,6 +133,21 @@ public class Evento implements Parcelable {
 
     public void setFragment(Fragment fragment) {
         this.fragment = fragment;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idEvento);
+        dest.writeInt(imgEvento);
+        dest.writeString(nomeEvento);
+        dest.writeString(dataEvento);
+        dest.writeString(enderecoEvento);
+        dest.writeTypedList(pratos);
     }
 }
 
