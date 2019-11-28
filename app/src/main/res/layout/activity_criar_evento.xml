@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    tools:context="com.example.views.eventos.CriarEventoActivity">
+    tools:context="br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.views.eventos.CriarEventoActivity">
+        tools:context="br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_novo_evento"

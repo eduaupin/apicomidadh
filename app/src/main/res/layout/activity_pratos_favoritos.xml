@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="com.example.views.pratos.PratosFavoritosActivity">
+    tools:context="br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarFavoritos"
