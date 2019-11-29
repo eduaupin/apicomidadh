@@ -161,7 +161,7 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == ADICIONAR_PRATO_REQUEST && resultCode == RESULT_OK) {
             Toast.makeText(this, "Prato adicionado", Toast.LENGTH_SHORT).show();
             Prato prato = data.getParcelableExtra(PRATO_KEY);
             //TODO:Implementar a lógica de adicionar/remover prato, em conjunto com a tela do botão AdicionarPrato e do botão de Adicionar em DetalhePrato
@@ -169,7 +169,7 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
             pratosAdapter.atualizaLista(pratos);
         }
 
-        if (requestCode == 2 && resultCode == RESULT_OK) {
+        if (requestCode == ADICIONAR_PARTICIPANTE_REQUEST && resultCode == RESULT_OK) {
             Toast.makeText(this, "Participante adicionado", Toast.LENGTH_SHORT).show();
 //            Participante participante = data.getParcelableExtra();
             //TODO:Implementar a lógica de adicionar/remover participante, em conjunto com a tela de Adicionar Participante
