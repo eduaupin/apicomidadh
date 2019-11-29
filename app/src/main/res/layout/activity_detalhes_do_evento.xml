@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.views.eventos.DetalhesDoEventoActivity">
+    tools:context="br.com.digitalhouse.foodparty.views.eventos.DetalhesDoEventoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.views.pratos.NaoExistemFavoritosActivity" />
-        <activity android:name="com.example.views.eventos.NaoExistemEventosActivity" />
-        <activity android:name="com.example.views.sobre.SobreActivity">
+        <activity android:name="br.com.digitalhouse.foodparty.views.pratos.NaoExistemFavoritosActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.eventos.NaoExistemEventosActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.sobre.SobreActivity">
 
         </activity>
-        <activity android:name="com.example.views.login.SplashActivity">
+        <activity android:name="br.com.digitalhouse.foodparty.views.login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,33 +28,33 @@
         </activity>
 
         <activity
-            android:name="com.example.views.pratos.DetalhesDoPratoActivity"
+            android:name="br.com.digitalhouse.foodparty.views.pratos.DetalhesDoPratoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.views.pratos.ListaDePratosActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.pratos.ListaDePratosActivity" />
 
-        <activity android:name="com.example.views.eventos.DetalhesDoEventoActivity"
+        <activity android:name="br.com.digitalhouse.foodparty.views.eventos.DetalhesDoEventoActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.example.views.eventos.AdicionarPessoaAoEventoActivity">
+        <activity android:name="br.com.digitalhouse.foodparty.views.eventos.AdicionarPessoaAoEventoActivity">
 
         </activity>
 
-        <activity android:name="com.example.views.eventos.CriarEventoActivity"
+        <activity android:name="br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name="com.example.views.home.NotificacoesActivity" />
-        <activity android:name="com.example.views.login.FeedbackEsqueciSenhaActivity" />
-        <activity android:name="com.example.views.login.EsqueciSenhaActivity" />
-        <activity android:name="com.example.views.eventos.ListaEventosActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.home.NotificacoesActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.login.FeedbackEsqueciSenhaActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.login.EsqueciSenhaActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.eventos.ListaEventosActivity" />
         <activity
-            android:name="com.example.views.home.HomeActivity"
+            android:name="br.com.digitalhouse.foodparty.views.home.HomeActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        <activity android:name="com.example.views.login.RegisterActivity" />
-        <activity android:name="com.example.views.login.LoginActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.login.RegisterActivity" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.login.LoginActivity" />
         <activity
-            android:name="com.example.views.pratos.PratosFavoritosActivity"
+            android:name="br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity"
             android:label="@string/favoritos" />
 
     </application>
