@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="br.com.digitalhouse.foodparty.views.home.CardEventoFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="8dp"
+        android:id="@+id/card_view_evento_home"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/cardview_light_background"
+        app:cardCornerRadius="5dp"
+        android:outlineAmbientShadowColor="@color/black60">
+
+        <ImageView
+            android:id="@+id/img_event_home"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="130dp"
+            android:src="@drawable/churros_card"
+            />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="145dp"
+            android:src="@drawable/ic_date_range_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/txt_nome_evento_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Noite do churros"
+            android:textColor="@color/black60"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="145dp"
+            android:layout_marginStart="44dp" />
+
+        <TextView
+            android:id="@+id/data_evento_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data: 10/10/2019"
+            android:textSize="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="170dp"
+            />
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="espacoLogin">100dp</dimen>
+    <dimen name="margin_bottom_senha">48dp</dimen>
+    <dimen name="input_margin_bottom">16dp</dimen>
 </resources>

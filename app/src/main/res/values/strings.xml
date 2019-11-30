@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Food App</string>
+    <string name="app_name">Food Party</string>
     <string name="usuarioLogin">Nome de usuário</string>
     <string name="senhaLogin">Senha</string>
     <string name="btnLogin">Login</string>
@@ -15,4 +15,68 @@
     <string name="nome_do_prato">Nome do prato</string>
     <string name="data_evento">Dia 14/10</string>
     <string name="nomeEvento"><b>Nome do Evento</b></string>
+    <string name="alt_logo">Logo Food Party</string>
+    <string name="alt_bg_register">Bolo de chocholate com mirtillo</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_menu">Food Party</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="reportar_bug"><b><u>Reportar bug</u></b></string>
+    <string name="atualizar_vers_o">Atualizar Versão</string>
+    <string name="vers_o_1_0_0">Versão 1.0.0</string>
+    <string name="sobre">Sobre</string>
+    <string name="nosso_email">dhgrupo.comida@gmail.com</string>
+    <string name="relato_problema">Relato de problema</string>
+    <string name="enviar_email_via">Enviar e-mail via</string>
+    <string name="esqueci_minha_senha">Esqueci minha Senha</string>
+    <string name="uma_nova_senha_foi_enviada_para_o_seu_e_mail">Uma nova senha foi enviada para seu e-mail.</string>
+    <string name="ver_mais">VER MAIS</string>
+    <string name="pratos_populares">Pratos Populares</string>
+    <string name="ver_todos">VER TODOS</string>
+    <string name="eventos">Eventos</string>
+    <string name="texto_recuperar_senha">Está difícil lembrar a senha?\n Tudo bem.
+        Podemos te enviar uma nova. Por segurança, confirme seu e-mail cadastrado!</string>
+    <string name="e_mail">E-mail</string>
+    <string name="exemplo_receita">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        \n Curabitur porttitor dui magna, faucibus viverra nisi rhoncus pulvinar. Nunc eu nunc leo.
+        \nMaecenas eu ipsum ut augue facilisis lobortis. Suspendisse varius fermentum nisi,
+        \nin sagittis turpis consequat pharetra. Quisque a facilisis felis, rutrum auctor tortor.
+        \nIn consequat venenatis odio non ultrices. Maecenas in sapien eget nisi sagittis
+        \nvulputate ut non arcu. Pellentesque malesuada nec risus eu auctor. Fusce in mollis
+        \nex, quis cursus sem.</string>
+    <string name="notificacoes">Notificações</string>
+    <string name="menu_eventos">Eventos</string>
+    <string name="menu_pratos_favoritos">Pratos Favoritos</string>
+    <string name="menu_sobre">Sobre</string>
+    <string name="menu_logout">Logout</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="btnsalvar">SALVAR</string>
+    <string name="compartilhar">Compartilhar</string>
+    <string name="adicionar">ADICIONAR</string>
+    <string name="modo_de_preparo">Modo de preparo</string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="imagem_do_prato_da_receita">Imagem do prato da receita</string>
+    <string name="imagem_do_evento">Imagem do evento</string>
+    <string name="pratos">Pratos</string>
+    <string name="editar_evento">Editar evento</string>
+    <string name="nao_existem_pratos">Não existem pratos adicionados ainda</string>
+    <string name="nao_existem_participantes">Não existem participantes adicionados ainda</string>
+    <string name="participantes">Participantes</string>
+    <string name="local">Local</string>
+    <string name="hora">Hora</string>
+    <string name="data">Data</string>
+    <string name="titulo">Título</string>
+    <string name="validacao_evento_nome">Adicione um nome para o evento</string>
 </resources>
