@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 
-import br.com.digitalhouse.foodparty.util.BlurUtil;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.login.R;
+import com.google.firebase.auth.FirebaseAuth;
+
+import br.com.digitalhouse.foodparty.util.AppUtil;
+import br.com.digitalhouse.foodparty.util.BlurUtil;
+import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -66,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     sendBundleToLogin();
                 }
+                registrarUsuario(email, senha);
 
             }
         });
@@ -76,6 +82,19 @@ public class RegisterActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    public void registrarUsuario(String email, String senha){
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,senha)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        AppUtil.salvarIdUsuario(RegisterActivity.this, FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        finish();
+                    }else {
+                        Snackbar.make(btnRegister, task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
+                });
     }
 
     public void initViews() {
