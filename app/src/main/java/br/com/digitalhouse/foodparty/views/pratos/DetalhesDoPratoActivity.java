@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.R;
 
+import br.com.digitalhouse.foodparty.viewmodel.FavoritosViewModel;
 import br.com.digitalhouse.foodparty.views.adapter.IngredientesAdapter;
 import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
 import br.com.digitalhouse.foodparty.model.Ingrediente;
 import br.com.digitalhouse.foodparty.model.Prato;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,6 +42,10 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private TextView preparoPrato;
     private Prato prato;
     private Button buttonAdicionarPrato;
+    private FavoritosViewModel favoritosViewModel;
+    private Boolean teste = false;
+    private Boolean teste2 = teste;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,8 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         adapter = new IngredientesAdapter(listaIngredientes);
         recyclerIngredientes.setLayoutManager(new LinearLayoutManager(this));
         recyclerIngredientes.setAdapter(adapter);
+
+
     }
 
     private void initViews() {
@@ -84,6 +91,16 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         return true;
     }
 
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(teste==true) {
+            invalidateOptionsMenu();
+            menu.findItem(R.id.menu_prato_favoritar).setIcon(R.drawable.favoritetrue);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -99,8 +116,14 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             startActivity(shareIntent);
             return true;
         } else if (id == R.id.menu_prato_favoritar) {
-            Snackbar.make(preparoPrato, "Função Não Disponível!", Snackbar.LENGTH_LONG).show();
-            return true;
+            if(teste2 == true){
+                this.teste2 = false;
+                item.setIcon(R.drawable.ic_favorite_outline);
+            }else{
+                this.teste2 = true;
+                item.setIcon(R.drawable.favoritetrue);
+            }
+
         }
 
         return super.onOptionsItemSelected(item);
