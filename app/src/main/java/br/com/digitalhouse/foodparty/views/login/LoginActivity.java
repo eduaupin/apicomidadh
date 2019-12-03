@@ -6,6 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,7 +31,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.digitalhouse.foodparty.util.AppUtil;
@@ -34,6 +39,7 @@ import br.com.digitalhouse.foodparty.util.BlurUtil;
 
 import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnFacebook;
     private TextView txtRegistrese;
-
+    private CallbackManager callbackManager;
 
     private SignInButton googleSignInButton;
     private GoogleSignInClient googleSignInClient;
@@ -77,31 +83,18 @@ public class LoginActivity extends AppCompatActivity {
 
         initViews();
 
+        callbackManager = CallbackManager.Factory.create();
+
         loginGoogle();
 
-        btnLogin.setOnClickListener(view -> validarCampos());
+        btnLogin.setOnClickListener(view -> loginEmail());
 
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validarCampos();
-            }
-        });
+        btnFacebook.setOnClickListener(v -> loginFacebook());
 
-        textEsqueciSenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                esqueciSenha();
-            }
-        });
+        textEsqueciSenha.setOnClickListener(view -> esqueciSenha());
 
 
-        txtRegistrese.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
+        txtRegistrese.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
 
     }
 
@@ -176,6 +169,28 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+    public void loginFacebook() {
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        irParaHome(loginResult.getAccessToken().getUserId());
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(LoginActivity.this, "Canceled", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.i("LOG", "Login Error: " + exception.getMessage());
+                    }
+                });
+    }
+
 
     public boolean validateEmail(String email) {
         matcher = pattern.matcher(email);

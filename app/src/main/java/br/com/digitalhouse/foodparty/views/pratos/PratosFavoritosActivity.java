@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import br.com.digitalhouse.foodparty.views.adapter.CardFavoritosAdapter;
 import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
 
 import java.util.ArrayList;

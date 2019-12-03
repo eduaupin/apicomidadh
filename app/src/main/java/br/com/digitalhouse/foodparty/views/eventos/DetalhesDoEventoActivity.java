@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;

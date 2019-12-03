@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.util.BlurUtil;
 
 import java.util.Timer;

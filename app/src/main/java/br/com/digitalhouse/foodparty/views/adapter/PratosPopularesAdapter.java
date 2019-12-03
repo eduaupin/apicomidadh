@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Prato;
 import com.squareup.picasso.Picasso;
 

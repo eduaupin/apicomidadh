@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 /**
  * A simple {@link Fragment} subclass.

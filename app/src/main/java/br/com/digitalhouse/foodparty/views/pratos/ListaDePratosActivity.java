@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 public class ListaDePratosActivity extends AppCompatActivity {
     private Toolbar toolbar;

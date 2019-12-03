@@ -17,7 +17,7 @@ import android.widget.TextView;
 import br.com.digitalhouse.foodparty.views.eventos.DetalhesDoEventoActivity;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 /**
  * A simple {@link Fragment} subclass.

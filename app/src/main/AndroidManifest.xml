@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.login">
+    package="br.com.digitalhouse.foodparty">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <activity android:name="br.com.digitalhouse.foodparty.views.pratos.NaoExistemFavoritosActivity" />
         <activity android:name="br.com.digitalhouse.foodparty.views.eventos.NaoExistemEventosActivity" />
         <activity android:name="br.com.digitalhouse.foodparty.views.sobre.SobreActivity">
@@ -24,7 +25,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
 
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -49,14 +66,13 @@
         <activity
             android:name="br.com.digitalhouse.foodparty.views.home.HomeActivity"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name="br.com.digitalhouse.foodparty.views.login.RegisterActivity" />
         <activity android:name="br.com.digitalhouse.foodparty.views.login.LoginActivity" />
         <activity
             android:name="br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity"
             android:label="@string/favoritos" />
-
     </application>
 
 </manifest>

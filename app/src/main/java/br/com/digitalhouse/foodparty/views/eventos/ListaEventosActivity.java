@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;

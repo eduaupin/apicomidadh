@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.views.adapter.CardEventoAdapter;

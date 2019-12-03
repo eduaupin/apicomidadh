@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "515887948534",
-    "firebase_url": "https://foodparty-ad7be.firebaseio.com",
-    "project_id": "foodparty-ad7be",
-    "storage_bucket": "foodparty-ad7be.appspot.com"
+    "project_number": "746030473162",
+    "firebase_url": "https://foodparty-c8e8c.firebaseio.com",
+    "project_id": "foodparty-c8e8c",
+    "storage_bucket": "foodparty-c8e8c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:515887948534:android:12110a7d2ef57dd52f42d7",
+        "mobilesdk_app_id": "1:746030473162:android:e7a26334aeb7825ec3f933",
         "android_client_info": {
-          "package_name": "com.example.login"
+          "package_name": "br.com.digitalhouse.foodparty"
         }
       },
       "oauth_client": [
         {
-          "client_id": "515887948534-bsf1l9nfro0schgal7e8hqgrhb4q4sr5.apps.googleusercontent.com",
+          "client_id": "746030473162-a4m2qndrq0mnrk7qr15j4enqj99s8lhb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.login",
+            "package_name": "br.com.digitalhouse.foodparty",
             "certificate_hash": "ff5eef0b187632746f02ea6f9b9bc487c7b64355"
           }
         },
         {
-          "client_id": "515887948534-ncseq9hfupaatl4ptjbf20l9bnkj801s.apps.googleusercontent.com",
+          "client_id": "746030473162-tmia3ho8a1kmdbd4h3h03uh9ek6cqhgm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDYzqAuPdojQiCPUPBywWEA2uvyp0QpSkA"
+          "current_key": "AIzaSyCTBZFhOVqBxqEhtbme6CU_TCghmpEW3BU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "515887948534-ncseq9hfupaatl4ptjbf20l9bnkj801s.apps.googleusercontent.com",
+              "client_id": "746030473162-tmia3ho8a1kmdbd4h3h03uh9ek6cqhgm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

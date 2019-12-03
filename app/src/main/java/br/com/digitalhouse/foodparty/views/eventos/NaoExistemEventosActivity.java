@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
 public class NaoExistemEventosActivity extends AppCompatActivity {

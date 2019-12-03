@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.digitalhouse.foodparty.util.AppUtil;

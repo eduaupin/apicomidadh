@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 public class EsqueciSenhaActivity extends AppCompatActivity {
 

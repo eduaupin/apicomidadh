@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.views.eventos.ListaEventosActivity;
@@ -40,12 +40,7 @@ public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(@NonNull RecyclerViewEventoAdapter.ViewHolder viewHolder, int i) {
         final Evento eventos = listaEventos.get(i);
         viewHolder.bind(eventos);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onClick(eventos);
-            }
-        });
+        viewHolder.itemView.setOnClickListener(v -> listener.onClick(eventos));
     }
 
     @Override

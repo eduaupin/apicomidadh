@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 import br.com.digitalhouse.foodparty.views.interfaces.ClickPratoAdicionar;
 import br.com.digitalhouse.foodparty.model.Prato;

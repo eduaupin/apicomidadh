@@ -28,7 +28,7 @@ import android.view.MenuItem;
 
 import androidx.navigation.ui.AppBarConfiguration;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 public class HomeActivity extends AppCompatActivity {
     private FloatingActionButton buttonAddEvento;
