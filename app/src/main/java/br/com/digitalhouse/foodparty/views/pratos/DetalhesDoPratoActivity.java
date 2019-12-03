@@ -42,7 +42,6 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private Button buttonAdicionarPrato;
     private FavoritosViewModel favoritosViewModel;
     private Boolean teste = false;
-    private Boolean teste2 = teste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,12 +110,11 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             startActivity(shareIntent);
             return true;
         } else if (id == R.id.menu_prato_favoritar) {
-            if (teste2 == true) {
-                this.teste2 = false;
+            if (teste) {
                 item.setIcon(R.drawable.ic_favorite_outline);
             } else {
-                this.teste2 = true;
                 item.setIcon(R.drawable.favoritetrue);
+                favoritosViewModel.salvarFavorito(prato);
             }
 
         }
