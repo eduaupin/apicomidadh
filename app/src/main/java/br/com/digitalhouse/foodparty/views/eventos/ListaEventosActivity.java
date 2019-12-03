@@ -34,7 +34,6 @@ public class ListaEventosActivity extends AppCompatActivity implements ClickEven
     private RecyclerViewEventoAdapter adapter;
     private ListaEventosViewModel listaEventosViewModel;
     private List<Prato> listaPratosPopulares = new ArrayList<>();
-    private CardEventoAdapter eventoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +42,11 @@ public class ListaEventosActivity extends AppCompatActivity implements ClickEven
         initViews();
         setupRecycler();
         listaEventosViewModel.getAllEventosLocal();
+
+        listaEventosViewModel.pegaEventosLiveData().observe(this, eventos1 -> {
+            adapter.atualizaLista(eventos1);
+        });
+
         setupToolbar();
         clickBtnAdd();
     }
@@ -50,7 +54,6 @@ public class ListaEventosActivity extends AppCompatActivity implements ClickEven
     private void initViews() {
         toolbar = findViewById(R.id.my_toolbar);
         btnAdd = findViewById(R.id.floatingActionButton3);
-        recyclerView = findViewById(R.id.recycler_eventos);
         recyclerView = findViewById(R.id.recycler_eventos);
         adapter = new RecyclerViewEventoAdapter(eventos, this);
         listaEventosViewModel = ViewModelProviders.of(this).get(ListaEventosViewModel.class);
@@ -64,10 +67,8 @@ public class ListaEventosActivity extends AppCompatActivity implements ClickEven
     }
 
     private void setupRecycler() {
-        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     private void clickBtnAdd() {

@@ -29,19 +29,11 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager_home"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="216dp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_eventos" />
-
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/viewPager_circleIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewPager_home"
-        />
 
     <TextView
         android:id="@+id/txt_pratos_populares"
@@ -54,7 +46,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewPager_circleIndicator" />
+        app:layout_constraintTop_toBottomOf="@id/viewPager_home" />
 
     <TextView
         android:id="@+id/txt_ver_mais"

@@ -34,13 +34,9 @@ public class CardEventoFragment extends Fragment {
     public static Fragment novaInstancia(Evento evento) {
         CardEventoFragment cardFragment = new CardEventoFragment();
         Bundle bundle = new Bundle();
-
         bundle.putParcelable(EVENTO_CARD_KEY, evento);
-
         cardFragment.setArguments(bundle);
-
         return cardFragment;
-
     }
 
     @Override
@@ -53,13 +49,14 @@ public class CardEventoFragment extends Fragment {
         if (getArguments() != null) {
             Evento evento = getArguments().getParcelable(EVENTO_CARD_KEY);
 
-            Picasso.get().load(new File(evento.getImgEvento())).into(imgEvento);
+            Picasso.get().load(new File(evento.getImgEvento())).fit().centerCrop().into(imgEvento);
             txtNomeEvento.setText(evento.getNomeEvento());
             txtDataEvento.setText(evento.getDataEvento());
 
             cardViewEvento.setOnClickListener(view1 -> {
                 clickEvento.onClick(evento);
             });
+
         }
 
         return view;
@@ -71,4 +68,5 @@ public class CardEventoFragment extends Fragment {
         imgEvento = view.findViewById(R.id.img_event_home);
         cardViewEvento = view.findViewById(R.id.card_view_evento_home);
     }
+
 }

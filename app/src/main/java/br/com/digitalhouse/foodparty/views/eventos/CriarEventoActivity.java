@@ -6,9 +6,11 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -41,7 +43,6 @@ import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.model.Participante;
 import br.com.digitalhouse.foodparty.model.Prato;
-import br.com.digitalhouse.foodparty.repository.EventosRepository;
 import br.com.digitalhouse.foodparty.viewmodel.CriarEventoViewModel;
 import br.com.digitalhouse.foodparty.views.adapter.ParticipantesNovoEventoAdapter;
 import br.com.digitalhouse.foodparty.views.adapter.PratosNovoEventoAdapter;
@@ -77,7 +78,7 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
     private TimePickerDialog timePickerDialog;
     private CriarEventoViewModel viewModel;
     private ImageView imgEvento;
-    private Uri selectedImage;
+    private String absolutePathImage;
 
     Calendar calendar = Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
@@ -133,11 +134,11 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
                 inputTitulo.setError(getString(R.string.validacao_evento_nome));
             }
 
-            if (selectedImage == null) {
+            if (absolutePathImage == null) {
                 Toast.makeText(this, "Escolha uma imagem para seu evento", Toast.LENGTH_SHORT).show();
             }
 
-            Evento novoEvento = new Evento(selectedImage.toString(), titulo, dataEvento, horaEvento, enderecoEvento, pratos, participantes);
+            Evento novoEvento = new Evento(absolutePathImage, titulo, dataEvento, horaEvento, enderecoEvento, pratos, participantes);
             viewModel.salvarEvento(novoEvento);
 
             startActivity(new Intent(this, HomeActivity.class));
@@ -227,9 +228,17 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
         if (requestCode == 3 && resultCode == RESULT_OK) {
             Toast.makeText(this, "Imagem adicionada", Toast.LENGTH_SHORT).show();
             if (data != null) {
-                selectedImage = data.getData();
+                Uri selectedImage = data.getData();
 
-                Picasso.get().load(selectedImage).into(imgEvento);
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                absolutePathImage = cursor.getString(columnIndex);
+
+                cursor.close();
+
+                Picasso.get().load(new File(absolutePathImage)).fit().centerCrop().into(imgEvento);
                 imgEvento.setBackgroundColor(getResources().getColor(R.color.colorBackgroundPage));
                 imgEvento.setScaleType(ImageView.ScaleType.CENTER_CROP);
             }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 import br.com.digitalhouse.foodparty.R;
@@ -117,7 +118,7 @@ public class DetalhesDoEventoActivity extends AppCompatActivity implements Click
     private void getDetalhesEvento() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             evento = getIntent().getParcelableExtra(EVENTO_KEY);
-            Picasso.get().load(evento.getImgEvento()).into(imagemEvento);
+            Picasso.get().load(new File(evento.getImgEvento())).fit().centerCrop().into(imagemEvento);
             nomeEvento.setText(evento.getNomeEvento());
             dataEvento.setText(evento.getDataEvento());
             enderecoEvento.setText(evento.getEnderecoEvento());

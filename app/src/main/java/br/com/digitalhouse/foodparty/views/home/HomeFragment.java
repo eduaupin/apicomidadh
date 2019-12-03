@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +34,6 @@ import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
 import br.com.digitalhouse.foodparty.views.pratos.DetalhesDoPratoActivity;
 import br.com.digitalhouse.foodparty.views.pratos.ListaDePratosActivity;
-import me.relex.circleindicator.CircleIndicator;
 
 public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
     public static final String EVENTO_KEY = "evento";
@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
     private CardEventoAdapter eventoAdapter;
     private FragmentActivity contextoViewPager;
     private ViewPager viewPager;
-    private CircleIndicator viewPagerIndicator;
 
     public HomeFragment() {
     }
@@ -96,21 +95,27 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
 
         //PagerView
 
-//        viewModel.getPrincipaisEventosLocal();
-//
-//        FragmentManager fragManager = contextoViewPager.getSupportFragmentManager();
-//        eventoAdapter = new CardEventoAdapter(fragManager, principaisEventos);
-//
-//        viewModel.getPrincipaisEventos().observe(this, eventos -> {
-//            if (eventos != null) {
-//                eventoAdapter.atualizaViewPager(eventos);
-//            }
-//        });
-//
-//        viewPager.setAdapter(eventoAdapter);
-//        viewPager.setOffscreenPageLimit(principaisEventos.size());
-//        viewPagerIndicator.setViewPager(viewPager);
-//        eventoAdapter.registerDataSetObserver(viewPagerIndicator.getDataSetObserver());
+        viewModel.getPrincipaisEventosLocal();
+
+        viewModel.getPrincipaisEventos().observe(this, eventos -> {
+            if (eventos.size() > 0) {
+                for (Evento evento : eventos) {
+                    principaisEventos.add(new Evento(evento.getImgEvento(), evento.getNomeEvento(), evento.getDataEvento(), evento.getHoraEvento(),
+                            evento.getEnderecoEvento(), evento.getPratos(), evento.getParticipantes(), CardEventoFragment.novaInstancia(evento)));
+                }
+                eventoAdapter.atualizaViewPager(principaisEventos);
+            } else {
+                principaisEventos.add(new Evento(new NaoExistemEventosFragment()));
+                eventoAdapter.atualizaViewPager(principaisEventos);
+            }
+        });
+
+        FragmentManager fragManager = contextoViewPager.getSupportFragmentManager();
+        eventoAdapter = new CardEventoAdapter(fragManager, principaisEventos);
+
+        viewPager.setAdapter(eventoAdapter);
+
+        viewPager.setOffscreenPageLimit(principaisEventos.size());
 
         txtVerTodos.setOnClickListener(view1 -> verTodos());
         txtMaisPratos.setOnClickListener(view12 -> verMais());
@@ -122,7 +127,6 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
         txtMaisPratos = view.findViewById(R.id.txt_ver_mais);
         txtVerTodos = view.findViewById(R.id.txt_ver_todos);
         recyclerViewPratos = view.findViewById(R.id.recycler_home);
-        viewPagerIndicator = view.findViewById(R.id.viewPager_circleIndicator);
         viewPager = view.findViewById(R.id.viewPager_home);
         pratosAdapter = new PratosPopularesAdapter(listaPratosPopulares, this);
         viewModel = ViewModelProviders.of(this).get(HomeFragmentViewModel.class);

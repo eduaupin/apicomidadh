@@ -31,6 +31,7 @@ public class Evento implements Parcelable {
     public Evento() {
     }
 
+    @Ignore
     public Evento(String imgEvento, String nomeEvento, String dataEvento, String horaEvento, String enderecoEvento, List<Prato> pratos, List<Participante> participantes) {
         this.imgEvento = imgEvento;
         this.nomeEvento = nomeEvento;
@@ -50,6 +51,11 @@ public class Evento implements Parcelable {
         this.enderecoEvento = enderecoEvento;
         this.pratos = pratos;
         this.participantes = participantes;
+        this.fragment = fragment;
+    }
+
+    @Ignore
+    public Evento(Fragment fragment) {
         this.fragment = fragment;
     }
 
