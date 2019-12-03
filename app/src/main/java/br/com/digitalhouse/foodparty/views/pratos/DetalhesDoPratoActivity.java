@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,18 +15,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.R;
-
-import br.com.digitalhouse.foodparty.viewmodel.FavoritosViewModel;
-import br.com.digitalhouse.foodparty.views.adapter.IngredientesAdapter;
-import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
-import br.com.digitalhouse.foodparty.model.Ingrediente;
-import br.com.digitalhouse.foodparty.model.Prato;
-
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.Ingrediente;
+import br.com.digitalhouse.foodparty.model.Prato;
+import br.com.digitalhouse.foodparty.viewmodel.FavoritosViewModel;
+import br.com.digitalhouse.foodparty.views.adapter.IngredientesAdapter;
+import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
 
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;
 
@@ -45,7 +43,6 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private FavoritosViewModel favoritosViewModel;
     private Boolean teste = false;
     private Boolean teste2 = teste;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +63,6 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         adapter = new IngredientesAdapter(listaIngredientes);
         recyclerIngredientes.setLayoutManager(new LinearLayoutManager(this));
         recyclerIngredientes.setAdapter(adapter);
-
 
     }
 
@@ -91,10 +87,9 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if(teste==true) {
+        if (teste == true) {
             invalidateOptionsMenu();
             menu.findItem(R.id.menu_prato_favoritar).setIcon(R.drawable.favoritetrue);
         }
@@ -116,10 +111,10 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             startActivity(shareIntent);
             return true;
         } else if (id == R.id.menu_prato_favoritar) {
-            if(teste2 == true){
+            if (teste2 == true) {
                 this.teste2 = false;
                 item.setIcon(R.drawable.ic_favorite_outline);
-            }else{
+            } else {
                 this.teste2 = true;
                 item.setIcon(R.drawable.favoritetrue);
             }
@@ -136,7 +131,9 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             nomePrato.setText(prato.getStrMeal());
             categoriaPrato.setText(prato.getStrCategory());
             preparoPrato.setText(prato.getStrInstructions());
-            listaIngredientes = prato.getListaIngredientes();
+            if (prato.getListaIngredientes().size() > 0) {
+                listaIngredientes = prato.getListaIngredientes();
+            }
         }
     }
 

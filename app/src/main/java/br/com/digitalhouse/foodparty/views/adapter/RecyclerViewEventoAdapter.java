@@ -1,6 +1,5 @@
 package br.com.digitalhouse.foodparty.views.adapter;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.R;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.views.eventos.ListaEventosActivity;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
-
-import java.util.List;
 
 public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerViewEventoAdapter.ViewHolder> {
 
@@ -40,11 +41,8 @@ public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(@NonNull RecyclerViewEventoAdapter.ViewHolder viewHolder, int i) {
         final Evento eventos = listaEventos.get(i);
         viewHolder.bind(eventos);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onClick(eventos);
-            }
+        viewHolder.itemView.setOnClickListener(v -> {
+            listener.onClick(eventos);
         });
     }
 
@@ -66,8 +64,7 @@ public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerView
 
         public void bind(Evento evento) {
 
-            Drawable drawable = itemView.getResources().getDrawable(evento.getImgEvento());
-            imgFavorito.setImageDrawable(drawable);
+            Picasso.get().load(new File(evento.getImgEvento())).into(imgFavorito);
             txtFavorito.setText(evento.getNomeEvento());
 
         }

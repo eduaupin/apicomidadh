@@ -10,14 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
 import br.com.digitalhouse.foodparty.model.PratosFavoritos;
 import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
-
-import com.example.login.R;
-import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
 import br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity;
-
-import java.util.List;
 
 public class CardFavoritosAdapter extends RecyclerView.Adapter<CardFavoritosAdapter.ViewHolder> {
 

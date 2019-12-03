@@ -27,6 +27,13 @@
         <item name="boxStrokeColor">@color/black40</item>
     </style>
 
+    <style name="AppTheme.inputAdd" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="colorAccent">@color/black40</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="boxStrokeColor">@color/black40</item>
+        <item name="boxBackgroundColor">@color/transparent</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -40,6 +47,13 @@
         <item name="android:textColorPrimary">@color/black87</item>
         <item name="android:background">@color/colorBackgroundPage</item>
     </style>
+
+    <style name="AppTheme.AddToolBarLayout" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/black87</item>
+        <item name="android:background">@color/colorBackgroundPage</item>
+        <item name="android:actionMenuTextColor">@color/colorPrimary</item>
+    </style>
+
 
     <style name="AppTheme.ToolBarLayoutOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/white</item>

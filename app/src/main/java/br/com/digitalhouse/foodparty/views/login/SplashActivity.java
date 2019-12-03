@@ -3,16 +3,17 @@ package br.com.digitalhouse.foodparty.views.login;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.login.R;
-import br.com.digitalhouse.foodparty.util.BlurUtil;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.util.ImageUtil;
 
 public class SplashActivity extends AppCompatActivity {
     private ImageView bgSplash;
@@ -27,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 
         //Add blur effect to background image
         Bitmap bitmap = ((BitmapDrawable) bgSplash.getDrawable()).getBitmap();
-        bgSplash.setImageBitmap(new BlurUtil().blur(SplashActivity.this, bitmap, 5.0f));
+        bgSplash.setImageBitmap(new ImageUtil().blur(SplashActivity.this, bitmap, 5.0f));
 
         bgSplash.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -39,5 +39,8 @@ public class PratosRepository {
         return RetrofitService.getApiService().searchPopulares(letra);
     }
 
+    public Observable<PratosPopulares> getQueryPratos(String query) {
+        return RetrofitService.getApiService().searchByName(query);
+    }
 
 }

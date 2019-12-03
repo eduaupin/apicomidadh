@@ -79,4 +79,6 @@
     <string name="data">Data</string>
     <string name="titulo">Título</string>
     <string name="validacao_evento_nome">Adicione um nome para o evento</string>
+    <string name="nao_ha_eventos_adicionados">Não há eventos adicionados</string>
+    <string name="alt_nao_existem_eventos">Não existem eventos criados</string>
 </resources>

@@ -5,6 +5,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -15,27 +24,15 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.login.R;
 import com.google.firebase.auth.FirebaseAuth;
-
-import br.com.digitalhouse.foodparty.util.AppUtil;
-import br.com.digitalhouse.foodparty.util.BlurUtil;
-
-import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.util.AppUtil;
+import br.com.digitalhouse.foodparty.util.ImageUtil;
+import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,12 +65,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-
-        //Add efeito na imagem de background
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
-        bgRegister.setImageBitmap(new BlurUtil().blur(LoginActivity.this, bitmap, 5.0f));
+        bgRegister.setImageBitmap(new ImageUtil().blur(LoginActivity.this, bitmap, 5.0f));
 
         initViews();
 

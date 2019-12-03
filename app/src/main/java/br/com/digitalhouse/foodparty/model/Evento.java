@@ -9,26 +9,19 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import br.com.digitalhouse.foodparty.data.local.Converter;
-
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.data.local.Converter;
 
 @Entity(tableName = "eventos")
 @TypeConverters(Converter.class)
 public class Evento implements Parcelable {
-    public long getIdEvento() {
-        return idEvento;
-    }
-
-    public void setIdEvento(long idEvento) {
-        this.idEvento = idEvento;
-    }
-
     @PrimaryKey(autoGenerate = true)
     private long idEvento;
-    private int imgEvento;
+    private String imgEvento;
     private String nomeEvento;
     private String dataEvento;
+    private String horaEvento;
     private String enderecoEvento;
     private List<Prato> pratos;
     private List<Participante> participantes;
@@ -38,21 +31,22 @@ public class Evento implements Parcelable {
     public Evento() {
     }
 
-    @Ignore
-    public Evento(int imgEvento, String nomeEvento, String dataEvento, String enderecoEvento, List<Prato> pratos, List<Participante> participantes) {
+    public Evento(String imgEvento, String nomeEvento, String dataEvento, String horaEvento, String enderecoEvento, List<Prato> pratos, List<Participante> participantes) {
         this.imgEvento = imgEvento;
         this.nomeEvento = nomeEvento;
         this.dataEvento = dataEvento;
+        this.horaEvento = horaEvento;
         this.enderecoEvento = enderecoEvento;
         this.pratos = pratos;
         this.participantes = participantes;
     }
 
     @Ignore
-    public Evento(int imgEvento, String nomeEvento, String dataEvento, String enderecoEvento, List<Prato> pratos, List<Participante> participantes, Fragment fragment) {
+    public Evento(String imgEvento, String nomeEvento, String dataEvento, String horaEvento, String enderecoEvento, List<Prato> pratos, List<Participante> participantes, Fragment fragment) {
         this.imgEvento = imgEvento;
         this.nomeEvento = nomeEvento;
         this.dataEvento = dataEvento;
+        this.horaEvento = horaEvento;
         this.enderecoEvento = enderecoEvento;
         this.pratos = pratos;
         this.participantes = participantes;
@@ -60,11 +54,14 @@ public class Evento implements Parcelable {
     }
 
     protected Evento(Parcel in) {
-        imgEvento = in.readInt();
+        idEvento = in.readLong();
+        imgEvento = in.readString();
         nomeEvento = in.readString();
         dataEvento = in.readString();
+        horaEvento = in.readString();
         enderecoEvento = in.readString();
         pratos = in.createTypedArrayList(Prato.CREATOR);
+        participantes = in.createTypedArrayList(Participante.CREATOR);
     }
 
     public static final Creator<Evento> CREATOR = new Creator<Evento>() {
@@ -79,11 +76,36 @@ public class Evento implements Parcelable {
         }
     };
 
-    public int getImgEvento() {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(idEvento);
+        parcel.writeString(imgEvento);
+        parcel.writeString(nomeEvento);
+        parcel.writeString(dataEvento);
+        parcel.writeString(horaEvento);
+        parcel.writeString(enderecoEvento);
+        parcel.writeTypedList(pratos);
+        parcel.writeTypedList(participantes);
+    }
+
+    public long getIdEvento() {
+        return idEvento;
+    }
+
+    public void setIdEvento(long idEvento) {
+        this.idEvento = idEvento;
+    }
+
+    public String getImgEvento() {
         return imgEvento;
     }
 
-    public void setImgEvento(int imgEvento) {
+    public void setImgEvento(String imgEvento) {
         this.imgEvento = imgEvento;
     }
 
@@ -101,6 +123,14 @@ public class Evento implements Parcelable {
 
     public void setDataEvento(String dataEvento) {
         this.dataEvento = dataEvento;
+    }
+
+    public String getHoraEvento() {
+        return horaEvento;
+    }
+
+    public void setHoraEvento(String horaEvento) {
+        this.horaEvento = horaEvento;
     }
 
     public String getEnderecoEvento() {
@@ -133,21 +163,6 @@ public class Evento implements Parcelable {
 
     public void setFragment(Fragment fragment) {
         this.fragment = fragment;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(idEvento);
-        dest.writeInt(imgEvento);
-        dest.writeString(nomeEvento);
-        dest.writeString(dataEvento);
-        dest.writeString(enderecoEvento);
-        dest.writeTypedList(pratos);
     }
 }
 

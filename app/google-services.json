@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:515887948534:android:12110a7d2ef57dd52f42d7",
         "android_client_info": {
-          "package_name": "com.example.login"
+          "package_name": "br.com.digitalhouse.foodparty"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "515887948534-bsf1l9nfro0schgal7e8hqgrhb4q4sr5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.login",
+            "package_name": "br.com.digitalhouse.foodparty",
             "certificate_hash": "ff5eef0b187632746f02ea6f9b9bc487c7b64355"
           }
         },

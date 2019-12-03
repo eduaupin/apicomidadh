@@ -16,6 +16,9 @@ public interface EventoDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insereEventos(List<Evento> eventos);
 
+    @Insert
+    void insereEvento(Evento evento);
+
     @Query("SELECT * FROM eventos ORDER BY idEvento desc limit 3")
     Flowable<List<Evento>> pegaPrincipaisEventos();
 

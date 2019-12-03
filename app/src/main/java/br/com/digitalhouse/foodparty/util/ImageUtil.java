@@ -2,12 +2,13 @@ package br.com.digitalhouse.foodparty.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+
 import androidx.renderscript.Allocation;
 import androidx.renderscript.Element;
 import androidx.renderscript.RenderScript;
 import androidx.renderscript.ScriptIntrinsicBlur;
 
-public class BlurUtil {
+public class ImageUtil {
 
     private static final float BITMAP_SCALE = 0.4f;
 

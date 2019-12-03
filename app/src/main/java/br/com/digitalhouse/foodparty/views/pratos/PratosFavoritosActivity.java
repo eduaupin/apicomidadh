@@ -10,13 +10,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.PratosFavoritos;
 import br.com.digitalhouse.foodparty.util.AppUtil;
 import br.com.digitalhouse.foodparty.views.adapter.CardFavoritosAdapter;
 import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
 
-import com.example.login.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
