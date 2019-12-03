@@ -1,5 +1,6 @@
 package br.com.digitalhouse.foodparty.views.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.io.File;
 
 import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Evento;
+import br.com.digitalhouse.foodparty.views.eventos.DetalhesDoEventoActivity;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
 
 public class CardEventoFragment extends Fragment {
@@ -54,7 +56,11 @@ public class CardEventoFragment extends Fragment {
             txtDataEvento.setText(evento.getDataEvento());
 
             cardViewEvento.setOnClickListener(view1 -> {
-                clickEvento.onClick(evento);
+                Intent intent = new Intent(getContext(), DetalhesDoEventoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(EVENTO_CARD_KEY, evento);
+                intent.putExtras(bundle);
+                startActivity(intent);
             });
 
         }

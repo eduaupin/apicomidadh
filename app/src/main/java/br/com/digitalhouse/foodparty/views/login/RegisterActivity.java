@@ -3,25 +3,25 @@ package br.com.digitalhouse.foodparty.views.login;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
+import br.com.digitalhouse.foodparty.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.util.AppUtil;
 import br.com.digitalhouse.foodparty.util.ImageUtil;
 import br.com.digitalhouse.foodparty.views.home.HomeActivity;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout inputEmail;

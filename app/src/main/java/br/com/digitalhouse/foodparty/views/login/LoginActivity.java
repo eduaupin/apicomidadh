@@ -5,16 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,18 +20,31 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.digitalhouse.foodparty.R;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 import br.com.digitalhouse.foodparty.util.AppUtil;
+
 import br.com.digitalhouse.foodparty.util.ImageUtil;
 import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+public class LoginActivity extends AppCompatActivity {
 
     private TextInputLayout inputEmail;
     private TextInputLayout inputSenha;
@@ -43,12 +52,11 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnFacebook;
     private TextView txtRegistrese;
-
+    private CallbackManager callbackManager;
 
     private SignInButton googleSignInButton;
     private GoogleSignInClient googleSignInClient;
     public static final String GOOGLE_ACCOUNT = "google_account";
-
 
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
@@ -59,43 +67,29 @@ public class LoginActivity extends AppCompatActivity {
     public static final String EMAIL_KEY = "email";
     public static final String SENHA_KEY = "senha";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Add efeito na imagem de background
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
         bgRegister.setImageBitmap(new ImageUtil().blur(LoginActivity.this, bitmap, 5.0f));
 
         initViews();
 
+        callbackManager = CallbackManager.Factory.create();
+
         loginGoogle();
 
-        btnLogin.setOnClickListener(view -> validarCampos());
+        btnLogin.setOnClickListener(view -> loginEmail());
 
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validarCampos();
-            }
-        });
+        btnFacebook.setOnClickListener(v -> loginFacebook());
 
-        textEsqueciSenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                esqueciSenha();
-            }
-        });
+        textEsqueciSenha.setOnClickListener(view -> esqueciSenha());
 
-
-        txtRegistrese.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
+        txtRegistrese.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
 
     }
 
@@ -113,11 +107,11 @@ public class LoginActivity extends AppCompatActivity {
                 .signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
 
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
 
                         irParaHome(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                    }else {
+                    } else {
 
                         Snackbar.make(btnLogin, task.getException().getMessage(), Snackbar.LENGTH_SHORT).show();
 
@@ -126,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
     }
+
     public void initViews() {
         inputEmail = findViewById(R.id.tilayout_login_email);
         inputSenha = findViewById(R.id.tilayout_login_password);
@@ -143,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    public void validarCampos(){
+    public void validarCampos() {
         inputEmail.setErrorEnabled(false);
         inputSenha.setErrorEnabled(false);
 
@@ -156,10 +151,10 @@ public class LoginActivity extends AppCompatActivity {
         } else if (!validatePassword(senha)) {
             inputSenha.setError("Sua senha deve ter pelo menos 6 caractéres!");
             inputEmail.setErrorEnabled(false);
-        } else if(!validateEmail(email)){
+        } else if (!validateEmail(email)) {
             inputEmail.setError("Digite um e-mail válido");
             inputSenha.setErrorEnabled(false);
-        }else{
+        } else {
 
             inputEmail.setErrorEnabled(false);
             inputSenha.setErrorEnabled(false);
@@ -171,6 +166,27 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public void loginFacebook() {
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        irParaHome(loginResult.getAccessToken().getUserId());
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(LoginActivity.this, "Canceled", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.i("LOG", "Login Error: " + exception.getMessage());
+                    }
+                });
+    }
+
     public boolean validateEmail(String email) {
         matcher = pattern.matcher(email);
         return matcher.matches();
@@ -180,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
         return password.length() > 5;
     }
 
-    public void esqueciSenha(){
+    public void esqueciSenha() {
         startActivity(new Intent(LoginActivity.this, EsqueciSenhaActivity.class));
     }
 
@@ -194,16 +210,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Activity.RESULT_OK){
-            switch (requestCode){
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
                 case 101:
-                    try{
+                    try {
                         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
                         GoogleSignInAccount conta = task.getResult(ApiException.class);
                         concluirLogin(conta);
 
-                    }catch (ApiException e){
+                    } catch (ApiException e) {
                         Log.i("LOG", "Error: " + e.getMessage());
 
                         Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_SHORT).show();
@@ -217,17 +233,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        GoogleSignInAccount alreadyLoggedAccount =GoogleSignIn.getLastSignedInAccount(this);
-        if(alreadyLoggedAccount != null){
+        GoogleSignInAccount alreadyLoggedAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (alreadyLoggedAccount != null) {
             Toast.makeText(this, "Você já está logadp", Toast.LENGTH_SHORT).show();
             concluirLogin(alreadyLoggedAccount);
-        }else{
+        } else {
             Toast.makeText(this, "Faça o login no app :)", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    public void loginGoogle(){
+    public void loginGoogle() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();

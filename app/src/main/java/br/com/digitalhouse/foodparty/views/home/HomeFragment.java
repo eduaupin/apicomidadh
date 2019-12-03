@@ -86,7 +86,6 @@ public class HomeFragment extends Fragment implements ClickEvento, ClickPratos {
 
         viewModel.getErro().observe(this, s -> {
             Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
-            Log.i("HOMEERRORS", "Erros: " + s);
         });
 
         recyclerViewPratos.setLayoutManager(new LinearLayoutManager(getContext()));
