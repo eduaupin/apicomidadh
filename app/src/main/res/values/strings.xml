@@ -18,7 +18,7 @@
     <string name="alt_logo">Logo Food Party</string>
     <string name="alt_bg_register">Bolo de chocholate com mirtillo</string>
     <string name="facebook_app_id">428564154478384</string>
-    <string name="fb_login_protocol_scheme">fb428564154478384</string>
+    <string name="fb_login_protocol_scheme">428564154478384</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_menu">Food Party</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

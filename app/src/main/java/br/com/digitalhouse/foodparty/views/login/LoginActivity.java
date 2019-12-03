@@ -33,6 +33,8 @@ import android.widget.Toast;
 
 import br.com.digitalhouse.foodparty.R;
 
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.digitalhouse.foodparty.util.AppUtil;
@@ -46,6 +48,7 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
 
+
     private TextInputLayout inputEmail;
     private TextInputLayout inputSenha;
     private TextView textEsqueciSenha;
@@ -58,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient googleSignInClient;
     public static final String GOOGLE_ACCOUNT = "google_account";
 
+
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
     private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     private Matcher matcher;
@@ -67,16 +71,18 @@ public class LoginActivity extends AppCompatActivity {
     public static final String EMAIL_KEY = "email";
     public static final String SENHA_KEY = "senha";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         //Add efeito na imagem de background
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
         bgRegister.setImageBitmap(new ImageUtil().blur(LoginActivity.this, bitmap, 5.0f));
-
         initViews();
 
         callbackManager = CallbackManager.Factory.create();
@@ -88,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         btnFacebook.setOnClickListener(v -> loginFacebook());
 
         textEsqueciSenha.setOnClickListener(view -> esqueciSenha());
+
 
         txtRegistrese.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
 
@@ -107,11 +114,11 @@ public class LoginActivity extends AppCompatActivity {
                 .signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
 
-                    if (task.isSuccessful()) {
+                    if(task.isSuccessful()){
 
                         irParaHome(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                    } else {
+                    }else {
 
                         Snackbar.make(btnLogin, task.getException().getMessage(), Snackbar.LENGTH_SHORT).show();
 
@@ -120,7 +127,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
     }
-
     public void initViews() {
         inputEmail = findViewById(R.id.tilayout_login_email);
         inputSenha = findViewById(R.id.tilayout_login_password);
@@ -138,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    public void validarCampos() {
+    public void validarCampos(){
         inputEmail.setErrorEnabled(false);
         inputSenha.setErrorEnabled(false);
 
@@ -151,10 +157,10 @@ public class LoginActivity extends AppCompatActivity {
         } else if (!validatePassword(senha)) {
             inputSenha.setError("Sua senha deve ter pelo menos 6 caractéres!");
             inputEmail.setErrorEnabled(false);
-        } else if (!validateEmail(email)) {
+        } else if(!validateEmail(email)){
             inputEmail.setError("Digite um e-mail válido");
             inputSenha.setErrorEnabled(false);
-        } else {
+        }else{
 
             inputEmail.setErrorEnabled(false);
             inputSenha.setErrorEnabled(false);
@@ -172,7 +178,12 @@ public class LoginActivity extends AppCompatActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        irParaHome(loginResult.getAccessToken().getUserId());
+                        AuthCredential credential = FacebookAuthProvider
+                                .getCredential(loginResult.getAccessToken().getToken());
+                        FirebaseAuth.getInstance().signInWithCredential(credential)
+                                .addOnCompleteListener(task -> {
+                                    irParaHome(loginResult.getAccessToken().getUserId());
+                                });
                     }
 
                     @Override
@@ -187,6 +198,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+
     public boolean validateEmail(String email) {
         matcher = pattern.matcher(email);
         return matcher.matches();
@@ -196,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
         return password.length() > 5;
     }
 
-    public void esqueciSenha() {
+    public void esqueciSenha(){
         startActivity(new Intent(LoginActivity.this, EsqueciSenhaActivity.class));
     }
 
@@ -209,17 +221,20 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
+
+        if(resultCode == Activity.RESULT_OK){
+            switch (requestCode){
                 case 101:
-                    try {
+                    try{
                         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
                         GoogleSignInAccount conta = task.getResult(ApiException.class);
                         concluirLogin(conta);
 
-                    } catch (ApiException e) {
+                    }catch (ApiException e){
                         Log.i("LOG", "Error: " + e.getMessage());
 
                         Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_SHORT).show();
@@ -233,17 +248,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        GoogleSignInAccount alreadyLoggedAccount = GoogleSignIn.getLastSignedInAccount(this);
-        if (alreadyLoggedAccount != null) {
+        GoogleSignInAccount alreadyLoggedAccount =GoogleSignIn.getLastSignedInAccount(this);
+        if(alreadyLoggedAccount != null){
             Toast.makeText(this, "Você já está logadp", Toast.LENGTH_SHORT).show();
             concluirLogin(alreadyLoggedAccount);
-        } else {
+        }else{
             Toast.makeText(this, "Faça o login no app :)", Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    public void loginGoogle() {
+    public void loginGoogle(){
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
