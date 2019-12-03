@@ -32,6 +32,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.digitalhouse.foodparty.R;
+
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.digitalhouse.foodparty.util.AppUtil;
@@ -176,7 +179,12 @@ public class LoginActivity extends AppCompatActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        irParaHome(loginResult.getAccessToken().getUserId());
+                        AuthCredential credential = FacebookAuthProvider
+                                .getCredential(loginResult.getAccessToken().getToken());
+                        FirebaseAuth.getInstance().signInWithCredential(credential)
+                                .addOnCompleteListener(task -> {
+                                    irParaHome(loginResult.getAccessToken().getUserId());
+                                });
                     }
 
                     @Override
@@ -214,7 +222,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
         super.onActivityResult(requestCode, resultCode, data);
+
         if(resultCode == Activity.RESULT_OK){
             switch (requestCode){
                 case 101:
