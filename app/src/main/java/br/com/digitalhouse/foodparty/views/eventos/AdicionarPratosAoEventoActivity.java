@@ -28,7 +28,7 @@ import br.com.digitalhouse.foodparty.views.pratos.DetalhesDoPratoActivity;
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;
 
 public class AdicionarPratosAoEventoActivity extends AppCompatActivity implements ClickPratoAdicionar {
-    public static final String PRATOS_KEY = "participantes";
+    public static final String PRATOS_KEY = "pratos";
     private Toolbar toolbar;
     private TextInputLayout queryPrato;
     private SearchView searchPrato;
