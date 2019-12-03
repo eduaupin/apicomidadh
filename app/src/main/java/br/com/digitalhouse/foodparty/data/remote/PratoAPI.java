@@ -12,4 +12,6 @@ public interface PratoAPI {
     @GET("search.php")
     Observable<PratosPopulares> searchPopulares(@Query("f") char letra);
 
+    @GET("search.php")
+    Observable<PratosPopulares> searchByName(@Query("s") String query);
 }

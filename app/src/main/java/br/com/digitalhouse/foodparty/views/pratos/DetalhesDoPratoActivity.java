@@ -15,18 +15,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import br.com.digitalhouse.foodparty.R;
-
-import br.com.digitalhouse.foodparty.views.adapter.IngredientesAdapter;
-import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
-import br.com.digitalhouse.foodparty.model.Ingrediente;
-import br.com.digitalhouse.foodparty.model.Prato;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.Ingrediente;
+import br.com.digitalhouse.foodparty.model.Prato;
+import br.com.digitalhouse.foodparty.viewmodel.FavoritosViewModel;
+import br.com.digitalhouse.foodparty.views.adapter.IngredientesAdapter;
+import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
 
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;
 
@@ -41,6 +40,8 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private TextView preparoPrato;
     private Prato prato;
     private Button buttonAdicionarPrato;
+    private FavoritosViewModel favoritosViewModel;
+    private Boolean teste = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         adapter = new IngredientesAdapter(listaIngredientes);
         recyclerIngredientes.setLayoutManager(new LinearLayoutManager(this));
         recyclerIngredientes.setAdapter(adapter);
+
     }
 
     private void initViews() {
@@ -85,6 +87,15 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (teste == true) {
+            invalidateOptionsMenu();
+            menu.findItem(R.id.menu_prato_favoritar).setIcon(R.drawable.favoritetrue);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
@@ -99,8 +110,13 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             startActivity(shareIntent);
             return true;
         } else if (id == R.id.menu_prato_favoritar) {
-            Snackbar.make(preparoPrato, "Função Não Disponível!", Snackbar.LENGTH_LONG).show();
-            return true;
+            if (teste) {
+                item.setIcon(R.drawable.ic_favorite_outline);
+            } else {
+                item.setIcon(R.drawable.favoritetrue);
+                favoritosViewModel.salvarFavorito(prato);
+            }
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -113,7 +129,9 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             nomePrato.setText(prato.getStrMeal());
             categoriaPrato.setText(prato.getStrCategory());
             preparoPrato.setText(prato.getStrInstructions());
-            listaIngredientes = prato.getListaIngredientes();
+            if (prato.getListaIngredientes().size() > 0) {
+                listaIngredientes = prato.getListaIngredientes();
+            }
         }
     }
 

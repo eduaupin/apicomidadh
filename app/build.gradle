@@ -49,6 +49,9 @@ dependencies {
     // Firebase Analytics
     implementation 'com.google.firebase:firebase-core:17.2.1'
 
+    // Firebase Database
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+
     // Firebase login
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'

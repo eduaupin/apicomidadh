@@ -1,10 +1,12 @@
 package br.com.digitalhouse.foodparty.views.eventos;
 
 import android.content.Intent;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.views.home.HomeActivity;

@@ -25,10 +25,26 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_novo_evento"
+                android:theme="@style/AppTheme.ToolBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize" />
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/image_novo_evento_foto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar_novo_evento"
+            android:src="@drawable/ic_add_a_photo"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:scaleType="centerInside"
+            android:layout_width="match_parent"
+            android:layerType="software"
+            android:background="@drawable/dotted_border"
+            android:layout_height="100dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_novo_evento_titulo"
@@ -41,7 +57,7 @@
             android:theme="@style/AppTheme.inputEvento"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appbar_novo_evento">
+            app:layout_constraintTop_toBottomOf="@id/image_novo_evento_foto">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -128,6 +144,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/local"
+                android:inputType="text"
+                android:imeOptions="actionDone"
                 android:lines="1"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>

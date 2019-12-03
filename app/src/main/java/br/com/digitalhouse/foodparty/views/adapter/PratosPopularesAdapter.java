@@ -9,19 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
-
-import br.com.digitalhouse.foodparty.R;
-import br.com.digitalhouse.foodparty.model.Prato;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.Prato;
+import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
 
 public class PratosPopularesAdapter extends RecyclerView.Adapter<PratosPopularesAdapter.ViewHolderPrato> {
 
     private List<Prato> pratos;
     private ClickPratos listener;
-
 
     public PratosPopularesAdapter(List<Prato> pratos, ClickPratos listener) {
         this.pratos = pratos;
@@ -40,13 +39,8 @@ public class PratosPopularesAdapter extends RecyclerView.Adapter<PratosPopulares
         final Prato prato = pratos.get(i);
         viewHolderPrato.bind(prato);
 
-        //Seta a função de click no itemView(que é um parametro passado no construtor da classe
-        viewHolderPrato.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //chamada do método da interface através do atributo
-                listener.onClick(prato);
-            }
+        viewHolderPrato.itemView.setOnClickListener(v -> {
+            listener.onClick(prato);
         });
 
     }
@@ -66,14 +60,12 @@ public class PratosPopularesAdapter extends RecyclerView.Adapter<PratosPopulares
         ImageView imgPrato;
         TextView txtPrato;
 
-
         public ViewHolderPrato(@NonNull View itemView) {
             super(itemView);
 
             imgPrato = itemView.findViewById(R.id.img_prato_home);
             txtPrato = itemView.findViewById(R.id.txt_nome_prato);
         }
-
 
         public void bind(Prato prato) {
             txtPrato.setText(prato.getStrMeal());

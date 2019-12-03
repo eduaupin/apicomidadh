@@ -10,23 +10,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import br.com.digitalhouse.foodparty.R;
-
 import java.util.List;
 
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
+import br.com.digitalhouse.foodparty.model.PratosFavoritos;
 import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
 import br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity;
 
 public class CardFavoritosAdapter extends RecyclerView.Adapter<CardFavoritosAdapter.ViewHolder> {
 
     private List<ModelCardPratosHome> listaPratos;
+    private List<PratosFavoritos> pratosFavoritos;
     private FavoritosClick listener;
 
     public CardFavoritosAdapter(List<ModelCardPratosHome> listaPratos,
                                 PratosFavoritosActivity listener) {
         this.listaPratos = listaPratos;
         this.listener = listener;
+    }
+
+    //método que atualiza a lista do adapter
+    public void update(List<PratosFavoritos> pratosFavoritos) {
+        this.pratosFavoritos = pratosFavoritos;
+        notifyDataSetChanged();
     }
 
     @NonNull

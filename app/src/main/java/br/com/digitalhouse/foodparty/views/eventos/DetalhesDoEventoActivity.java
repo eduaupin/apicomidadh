@@ -13,19 +13,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import br.com.digitalhouse.foodparty.R;
+import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Evento;
-import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
 import br.com.digitalhouse.foodparty.model.Participante;
 import br.com.digitalhouse.foodparty.model.Prato;
 import br.com.digitalhouse.foodparty.views.adapter.ParticipantesDetalheEventoAdapter;
 import br.com.digitalhouse.foodparty.views.adapter.PratosPopularesAdapter;
+import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
 import br.com.digitalhouse.foodparty.views.pratos.DetalhesDoPratoActivity;
-import com.google.android.material.snackbar.Snackbar;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.EVENTO_KEY;
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;
@@ -117,7 +118,7 @@ public class DetalhesDoEventoActivity extends AppCompatActivity implements Click
     private void getDetalhesEvento() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             evento = getIntent().getParcelableExtra(EVENTO_KEY);
-            Picasso.get().load(evento.getImgEvento()).into(imagemEvento);
+            Picasso.get().load(new File(evento.getImgEvento())).fit().centerCrop().into(imagemEvento);
             nomeEvento.setText(evento.getNomeEvento());
             dataEvento.setText(evento.getDataEvento());
             enderecoEvento.setText(evento.getEnderecoEvento());

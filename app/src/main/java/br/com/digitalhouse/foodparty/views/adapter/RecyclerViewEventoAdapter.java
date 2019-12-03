@@ -1,6 +1,5 @@
 package br.com.digitalhouse.foodparty.views.adapter;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import br.com.digitalhouse.foodparty.R;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.views.eventos.ListaEventosActivity;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
-
-import java.util.List;
 
 public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerViewEventoAdapter.ViewHolder> {
 
@@ -38,9 +42,11 @@ public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewEventoAdapter.ViewHolder viewHolder, int i) {
-        final Evento eventos = listaEventos.get(i);
-        viewHolder.bind(eventos);
-        viewHolder.itemView.setOnClickListener(v -> listener.onClick(eventos));
+        Evento evento = listaEventos.get(i);
+        viewHolder.bind(evento);
+        viewHolder.itemView.setOnClickListener(v -> {
+            listener.onClick(evento);
+        });
     }
 
     @Override
@@ -48,23 +54,30 @@ public class RecyclerViewEventoAdapter extends RecyclerView.Adapter<RecyclerView
         return listaEventos.size();
     }
 
+    public void atualizaLista(List<Evento> eventos) {
+        this.listaEventos.clear();
+        listaEventos = eventos;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imgFavorito;
+        private ImageView imgEvento;
         private TextView txtFavorito;
+        private TextView txtData;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgFavorito = itemView.findViewById(R.id.img_event_home);
+            imgEvento = itemView.findViewById(R.id.img_event_home);
             txtFavorito = itemView.findViewById(R.id.txt_nome_evento_home);
+            txtData = itemView.findViewById(R.id.data_evento_home);
         }
 
         public void bind(Evento evento) {
 
-            Drawable drawable = itemView.getResources().getDrawable(evento.getImgEvento());
-            imgFavorito.setImageDrawable(drawable);
+            Picasso.get().load(new File(evento.getImgEvento())).fit().centerCrop().into(imgEvento);
             txtFavorito.setText(evento.getNomeEvento());
-
+            txtData.setText(evento.getDataEvento());
         }
     }
 }

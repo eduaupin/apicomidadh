@@ -2,35 +2,29 @@ package br.com.digitalhouse.foodparty.views.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.ui.AppBarConfiguration;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
 import br.com.digitalhouse.foodparty.views.eventos.ListaEventosActivity;
 import br.com.digitalhouse.foodparty.views.login.LoginActivity;
 import br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity;
 import br.com.digitalhouse.foodparty.views.sobre.SobreActivity;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.Menu;
-import android.view.MenuItem;
-
-import androidx.navigation.ui.AppBarConfiguration;
-
-import br.com.digitalhouse.foodparty.R;
 
 public class HomeActivity extends AppCompatActivity {
     private FloatingActionButton buttonAddEvento;
@@ -80,7 +74,6 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(new Intent(HomeActivity.this, SobreActivity.class));
                 } else if (id == R.id.nav_logout) {
                     FirebaseAuth.getInstance().signOut();
-
                     Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -110,26 +103,6 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.menu_notificacao) {
-
-            startActivity(new Intent(HomeActivity.this, NotificacoesActivity.class));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void replaceFragment(Fragment fragment) {

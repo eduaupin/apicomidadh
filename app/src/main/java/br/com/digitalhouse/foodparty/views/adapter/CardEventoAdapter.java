@@ -4,9 +4,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import br.com.digitalhouse.foodparty.model.Evento;
-
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.model.Evento;
+import br.com.digitalhouse.foodparty.views.home.NaoExistemEventosFragment;
 
 public class CardEventoAdapter extends FragmentStatePagerAdapter {
 
@@ -25,5 +26,10 @@ public class CardEventoAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return modeloList.size();
+    }
+
+    public void atualizaViewPager(List<Evento> novaLista) {
+        this.modeloList = novaLista;
+        notifyDataSetChanged();
     }
 }

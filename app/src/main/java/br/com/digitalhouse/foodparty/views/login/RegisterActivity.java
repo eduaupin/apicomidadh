@@ -17,7 +17,7 @@ import br.com.digitalhouse.foodparty.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.digitalhouse.foodparty.util.AppUtil;
-import br.com.digitalhouse.foodparty.util.BlurUtil;
+import br.com.digitalhouse.foodparty.util.ImageUtil;
 import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
 import java.util.regex.Matcher;
@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         //Add blur effect to background image
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
-        bgRegister.setImageBitmap(new BlurUtil().blur(RegisterActivity.this, bitmap, 5.0f));
+        bgRegister.setImageBitmap(new ImageUtil().blur(RegisterActivity.this, bitmap, 5.0f));
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

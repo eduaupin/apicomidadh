@@ -8,10 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Participante;
-
-import java.util.List;
 
 public class ParticipantesNovoEventoAdapter extends RecyclerView.Adapter<ParticipantesNovoEventoAdapter.ViewHolder> {
     private List<Participante> participantesList;
@@ -37,9 +37,8 @@ public class ParticipantesNovoEventoAdapter extends RecyclerView.Adapter<Partici
 
     @Override
     public int getItemCount() {
-//        mensagemListaVazia.setVisibility(participantesList.size() > 0 ? View.GONE : View.VISIBLE);
-        return 0;
-        //participantesList == null ? 0 : participantesList.size();
+        mensagemListaVazia.setVisibility(participantesList.size() > 0 ? View.GONE : View.VISIBLE);
+        return participantesList == null ? 0 : participantesList.size();
     }
 
     public void atualizaLista(List<Participante> listaAtualizada) {

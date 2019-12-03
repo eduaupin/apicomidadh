@@ -1,7 +1,8 @@
 package br.com.digitalhouse.foodparty.views.pratos;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.digitalhouse.foodparty.R;
 

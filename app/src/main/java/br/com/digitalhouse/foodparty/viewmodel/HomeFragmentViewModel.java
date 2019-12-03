@@ -8,16 +8,17 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import br.com.digitalhouse.foodparty.data.local.Database;
-import br.com.digitalhouse.foodparty.data.local.PratoDAO;
-import br.com.digitalhouse.foodparty.model.Prato;
-import br.com.digitalhouse.foodparty.model.PratosPopulares;
-import br.com.digitalhouse.foodparty.repository.PratosRepository;
-import br.com.digitalhouse.foodparty.util.ConnectionUtil;
-
 import java.util.List;
 import java.util.Random;
 
+import br.com.digitalhouse.foodparty.data.local.Database;
+import br.com.digitalhouse.foodparty.data.local.PratoDAO;
+import br.com.digitalhouse.foodparty.model.Evento;
+import br.com.digitalhouse.foodparty.model.Prato;
+import br.com.digitalhouse.foodparty.model.PratosPopulares;
+import br.com.digitalhouse.foodparty.repository.EventosRepository;
+import br.com.digitalhouse.foodparty.repository.PratosRepository;
+import br.com.digitalhouse.foodparty.util.ConnectionUtil;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -28,6 +29,8 @@ public class HomeFragmentViewModel extends AndroidViewModel {
     private CompositeDisposable disposable = new CompositeDisposable();
     private PratosRepository repository = new PratosRepository();
     private MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    private MutableLiveData<List<Evento>> principaisEventos = new MutableLiveData<>();
+    private EventosRepository eventosRepository = new EventosRepository();
 
     public HomeFragmentViewModel(@NonNull Application application) {
         super(application);
@@ -43,6 +46,10 @@ public class HomeFragmentViewModel extends AndroidViewModel {
 
     public LiveData<String> getErro() {
         return erro;
+    }
+
+    public LiveData<List<Evento>> getPrincipaisEventos() {
+        return this.principaisEventos;
     }
 
     public void getPratos() {
@@ -67,6 +74,25 @@ public class HomeFragmentViewModel extends AndroidViewModel {
                         .subscribe(pratos -> {
                             pratosPopulares.setValue(pratos);
                             loading.setValue(false);
+                        }, throwable -> {
+                            erro.setValue(throwable.getMessage());
+                        })
+        );
+    }
+
+    public void getPrincipaisEventosLocal() {
+        disposable.add(
+                eventosRepository.pegaPrincipaisEventos(getApplication().getApplicationContext())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(subscription -> {
+                            loading.setValue(true);
+                        })
+                        .doAfterTerminate(() -> {
+                            loading.setValue(false);
+                        })
+                        .subscribe(eventos -> {
+                            principaisEventos.setValue(eventos);
                         }, throwable -> {
                             erro.setValue(throwable.getMessage());
                         })

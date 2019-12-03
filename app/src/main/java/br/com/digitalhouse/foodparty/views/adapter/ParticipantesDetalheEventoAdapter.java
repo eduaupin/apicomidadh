@@ -8,11 +8,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Participante;
-import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
-
-import java.util.List;
 
 public class ParticipantesDetalheEventoAdapter extends RecyclerView.Adapter<ParticipantesDetalheEventoAdapter.ViewHolder> {
     private List<Participante> participantesList;
@@ -32,8 +31,6 @@ public class ParticipantesDetalheEventoAdapter extends RecyclerView.Adapter<Part
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Participante participante = participantesList.get(position);
         holder.onBind(participante);
-
-
     }
 
     @Override

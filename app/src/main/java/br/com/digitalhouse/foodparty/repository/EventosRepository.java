@@ -2,12 +2,11 @@ package br.com.digitalhouse.foodparty.repository;
 
 import android.content.Context;
 
-import br.com.digitalhouse.foodparty.data.local.Database;
-import br.com.digitalhouse.foodparty.model.Evento;
-import br.com.digitalhouse.foodparty.data.local.EventoDAO;
-
 import java.util.List;
 
+import br.com.digitalhouse.foodparty.data.local.Database;
+import br.com.digitalhouse.foodparty.data.local.EventoDAO;
+import br.com.digitalhouse.foodparty.model.Evento;
 import io.reactivex.Flowable;
 
 public class EventosRepository {
@@ -16,6 +15,12 @@ public class EventosRepository {
         Database room = Database.getDatabase(context);
         EventoDAO eventoDAO = room.eventoDao();
         eventoDAO.insereEventos(eventos);
+    }
+
+    public void insereEvento(Context context, Evento evento) {
+        Database room = Database.getDatabase(context);
+        EventoDAO eventoDAO = room.eventoDao();
+        eventoDAO.insereEvento(evento);
     }
 
     public Flowable<List<Evento>> pegaPrincipaisEventos(Context context) {

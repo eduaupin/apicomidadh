@@ -9,15 +9,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import br.com.digitalhouse.foodparty.R;
-
-import br.com.digitalhouse.foodparty.views.adapter.NotificacaoAdapter;
-import br.com.digitalhouse.foodparty.model.ModelNotificacao;
-
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.ModelNotificacao;
+import br.com.digitalhouse.foodparty.views.adapter.NotificacaoAdapter;
 
 public class NotificacoesActivity extends AppCompatActivity {
 

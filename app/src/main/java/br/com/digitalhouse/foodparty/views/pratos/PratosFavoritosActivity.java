@@ -10,12 +10,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.PratosFavoritos;
+import br.com.digitalhouse.foodparty.util.AppUtil;
 import br.com.digitalhouse.foodparty.views.adapter.CardFavoritosAdapter;
 import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
 
-import br.com.digitalhouse.foodparty.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
+import io.reactivex.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +32,9 @@ public class PratosFavoritosActivity extends AppCompatActivity implements Favori
 
     private static final String PRATO_KEY = "prato";
     private RecyclerView recyclerView;
+    private List<PratosFavoritos> pratosFavoritos;
     private List<ModelCardPratosHome> lista = new ArrayList<>();
+    private CardFavoritosAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,29 +51,34 @@ public class PratosFavoritosActivity extends AppCompatActivity implements Favori
 
         recyclerView = findViewById(R.id.recyclerFavoritos);
 
-        CardFavoritosAdapter adapter = new CardFavoritosAdapter(testarRecycler(), this);
-        GridLayoutManager gdManager = new GridLayoutManager(this, 2);
+        adapter = new CardFavoritosAdapter(new ArrayList<>(), this);
         recyclerView.setAdapter(adapter);
+        GridLayoutManager gdManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(gdManager);
+
+        carregarFavorites();
 
     }
 
-    public List<ModelCardPratosHome> testarRecycler() {
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        lista.add(new ModelCardPratosHome(R.drawable.churras, "teste teste teste"));
-        return lista;
+    private void carregarFavorites(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
+        reference.orderByKey().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<PratosFavoritos> results = new ArrayList<>();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    PratosFavoritos result = child.getValue(PratosFavoritos.class);
+                    results.add(result);
+                }
+                adapter.update(results);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
