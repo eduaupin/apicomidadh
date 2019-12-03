@@ -67,6 +67,7 @@ public class AdicionarPratosAoEventoActivity extends AppCompatActivity implement
                 termoBusca = query;
                 adapter.clear();
                 viewModel.getPratosFromAPI(termoBusca);
+                searchPrato.clearFocus();
                 return false;
             }
 

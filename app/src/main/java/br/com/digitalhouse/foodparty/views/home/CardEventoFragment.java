@@ -1,5 +1,6 @@
 package br.com.digitalhouse.foodparty.views.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.io.File;
 
 import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Evento;
+import br.com.digitalhouse.foodparty.views.eventos.DetalhesDoEventoActivity;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
 
 public class CardEventoFragment extends Fragment {
@@ -34,13 +36,9 @@ public class CardEventoFragment extends Fragment {
     public static Fragment novaInstancia(Evento evento) {
         CardEventoFragment cardFragment = new CardEventoFragment();
         Bundle bundle = new Bundle();
-
         bundle.putParcelable(EVENTO_CARD_KEY, evento);
-
         cardFragment.setArguments(bundle);
-
         return cardFragment;
-
     }
 
     @Override
@@ -53,13 +51,18 @@ public class CardEventoFragment extends Fragment {
         if (getArguments() != null) {
             Evento evento = getArguments().getParcelable(EVENTO_CARD_KEY);
 
-            Picasso.get().load(new File(evento.getImgEvento())).into(imgEvento);
+            Picasso.get().load(new File(evento.getImgEvento())).fit().centerCrop().into(imgEvento);
             txtNomeEvento.setText(evento.getNomeEvento());
             txtDataEvento.setText(evento.getDataEvento());
 
             cardViewEvento.setOnClickListener(view1 -> {
-                clickEvento.onClick(evento);
+                Intent intent = new Intent(getContext(), DetalhesDoEventoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(EVENTO_CARD_KEY, evento);
+                intent.putExtras(bundle);
+                startActivity(intent);
             });
+
         }
 
         return view;
@@ -71,4 +74,5 @@ public class CardEventoFragment extends Fragment {
         imgEvento = view.findViewById(R.id.img_event_home);
         cardViewEvento = view.findViewById(R.id.card_view_evento_home);
     }
+
 }

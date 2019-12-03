@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,10 +88,16 @@ public class AdicionarPessoaAoEventoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.menu_adicionar) {
-            Intent intent = new Intent();
-            intent.putParcelableArrayListExtra(PARTICIPANTES_KEY, (ArrayList<? extends Parcelable>) participantes);
-            setResult(RESULT_OK, intent);
-            finish();
+            if (participantes.size() > 0) {
+                Intent intent = new Intent();
+                intent.putParcelableArrayListExtra(PARTICIPANTES_KEY, (ArrayList<? extends Parcelable>) participantes);
+                setResult(RESULT_OK, intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Use o teclado para confirmar inserção de participantes", Toast.LENGTH_SHORT).show();
+                inputParticipante.requestFocus();
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }

@@ -8,8 +8,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import br.com.digitalhouse.foodparty.data.local.Database;
-import br.com.digitalhouse.foodparty.data.local.EventoDAO;
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.repository.EventosRepository;
 

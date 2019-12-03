@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layerType="software"
             android:background="@drawable/dotted_border"
-            android:layout_height="64dp"/>
+            android:layout_height="100dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_novo_evento_titulo"
