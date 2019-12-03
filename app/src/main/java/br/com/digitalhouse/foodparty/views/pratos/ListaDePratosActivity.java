@@ -1,32 +1,25 @@
 package br.com.digitalhouse.foodparty.views.pratos;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.example.login.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Prato;
 import br.com.digitalhouse.foodparty.viewmodel.HomeFragmentViewModel;
-import br.com.digitalhouse.foodparty.views.adapter.CardFavoritosAdapter;
 import br.com.digitalhouse.foodparty.views.adapter.PratosPopularesAdapter;
-import br.com.digitalhouse.foodparty.views.interfaces.ClickEvento;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
 
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;

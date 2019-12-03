@@ -32,7 +32,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_eventos"
-        tools:listitem="@layout/item_detalhes_evento"
+        tools:listitem="@layout/fragment_card_evento"
         tools:itemCount="5"
         android:layout_width="match_parent"
         android:layout_height="0dp"

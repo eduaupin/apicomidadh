@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 import br.com.digitalhouse.foodparty.model.Evento;
 import br.com.digitalhouse.foodparty.model.Prato;
 
-@androidx.room.Database(entities = {Prato.class, Evento.class}, version = 6, exportSchema = false)
+@androidx.room.Database(entities = {Prato.class, Evento.class}, version = 3, exportSchema = false)
 public abstract class Database extends RoomDatabase {
 
     private static volatile Database INSTANCE;

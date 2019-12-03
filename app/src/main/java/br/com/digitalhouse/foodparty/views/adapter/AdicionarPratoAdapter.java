@@ -17,14 +17,12 @@ import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Prato;
 import br.com.digitalhouse.foodparty.views.interfaces.ClickPratoAdicionar;
 
-public class PratosNovoEventoAdapter extends RecyclerView.Adapter<PratosNovoEventoAdapter.ViewHolder> {
-    private List<Prato> pratosList;
-    private TextView mensagemListaVazia;
+public class AdicionarPratoAdapter extends RecyclerView.Adapter<AdicionarPratoAdapter.ViewHolder> {
+    private List<Prato> pratoSearchResult;
     private ClickPratoAdicionar listener;
 
-    public PratosNovoEventoAdapter(List<Prato> pratosList, TextView mensagemListaVazia, ClickPratoAdicionar listener) {
-        this.pratosList = pratosList;
-        this.mensagemListaVazia = mensagemListaVazia;
+    public AdicionarPratoAdapter(List<Prato> pratoSearchResult, ClickPratoAdicionar listener) {
+        this.pratoSearchResult = pratoSearchResult;
         this.listener = listener;
     }
 
@@ -37,44 +35,43 @@ public class PratosNovoEventoAdapter extends RecyclerView.Adapter<PratosNovoEven
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Prato prato = pratosList.get(position);
+        Prato prato = pratoSearchResult.get(position);
         holder.onBind(prato);
     }
 
     @Override
     public int getItemCount() {
-        mensagemListaVazia.setVisibility(pratosList.size() > 0 ? View.GONE : View.VISIBLE);
-        return pratosList == null ? 0 : pratosList.size();
-    }
-
-    public void adicionarItem(Prato prato) {
-        pratosList.add(prato);
-        notifyItemInserted(getItemCount());
+        return pratoSearchResult == null ? 0 : pratoSearchResult.size();
     }
 
     public void atualizaLista(List<Prato> listaAtualizada) {
-        if (this.pratosList.isEmpty()) {
-            this.pratosList = listaAtualizada;
-        } else {
-            this.pratosList.addAll(listaAtualizada);
-        }
+        this.pratoSearchResult.clear();
+        pratoSearchResult = listaAtualizada;
+        notifyDataSetChanged();
+    }
+
+    public void clear() {
+        this.pratoSearchResult.clear();
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imagemPrato;
+        private ImageView imagePrato;
         private TextView nomePrato;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            imagemPrato = itemView.findViewById(R.id.img_prato_home);
+            imagePrato = itemView.findViewById(R.id.img_prato_home);
             nomePrato = itemView.findViewById(R.id.txt_nome_prato);
         }
 
         public void onBind(Prato prato) {
             nomePrato.setText(prato.getStrMeal());
-            Picasso.get().load(prato.getStrMealThumb()).into(imagemPrato);
+            Picasso.get().load(prato.getStrMealThumb()).into(imagePrato);
+
+            itemView.setOnClickListener(view -> {
+                listener.onClickAdicionarPrato(prato);
+            });
         }
     }
 }

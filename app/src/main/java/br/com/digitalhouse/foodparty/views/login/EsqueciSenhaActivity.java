@@ -1,15 +1,16 @@
 package br.com.digitalhouse.foodparty.views.login;
 
 import android.content.Intent;
-
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.example.login.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputLayout;
+
+import br.com.digitalhouse.foodparty.R;
 
 public class EsqueciSenhaActivity extends AppCompatActivity {
 

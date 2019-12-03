@@ -2,33 +2,28 @@ package br.com.digitalhouse.foodparty.views.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.ui.AppBarConfiguration;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+
+import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
 import br.com.digitalhouse.foodparty.views.eventos.ListaEventosActivity;
 import br.com.digitalhouse.foodparty.views.login.LoginActivity;
 import br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity;
 import br.com.digitalhouse.foodparty.views.sobre.SobreActivity;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.Menu;
-import android.view.MenuItem;
-
-import androidx.navigation.ui.AppBarConfiguration;
-
-import com.example.login.R;
 
 public class HomeActivity extends AppCompatActivity {
     private FloatingActionButton buttonAddEvento;

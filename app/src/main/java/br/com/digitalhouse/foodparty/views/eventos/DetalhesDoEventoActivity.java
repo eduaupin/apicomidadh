@@ -13,19 +13,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.R;
-
-import br.com.digitalhouse.foodparty.model.Evento;
-import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
-import br.com.digitalhouse.foodparty.model.Participante;
-import br.com.digitalhouse.foodparty.model.Prato;
-import br.com.digitalhouse.foodparty.views.adapter.ParticipantesDetalheEventoAdapter;
-import br.com.digitalhouse.foodparty.views.adapter.PratosPopularesAdapter;
-import br.com.digitalhouse.foodparty.views.pratos.DetalhesDoPratoActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.Evento;
+import br.com.digitalhouse.foodparty.model.Participante;
+import br.com.digitalhouse.foodparty.model.Prato;
+import br.com.digitalhouse.foodparty.views.adapter.ParticipantesDetalheEventoAdapter;
+import br.com.digitalhouse.foodparty.views.adapter.PratosPopularesAdapter;
+import br.com.digitalhouse.foodparty.views.interfaces.ClickPratos;
+import br.com.digitalhouse.foodparty.views.pratos.DetalhesDoPratoActivity;
 
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.EVENTO_KEY;
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;

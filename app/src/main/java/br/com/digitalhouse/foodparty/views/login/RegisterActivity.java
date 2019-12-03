@@ -3,25 +3,25 @@ package br.com.digitalhouse.foodparty.views.login;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.login.R;
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.appcompat.app.AppCompatActivity;
 
-import br.com.digitalhouse.foodparty.util.AppUtil;
-import br.com.digitalhouse.foodparty.util.BlurUtil;
-import br.com.digitalhouse.foodparty.views.home.HomeActivity;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.util.AppUtil;
+import br.com.digitalhouse.foodparty.util.ImageUtil;
+import br.com.digitalhouse.foodparty.views.home.HomeActivity;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout inputEmail;
@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         //Add blur effect to background image
         ImageView bgRegister = (ImageView) findViewById(R.id.image_register_background);
         Bitmap bitmap = ((BitmapDrawable) bgRegister.getDrawable()).getBitmap();
-        bgRegister.setImageBitmap(new BlurUtil().blur(RegisterActivity.this, bitmap, 5.0f));
+        bgRegister.setImageBitmap(new ImageUtil().blur(RegisterActivity.this, bitmap, 5.0f));
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

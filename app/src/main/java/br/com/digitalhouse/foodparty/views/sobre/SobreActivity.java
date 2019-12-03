@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.login.R;
+import br.com.digitalhouse.foodparty.R;
 
 public class SobreActivity extends AppCompatActivity {
     private TextView reportarBug;
