@@ -12,9 +12,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,6 +30,7 @@ import java.util.List;
 import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.Ingrediente;
 import br.com.digitalhouse.foodparty.model.Prato;
+import br.com.digitalhouse.foodparty.util.AppUtil;
 import br.com.digitalhouse.foodparty.viewmodel.FavoritosViewModel;
 import br.com.digitalhouse.foodparty.views.adapter.IngredientesAdapter;
 import br.com.digitalhouse.foodparty.views.eventos.CriarEventoActivity;
@@ -42,6 +50,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private Button buttonAdicionarPrato;
     private FavoritosViewModel favoritosViewModel;
     private Boolean teste = false;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +81,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         recyclerIngredientes = findViewById(R.id.recycler_ingredientes);
         preparoPrato = findViewById(R.id.text_detalhe_prato_preparo);
         buttonAdicionarPrato = findViewById(R.id.botao_detalhe_prato_adicionar);
+        favoritosViewModel = ViewModelProviders.of(this).get(FavoritosViewModel.class);
     }
 
     @Override
@@ -109,10 +119,15 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
             return true;
-        } else if (id == R.id.menu_prato_favoritar) {
+        }
+
+        if (id == R.id.menu_prato_favoritar) {
             if (teste) {
+                teste = false;
                 item.setIcon(R.drawable.ic_favorite_outline);
+                excluirFavoritado(prato);
             } else {
+                teste = true;
                 item.setIcon(R.drawable.favoritetrue);
                 favoritosViewModel.salvarFavorito(prato);
             }
@@ -121,6 +136,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     private void getDetalhesPrato() {
         if (getIntent() != null && getIntent().getExtras() != null) {
@@ -148,6 +164,32 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
                 finish();
             });
         }
+    }
+
+    public void excluirFavoritado(Prato prato){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
+
+        reference.orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot resultSnapshot : dataSnapshot.getChildren()) {
+                    Prato resultFirebase = resultSnapshot.getValue(Prato.class);
+
+                    if (prato.getId() == (resultFirebase.getId())) {
+
+                        resultSnapshot.getRef().removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.Prato;
 import br.com.digitalhouse.foodparty.model.PratosFavoritos;
 import br.com.digitalhouse.foodparty.util.AppUtil;
 import br.com.digitalhouse.foodparty.views.adapter.CardFavoritosAdapter;
@@ -66,10 +67,13 @@ public class PratosFavoritosActivity extends AppCompatActivity implements Favori
         reference.orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                List<PratosFavoritos> results = new ArrayList<>();
+                List<Prato> results = new ArrayList<>();
+
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    PratosFavoritos result = child.getValue(PratosFavoritos.class);
+
+                    Prato result = child.getValue(Prato.class);
                     results.add(result);
+
                 }
                 adapter.update(results);
             }

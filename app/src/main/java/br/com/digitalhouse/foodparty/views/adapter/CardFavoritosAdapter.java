@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.com.digitalhouse.foodparty.R;
 import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
+import br.com.digitalhouse.foodparty.model.Prato;
 import br.com.digitalhouse.foodparty.model.PratosFavoritos;
 import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
 import br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity;
@@ -21,7 +22,7 @@ import br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity;
 public class CardFavoritosAdapter extends RecyclerView.Adapter<CardFavoritosAdapter.ViewHolder> {
 
     private List<ModelCardPratosHome> listaPratos;
-    private List<PratosFavoritos> pratosFavoritos;
+    private List<Prato> pratosFavoritos;
     private FavoritosClick listener;
 
     public CardFavoritosAdapter(List<ModelCardPratosHome> listaPratos,
@@ -31,7 +32,7 @@ public class CardFavoritosAdapter extends RecyclerView.Adapter<CardFavoritosAdap
     }
 
     //método que atualiza a lista do adapter
-    public void update(List<PratosFavoritos> pratosFavoritos) {
+    public void update(List<Prato> pratosFavoritos) {
         this.pratosFavoritos = pratosFavoritos;
         notifyDataSetChanged();
     }

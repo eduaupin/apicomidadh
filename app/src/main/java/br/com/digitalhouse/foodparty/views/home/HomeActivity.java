@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.facebook.login.LoginManager;
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_sobre) {
                     startActivity(new Intent(HomeActivity.this, SobreActivity.class));
                 } else if (id == R.id.nav_logout) {
-                    FirebaseAuth.getInstance().signOut();
+                    logout();
                     Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
@@ -110,5 +112,13 @@ public class HomeActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.home_container, fragment);
         transaction.commit();
+    }
+    private void logout() {
+        AuthUI.getInstance().signOut(this)
+                .addOnCompleteListener(task -> {
+                    startActivity(new Intent(this, LoginActivity.class));
+                    finish();
+                });
+        LoginManager.getInstance().logOut();
     }
 }
