@@ -173,7 +173,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         DatabaseReference reference2 =  database.getReference().child("/favorites");
         DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
 
-        reference.orderByChild("idMeal").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -199,23 +199,23 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
 
+
+        Query queryRemoverPrato2 = reference.limitToLast(1);
+
         Query queryRemoverPrato = reference.limitToFirst(1);
 
-        queryRemoverPrato.addListenerForSingleValueEvent(new ValueEventListener() {
+        queryRemoverPrato2.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int local = 0;
+
                 for (DataSnapshot removerPratoSnapshot : dataSnapshot.getChildren()) {
                     Prato resultFirebase = removerPratoSnapshot.getValue(Prato.class);
-                    local=local+1;
-
 
                     if (prato.getId() == (resultFirebase.getId())) {
 
                         removerPratoSnapshot.getRef().removeValue();
                     }
-                    //removerPratoSnapshot.getRef().removeValue();
                 }
             }
             @Override
