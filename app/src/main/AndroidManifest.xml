@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -78,6 +79,7 @@
         <activity
             android:name="br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity"
             android:label="@string/favoritos" />
+        <activity android:name="br.com.digitalhouse.foodparty.views.eventos.AdicionarPratosAoEventoActivity" />
     </application>
 
 </manifest>

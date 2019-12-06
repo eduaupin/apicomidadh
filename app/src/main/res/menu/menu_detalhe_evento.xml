@@ -12,6 +12,7 @@
     <item
         android:id="@+id/menu_evento_editar"
         android:checkable="true"
+        android:visible="false"
         android:icon="@drawable/ic_edit_black_24dp"
         android:title="@string/editar_evento"
         app:showAsAction="ifRoom|withText" />

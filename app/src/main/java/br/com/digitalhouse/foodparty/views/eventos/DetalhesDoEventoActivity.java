@@ -118,7 +118,10 @@ public class DetalhesDoEventoActivity extends AppCompatActivity implements Click
     private void getDetalhesEvento() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             evento = getIntent().getParcelableExtra(EVENTO_KEY);
-            Picasso.get().load(new File(evento.getImgEvento())).fit().centerCrop().into(imagemEvento);
+                Picasso.get().load(new File(evento.getImgEvento())).fit().centerCrop()
+                        .placeholder(R.drawable.churras)
+                        .into(imagemEvento);
+
             nomeEvento.setText(evento.getNomeEvento());
             dataEvento.setText(evento.getDataEvento());
             enderecoEvento.setText(evento.getEnderecoEvento());
