@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -50,7 +51,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     private Button buttonAdicionarPrato;
     private FavoritosViewModel favoritosViewModel;
     private Boolean teste = false;
-    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +126,7 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             if (teste) {
                 teste = false;
                 item.setIcon(R.drawable.ic_favorite_outline);
-                excluirFavoritado(prato);
+                excluirFavorito2(prato);
             } else {
                 teste = true;
                 item.setIcon(R.drawable.favoritetrue);
@@ -169,9 +170,10 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     public void excluirFavoritado(Prato prato){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference2 =  database.getReference().child("/favorites");
         DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
 
-        reference.orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.orderByChild("idMeal").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -188,6 +190,36 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    public void excluirFavorito2(Prato prato){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
+
+        Query queryRemoverPrato = reference.limitToFirst(1);
+
+        queryRemoverPrato.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int local = 0;
+                for (DataSnapshot removerPratoSnapshot : dataSnapshot.getChildren()) {
+                    Prato resultFirebase = removerPratoSnapshot.getValue(Prato.class);
+                    local=local+1;
+
+
+                    if (prato.getId() == (resultFirebase.getId())) {
+
+                        removerPratoSnapshot.getRef().removeValue();
+                    }
+                    //removerPratoSnapshot.getRef().removeValue();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
