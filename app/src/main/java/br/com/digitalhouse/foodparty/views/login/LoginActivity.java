@@ -11,12 +11,15 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -36,6 +39,7 @@ import br.com.digitalhouse.foodparty.R;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import br.com.digitalhouse.foodparty.util.AppUtil;
 
@@ -59,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private SignInButton googleSignInButton;
     private GoogleSignInClient googleSignInClient;
+    private static final int RC_SIGN_IN = 1001;
     public static final String GOOGLE_ACCOUNT = "google_account";
 
 
@@ -87,7 +92,6 @@ public class LoginActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
-        loginGoogle();
 
         btnLogin.setOnClickListener(view -> loginEmail());
 
@@ -95,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 
         textEsqueciSenha.setOnClickListener(view -> esqueciSenha());
 
+        googleSignInButton.setOnClickListener(view -> loginGoogle());
 
         txtRegistrese.setOnClickListener(view -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
 
@@ -225,24 +230,27 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == Activity.RESULT_OK){
-            switch (requestCode){
-                case 101:
-                    try{
-                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
-                        GoogleSignInAccount conta = task.getResult(ApiException.class);
-                        concluirLogin(conta);
-
-                    }catch (ApiException e){
-                        Log.i("LOG", "Error: " + e.getMessage());
-
-                        Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_SHORT).show();
-                    }
-                    break;
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if (result.isSuccess()) {
+                GoogleSignInAccount account = result.getSignInAccount();
+                autenticacaoGoogle(account);
             }
         }
+
     }
+
+    private void autenticacaoGoogle(GoogleSignInAccount account) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                irParaHome(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            } else {
+                Toast.makeText(getApplicationContext(), "Erro login google", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     @Override
     protected void onStart() {
@@ -260,15 +268,20 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginGoogle(){
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(LoginActivity.this, connectionResult -> {
+                    Toast.makeText(getApplicationContext(), "Falha na conexão", Toast.LENGTH_SHORT).show();
+                })
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
-        googleSignInButton.setOnClickListener(view -> {
-            Intent signIntent = googleSignInClient.getSignInIntent();
-            startActivityForResult(signIntent, 101);
-        });
+        Intent signIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+        startActivityForResult(signIntent, RC_SIGN_IN);
+
 
     }
 }

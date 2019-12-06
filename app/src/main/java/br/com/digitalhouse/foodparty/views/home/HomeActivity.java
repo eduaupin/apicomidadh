@@ -65,8 +65,8 @@ public class HomeActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-            nomeUser.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString());
-            emailUser.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+            //nomeUser.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString());
+            //emailUser.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
 
 
 
