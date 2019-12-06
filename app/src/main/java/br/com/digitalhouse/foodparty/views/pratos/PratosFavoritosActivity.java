@@ -29,12 +29,12 @@ import io.reactivex.annotations.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;
+
 public class PratosFavoritosActivity extends AppCompatActivity implements FavoritosClick {
 
-    private static final String PRATO_KEY = "prato";
     private RecyclerView recyclerView;
-    private List<PratosFavoritos> pratosFavoritos;
-    private List<ModelCardPratosHome> lista = new ArrayList<>();
+    private List<Prato> pratosFavoritos = new ArrayList<>();
     private CardFavoritosAdapter adapter;
 
     @Override
@@ -52,16 +52,16 @@ public class PratosFavoritosActivity extends AppCompatActivity implements Favori
 
         recyclerView = findViewById(R.id.recyclerFavoritos);
 
-        adapter = new CardFavoritosAdapter(new ArrayList<>(), this);
-        recyclerView.setAdapter(adapter);
+        adapter = new CardFavoritosAdapter(pratosFavoritos, this);
         GridLayoutManager gdManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(gdManager);
+        recyclerView.setAdapter(adapter);
 
         carregarFavorites();
 
     }
 
-    private void carregarFavorites(){
+    private void carregarFavorites() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
         reference.orderByKey().addValueEventListener(new ValueEventListener() {
@@ -86,18 +86,18 @@ public class PratosFavoritosActivity extends AppCompatActivity implements Favori
     }
 
     @Override
-    public void favOnClick(ModelCardPratosHome prato) {
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+    @Override
+    public void favOnClick(Prato prato) {
         Intent intent = new Intent(PratosFavoritosActivity.this,
                 DetalhesDoPratoActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable(PRATO_KEY, prato);
         intent.putExtras(bundle);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
     }
 }

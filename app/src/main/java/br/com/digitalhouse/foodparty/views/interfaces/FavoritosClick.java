@@ -1,7 +1,7 @@
 package br.com.digitalhouse.foodparty.views.interfaces;
 
-import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
+import br.com.digitalhouse.foodparty.model.Prato;
 
 public interface FavoritosClick {
-    void favOnClick(ModelCardPratosHome prato);
+    void favOnClick(Prato prato);
 }
