@@ -1,21 +1,12 @@
 package br.com.digitalhouse.foodparty.views.pratos;
 
 import android.content.Intent;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import br.com.digitalhouse.foodparty.R;
-import br.com.digitalhouse.foodparty.model.Prato;
-import br.com.digitalhouse.foodparty.model.PratosFavoritos;
-import br.com.digitalhouse.foodparty.util.AppUtil;
-import br.com.digitalhouse.foodparty.views.adapter.CardFavoritosAdapter;
-import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,11 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
-import io.reactivex.annotations.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.digitalhouse.foodparty.R;
+import br.com.digitalhouse.foodparty.model.Prato;
+import br.com.digitalhouse.foodparty.util.AppUtil;
+import br.com.digitalhouse.foodparty.views.adapter.CardFavoritosAdapter;
+import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
+import io.reactivex.annotations.NonNull;
 
 import static br.com.digitalhouse.foodparty.views.home.HomeFragment.PRATO_KEY;
 

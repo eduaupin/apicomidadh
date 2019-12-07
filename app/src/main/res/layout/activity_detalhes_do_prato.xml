@@ -12,41 +12,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarDetalhePrato"
+
+        <ImageView
+            android:id="@+id/image_detalhe_prato_foto"
             android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="@string/imagem_do_prato_da_receita"
+            android:scaleType="fitXY"
+            android:tint="@color/black40"
+            app:srcCompat="@drawable/bolodecenoura"
+            tools:ignore="MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/btn_back_detalhe_prato"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:fitsSystemWindows="true"
-            android:theme="@style/AppTheme.PopupOverlay"
-            app:elevation="0dp"
+            android:layout_marginStart="12dp"
+            android:clickable="true"
+            app:backgroundTint="#00FAF8F8"
+            app:backgroundTintMode="src_in"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_detalhe_prato_foto"
+            app:rippleColor="#FAF8F8"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+
+        <ImageButton
+            android:id="@+id/btn_share_detalhe_prato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="304dp"
+            android:clickable="true"
+            app:backgroundTint="#00FAF8F8"
+            app:backgroundTintMode="src_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/image_detalhe_prato_foto"
+            app:rippleColor="#FAF8F8"
+            app:srcCompat="@drawable/ic_share" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/image_detalhe_prato_foto"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:contentDescription="@string/imagem_do_prato_da_receita"
-                    android:scaleType="fitXY"
-                    android:tint="@color/black40"
-                    app:srcCompat="@drawable/bolodecenoura" />
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbarPrato"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:theme="@style/AppTheme.ToolBarLayoutOverlay"
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-            </FrameLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        <ImageButton
+            android:id="@+id/btn_favorite_detalhe_prato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTintMode="src_in"
+            android:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_share_detalhe_prato"
+            app:layout_constraintEnd_toStartOf="@+id/btn_share_detalhe_prato"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ic_favorite_borde"
+            app:rippleColor="#FAF8F8" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detaihe_container"
@@ -55,6 +70,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+
 
             <TextView
                 android:id="@+id/text_label_ingredientes"
@@ -121,10 +138,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/appBarDetalhePrato"
+            app:layout_constraintBottom_toBottomOf="@id/image_detalhe_prato_foto"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarDetalhePrato">
+            app:layout_constraintTop_toBottomOf="@id/image_detalhe_prato_foto">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -152,7 +169,7 @@
                     android:layout_marginBottom="16dp"
                     android:text="45 min - 1 hora"
                     android:textColor="@color/black60"
-                   android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true" />
 
                 <Button
                     android:id="@+id/botao_detalhe_prato_adicionar"
@@ -166,7 +183,7 @@
                     android:text="@string/adicionar"
                     android:textColor="@color/colorPrimary"
                     android:visibility="gone"
-                     />
+                    />
 
             </RelativeLayout>
 
