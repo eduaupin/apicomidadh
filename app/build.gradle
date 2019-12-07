@@ -2,6 +2,37 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        foodparty {
+            storeFile file('C:\\Users\\DH\\Desktop\\apicomidadh\\FoodPartyJks\\FoodParty.jks')
+            storePassword '123456'
+            keyAlias = '123456'
+            keyPassword '123456'
+        }
+    }
+
+//    def keystoreProperties = new Properties()
+//    def keystorePropertiesFile = file('../local.properties')
+//    def env = System.getenv()
+//
+//    if (keystorePropertiesFile.exists()) {
+//        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//    } else {
+//        // Load keystore properties from environment or set their default values
+//        if(env['MEU_APP_KEYSTORE_ALIAS']) keystoreProperties.put('MEU_APP_KEYSTORE_ALIAS',env['MEU_APP_KEYSTORE_ALIA'])
+//        if(env['MEU_APP_KEYSTORE_ALIAS_PASS']) keystoreProperties.put('MEU_APP_KEYSTORE_ALIAS_PASS',env['MEU_APP_KEYSTORE_ALIAS_PASS'])
+//        if(env['MEU_APP_KEYSTORE_STORE']) keystoreProperties.put('MEU_APP_KEYSTORE_STORE',env['MEU_APP_KEYSTORE_STOR'])
+//        if(env['MEU_APP_KEYSTORE_KEY_PASS']) keystoreProperties.put('MEU_APP_KEYSTORE_KEY_PASS',env['MEU_APP_KEYSTORE_KEY_PASS])}
+//                signingConfigs {
+//                    debug {}
+//                    release {
+//                        keyAlias keystoreProperties["MEU_APP_KEYSTORE_ALIAS"]
+//                        keyPassword keystoreProperties["MEU_APP_KEYSTORE_ALIAS_PASS"]
+//                        storeFile file(keystoreProperties["MEU_APP_KEYSTORE_STORE"])
+//                        storePassword keystoreProperties["MEU_APP_KEYSTORE_KEY_PASS"]
+//                    }
+//                }
+
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -15,6 +46,8 @@ android {
         //Add RenderScript for blur effect
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
+        signingConfig signingConfigs.foodparty
+        proguardFiles getDefaultProguardFile('proguard-android.txt')
     }
     buildTypes {
         release {

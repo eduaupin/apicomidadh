@@ -33,6 +33,7 @@ public class FavoritosViewModel extends AndroidViewModel {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(getApplication()) + "/favorites");
         String key = reference.push().getKey();
+
         reference.child(key).setValue(prato);
 
         reference.child(key).addValueEventListener(new ValueEventListener() {

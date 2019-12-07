@@ -1,6 +1,5 @@
 package br.com.digitalhouse.foodparty.views.adapter;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,28 +9,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.com.digitalhouse.foodparty.R;
-import br.com.digitalhouse.foodparty.model.ModelCardPratosHome;
-import br.com.digitalhouse.foodparty.model.PratosFavoritos;
+import br.com.digitalhouse.foodparty.model.Prato;
 import br.com.digitalhouse.foodparty.views.interfaces.FavoritosClick;
-import br.com.digitalhouse.foodparty.views.pratos.PratosFavoritosActivity;
 
 public class CardFavoritosAdapter extends RecyclerView.Adapter<CardFavoritosAdapter.ViewHolder> {
 
-    private List<ModelCardPratosHome> listaPratos;
-    private List<PratosFavoritos> pratosFavoritos;
+    private List<Prato> pratosFavoritos;
     private FavoritosClick listener;
 
-    public CardFavoritosAdapter(List<ModelCardPratosHome> listaPratos,
-                                PratosFavoritosActivity listener) {
-        this.listaPratos = listaPratos;
+    public CardFavoritosAdapter(List<Prato> pratosFavoritos, FavoritosClick listener) {
+        this.pratosFavoritos = pratosFavoritos;
         this.listener = listener;
     }
 
     //método que atualiza a lista do adapter
-    public void update(List<PratosFavoritos> pratosFavoritos) {
+    public void update(List<Prato> pratosFavoritos) {
         this.pratosFavoritos = pratosFavoritos;
         notifyDataSetChanged();
     }
@@ -46,38 +43,35 @@ public class CardFavoritosAdapter extends RecyclerView.Adapter<CardFavoritosAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final ModelCardPratosHome prato = listaPratos.get(i);
+        Prato prato = pratosFavoritos.get(i);
         viewHolder.bind(prato);
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.favOnClick(prato);
-            }
+        viewHolder.itemView.setOnClickListener(v -> {
+            listener.favOnClick(prato);
         });
     }
 
     @Override
     public int getItemCount() {
-        return listaPratos.size();
+        return pratosFavoritos.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private ImageView imgPrato;
+        private TextView txtPrato;
         private ImageView imgFavorito;
-        private TextView txtFavorito;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgFavorito = itemView.findViewById(R.id.imgCardFavoritos);
-            txtFavorito = itemView.findViewById(R.id.txtCardFavoritos);
+            imgFavorito = itemView.findViewById(R.id.imgCardPrato);
+            txtPrato = itemView.findViewById(R.id.txtCardFavoritos);
+            imgPrato = itemView.findViewById(R.id.imgCardPrato);
         }
 
-        public void bind(ModelCardPratosHome prato) {
+        public void bind(Prato prato) {
 
-            Drawable drawable = itemView.getResources().getDrawable(prato.getImgPrato());
-            imgFavorito.setImageDrawable(drawable);
-            txtFavorito.setText(prato.getTxtPrato());
-
+            Picasso.get().load(prato.getStrMealThumb()).into(imgPrato);
+            txtPrato.setText(prato.getStrMeal());
         }
     }
 }

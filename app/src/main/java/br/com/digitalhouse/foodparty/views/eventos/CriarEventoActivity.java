@@ -247,6 +247,7 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
     }
 
     private void pickFromGallery() {
+
         String[] permission = Arrays.asList(Manifest.permission.READ_EXTERNAL_STORAGE).toArray(new String[0]);
 
         if (isPermissionGranted()) {
@@ -263,7 +264,7 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
     }
 
     private boolean isPermissionGranted() {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(CriarEventoActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
     @Override
@@ -272,8 +273,10 @@ public class CriarEventoActivity extends AppCompatActivity implements ClickPrato
 
         switch (requestCode) {
             case REQUEST_STORAGE_PERMISSION: {
+
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
                     pickFromGallery();
                 } else {
                     Toast.makeText(this, "Você precisa autorizar o envio de uma foto.", Toast.LENGTH_SHORT).show();
