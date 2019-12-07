@@ -3,6 +3,7 @@ package br.com.digitalhouse.foodparty.views.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,8 +21,15 @@ import com.facebook.login.LoginManager;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthProvider;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -40,6 +48,9 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private TextView nomeUser;
     private TextView emailUser;
+    private FirebaseAuth mFirebase;
+    private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +76,11 @@ public class HomeActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-            //nomeUser.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString());
-            //emailUser.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            nomeUser.setText(user.getDisplayName());
+            emailUser.setText(user.getEmail());
+        }
 
 
 
@@ -102,7 +116,6 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
     private void logout() {
-        // TODO: fazer logout
 
         AuthUI.getInstance().signOut(this)
                    .addOnCompleteListener(task -> {
@@ -116,8 +129,9 @@ public class HomeActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        nomeUser = findViewById(R.id.drawer_name);
-        emailUser = findViewById(R.id.drawer_email);
+        View headerView = navigationView.getHeaderView(0);
+        nomeUser = headerView.findViewById(R.id.drawer_name);
+        emailUser = headerView.findViewById(R.id.drawer_email);
     }
 
     @Override
