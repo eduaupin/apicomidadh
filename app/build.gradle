@@ -1,0 +1,117 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    signingConfigs {
+        foodparty {
+            storeFile file('C:\\Users\\DH\\Desktop\\apicomidadh\\FoodPartyJks\\FoodParty.jks')
+            storePassword '123456'
+            keyAlias = '123456'
+            keyPassword '123456'
+        }
+    }
+
+//    def keystoreProperties = new Properties()
+//    def keystorePropertiesFile = file('../local.properties')
+//    def env = System.getenv()
+//
+//    if (keystorePropertiesFile.exists()) {
+//        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//    } else {
+//        // Load keystore properties from environment or set their default values
+//        if(env['MEU_APP_KEYSTORE_ALIAS']) keystoreProperties.put('MEU_APP_KEYSTORE_ALIAS',env['MEU_APP_KEYSTORE_ALIA'])
+//        if(env['MEU_APP_KEYSTORE_ALIAS_PASS']) keystoreProperties.put('MEU_APP_KEYSTORE_ALIAS_PASS',env['MEU_APP_KEYSTORE_ALIAS_PASS'])
+//        if(env['MEU_APP_KEYSTORE_STORE']) keystoreProperties.put('MEU_APP_KEYSTORE_STORE',env['MEU_APP_KEYSTORE_STOR'])
+//        if(env['MEU_APP_KEYSTORE_KEY_PASS']) keystoreProperties.put('MEU_APP_KEYSTORE_KEY_PASS',env['MEU_APP_KEYSTORE_KEY_PASS])}
+//                signingConfigs {
+//                    debug {}
+//                    release {
+//                        keyAlias keystoreProperties["MEU_APP_KEYSTORE_ALIAS"]
+//                        keyPassword keystoreProperties["MEU_APP_KEYSTORE_ALIAS_PASS"]
+//                        storeFile file(keystoreProperties["MEU_APP_KEYSTORE_STORE"])
+//                        storePassword keystoreProperties["MEU_APP_KEYSTORE_KEY_PASS"]
+//                    }
+//                }
+
+    compileSdkVersion 28
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "br.com.digitalhouse.foodparty"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //Add RenderScript for blur effect
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
+        signingConfig signingConfigs.foodparty
+        proguardFiles getDefaultProguardFile('proguard-android.txt')
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0-rc02'
+    implementation 'androidx.navigation:navigation-ui:2.0.0-rc02'
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.0.0"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.0.0"
+    /*############################ Room ######################################*/
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    // Firebase Analytics
+    implementation 'com.google.firebase:firebase-core:17.2.1'
+
+    // Firebase Database
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+
+    // Firebase login
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    // Google login
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
+    /*############################ Retrofit ######################################*/
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    implementation "com.squareup.retrofit2:retrofit:2.4.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.4.1"
+
+    /*########################## Facebook Sthetho ################################*/
+    implementation "com.facebook.stetho:stetho:1.5.0"
+    implementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
+    implementation 'com.facebook.android:facebook-android-sdk:5.9.0'
+    implementation 'com.facebook.android:facebook-login:[5,6)'
+
+    /*############################ Gson: Json Converter ##########################*/
+    implementation "com.google.code.gson:gson:2.8.5"
+    implementation "com.squareup.retrofit2:converter-gson:2.4.0"
+    /*############################################################################*/
+
+    /*############################ Picasso ##########################################*/
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+}
