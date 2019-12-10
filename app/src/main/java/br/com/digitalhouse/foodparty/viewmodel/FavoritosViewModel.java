@@ -41,6 +41,7 @@ public class FavoritosViewModel extends AndroidViewModel {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Prato prato = dataSnapshot.getValue(Prato.class);
                 favoriteAdded.setValue(prato);
+
             }
 
             @Override

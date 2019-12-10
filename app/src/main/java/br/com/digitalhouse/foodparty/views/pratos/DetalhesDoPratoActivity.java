@@ -2,6 +2,7 @@ package br.com.digitalhouse.foodparty.views.pratos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,8 +68,6 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
 
         initViews();
 
-
-
         getDetalhesPrato();
         ativarBotaoAdicionar();
 
@@ -79,8 +78,9 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
                 finish();
+                onBackPressed();
+
             }
         });
 
@@ -119,7 +119,6 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_back_detalhe_prato);
         btn_share = findViewById(R.id.btn_share_detalhe_prato);
         btn_favorite = findViewById(R.id.btn_favorite_detalhe_prato);
-        ehFavorito();
         imagemPrato = findViewById(R.id.image_detalhe_prato_foto);
         nomePrato = findViewById(R.id.text_detalhe_prato_nome);
         categoriaPrato = findViewById(R.id.text_detalhe_prato_categoria);
@@ -136,63 +135,6 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
-
-        reference.orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@androidx.annotation.NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot resultSnapshot : dataSnapshot.getChildren()) {
-                    Prato resultFirebase = resultSnapshot.getValue(Prato.class);
-                    String idPrato = prato.getIdMeal();
-                    String idFirebaseFavorite = resultFirebase.getIdMeal();
-
-                    if (idPrato.equals(idFirebaseFavorite)) {
-                        Toast.makeText(DetalhesDoPratoActivity.this, "idPrato = " + prato.getIdMeal() + " idData = " +resultFirebase.getIdMeal(), Toast.LENGTH_LONG).show();
-
-                        invalidateOptionsMenu();
-                        menu.findItem(R.id.menu_prato_favoritar).setIcon(favoritetrue);
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@androidx.annotation.NonNull DatabaseError databaseError) {
-
-            }
-        });
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@androidx.annotation.NonNull MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.menu_prato_compartilhar) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("%s \n\nIngredientes:\n\n%s\n\nPreparo:\n\n%s", prato.getStrMeal(), prato.getListaIngredientes().toString(), prato.getStrInstructions()));
-            sendIntent.setType("text/plain");
-
-            Intent shareIntent = Intent.createChooser(sendIntent, null);
-            startActivity(shareIntent);
-            return true;
-        }
-
-        if (id == R.id.menu_prato_favoritar) {
-
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
     private void getDetalhesPrato() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             prato = getIntent().getParcelableExtra(PRATO_KEY);
@@ -203,8 +145,8 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             if (prato.getListaIngredientes().size() > 0) {
                 listaIngredientes = prato.getListaIngredientes();
             }
+            ehFavorito();
         }
-        ehFavorito();
     }
 
     private void ativarBotaoAdicionar() {
@@ -224,6 +166,10 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
 
     public Boolean getTeste() {
         return teste;
+    }
+
+    public void setTeste(Boolean teste) {
+        this.teste = teste;
     }
 
     public void excluirFavorito2(Prato prato){
@@ -251,23 +197,22 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
     public boolean ehFavorito(){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference2 = database.getReference().child("/favorites");
         DatabaseReference reference = database.getReference(AppUtil.getIdUsuario(this) + "/favorites");
-
-        reference.orderByChild("id").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@androidx.annotation.NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@io.reactivex.annotations.NonNull DataSnapshot dataSnapshot) {
+
 
                 for (DataSnapshot resultSnapshot : dataSnapshot.getChildren()) {
+
                     Prato resultFirebase = resultSnapshot.getValue(Prato.class);
+
                     String idPrato = prato.getIdMeal();
                     String idFirebaseFavorite = resultFirebase.getIdMeal();
 
                     if (idPrato.equals(idFirebaseFavorite)) {
-                        // Toast.makeText(DetalhesDoPratoActivity.this, "eh favorito", Toast.LENGTH_LONG).show();
                         btn_favorite.setBackgroundResource(ic_favorite_black_24dp);
-                    }else{
-                        btn_favorite.setBackgroundResource(ic_favorite_borde);
+                        setTeste(true);
                     }
                 }
             }
@@ -275,10 +220,13 @@ public class DetalhesDoPratoActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@androidx.annotation.NonNull DatabaseError databaseError) {
                 btn_favorite.setBackgroundResource(ic_favorite_borde);
+                setTeste(false);
             }
         });
+        Toast.makeText(DetalhesDoPratoActivity.this, "get Teste "+ getTeste(), Toast.LENGTH_LONG).show();
 
         return getTeste();
+
     }
 
 }
